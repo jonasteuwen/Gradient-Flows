@@ -6,6 +6,7 @@
 *.blg
 *.dvi
 *.fdb_latexmk
+*.fls
 *.glg
 *.glo
 *.gls
@@ -26,6 +27,7 @@
 *.ps
 *.snm
 *.synctex.gz
+*.thm
 *.toc
 *.vrb
 *.xdy

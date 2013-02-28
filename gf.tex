@@ -1,0 +1,3638 @@
+\documentclass[a4paper,11pt, leqno]{scrreprt} %draft
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage[all, error]{onlyamsmath}
+\usepackage{fixmath} % http://ctan.org/pkg/fixmath
+\usepackage{refcheck}
+\usepackage{gitinfo} % Information about the version
+\norefnames
+% \showrefnames
+\usepackage{booktabs} % Better tables
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{xfrac} % Nice / fractions
+%\usepackage[bitstream-charter]{mathdesign}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[strict=true]{csquotes} % Needs to be loaded *after* inputenc
+\usepackage{enumerate}
+
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{marvosym}
+%\usepackage[overload, ntheorem]{empheq}
+\usepackage[amsmath, thmmarks]{ntheorem}
+\usepackage[varg]{txfonts}
+\usepackage{theoremref}
+\usepackage{graphicx}
+\usepackage{fancyref}
+\usepackage{mathtools}
+
+
+%\usepackage{enumitem}
+\usepackage{titletoc}
+\usepackage[bookmarks,colorlinks,breaklinks]{hyperref} % Add hyperref type links in the document, colors
+\definecolor{dullmagenta}{rgb}{0.4,0,0.4} % #660066
+\definecolor{darkblue}{rgb}{0,0,0.4}
+\hypersetup{linkcolor=red,citecolor=blue,filecolor=dullmagenta,urlcolor=darkblue} % coloured links
+\newtagform{brackets}{[}{]}
+\usetagform{brackets}
+%\usepackage{a4wide}
+%\usepackage{savetrees}
+\allowdisplaybreaks[1]
+\renewcommand{\vec}[1]{\boldsymbol{\mathbf{#1}}}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\Im}{\text{Im}}
+\renewcommand{\Re}{\text{Re}}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+\newcommand{\Fo}{\mathcal{F}}
+\newcommand{\R}{\mathbf R}
+\newcommand{\N}{\mathbf N}
+\newcommand{\T}{\mathbb T}
+\newcommand{\uvec}[1]{\boldsymbol{\widehat{\mathbf{#1}}}}
+\newcommand{\llangle}{\langle \! \langle}
+\newcommand{\rrangle}{\rangle \! \rangle}
+\theoremstyle{change}
+\theoremseparator{.}
+\newcounter{acounter}[chapter]
+\def\theacounter{\thechapter.\arabic{acounter}}
+\newtheorem{theorem}[acounter]{Theorem}
+\newtheorem{definition}[acounter]{Definition}
+\newtheorem{lemma}[acounter]{Lemma}
+\newtheorem{corollary}[acounter]{Corollary}
+\newtheorem{proposition}[acounter]{Proposition}
+\theoremheaderfont{\itshape}\theorembodyfont{\upshape}
+\theoremstyle{nonumberplain}
+%\theoremseparator{}
+\theoremsymbol{\ensuremath{\blacksquare}}
+\newtheorem{proof}{Proof}
+\theoremsymbol{}
+\newtheorem{remark}{Remark}
+
+\makeatletter
+\newenvironment{optional}[1][Hypothesis]{
+  \par\noindent \text{[#1]}
+  \def\@currentlabel{[#1]}
+}{\par\noindent\ignorespacesafterend}
+\makeatother  
+
+
+\renewcommand{\fancyrefdefaultformat}{aedo}
+\newcommand*{\fancyreflstlabelprefix}{lst}
+\newcommand*{\fancyrefexlabelprefix}{ex}
+\newcommand*{\fancyrefexclabelprefix}{exc}
+\newcommand*{\fancyrefaplabelprefix}{ap}
+\newcommand*{\fancyrefthmlabelprefix}{th}
+\newcommand*{\fancyreflemlabelprefix}{lem}
+\newcommand*{\fancyrefdfnlabelprefix}{dfn}
+\newcommand*{\fancyrefalglabelprefix}{alg}
+\newcommand*{\fancyrefprolabelprefix}{prop}
+\newcommand*{\fancyrefcorlabelprefix}{cor}
+%\newcommand*{\fancyreftablabelprefix}{tab}
+% fig, sec, chap
+
+
+\frefformat{\fancyrefdefaultformat}{\fancyreflstlabelprefix}{listing\fancyrefdefaultspacing#1}
+\Frefformat{\fancyrefdefaultformat}{\fancyreflstlabelprefix}{Listing\fancyrefdefaultspacing#1}
+
+\frefformat{\fancyrefdefaultformat}{\fancyrefexlabelprefix}{example\fancyrefdefaultspacing#1}
+\Frefformat{\fancyrefdefaultformat}{\fancyrefexlabelprefix}{Example\fancyrefdefaultspacing#1}
+
+\frefformat{\fancyrefdefaultformat}{\fancyrefexclabelprefix}{exercise\fancyrefdefaultspacing#1}
+\Frefformat{\fancyrefdefaultformat}{\fancyrefexclabelprefix}{Exercise\fancyrefdefaultspacing#1}
+
+\frefformat{\fancyrefdefaultformat}{\fancyrefaplabelprefix}{appendix\fancyrefdefaultspacing#1}
+\Frefformat{\fancyrefdefaultformat}{\fancyrefaplabelprefix}{Appendix\fancyrefdefaultspacing#1}
+
+\frefformat{\fancyrefdefaultformat}{\fancyrefseclabelprefix}{\S{}#1}
+\Frefformat{\fancyrefdefaultformat}{\fancyrefseclabelprefix}{\S{}#1}
+
+\frefformat{\fancyrefdefaultformat}{\fancyrefchaplabelprefix}{chapter\fancyrefdefaultspacing#1}
+\Frefformat{\fancyrefdefaultformat}{\fancyrefchaplabelprefix}{Chapter\fancyrefdefaultspacing#1}
+
+\frefformat{\fancyrefdefaultformat}{\fancyrefthmlabelprefix}{theorem\fancyrefdefaultspacing#1}
+\Frefformat{\fancyrefdefaultformat}{\fancyrefthmlabelprefix}{Theorem\fancyrefdefaultspacing#1}
+
+\frefformat{\fancyrefdefaultformat}{\fancyrefcorlabelprefix}{corollary\fancyrefdefaultspacing#1}
+\Frefformat{\fancyrefdefaultformat}{\fancyrefcorlabelprefix}{Corollary\fancyrefdefaultspacing#1}
+
+\frefformat{\fancyrefdefaultformat}{\fancyrefdfnlabelprefix}{definition\fancyrefdefaultspacing#1}
+\Frefformat{\fancyrefdefaultformat}{\fancyrefdfnlabelprefix}{Definition\fancyrefdefaultspacing#1}
+
+\frefformat{\fancyrefdefaultformat}{\fancyrefprolabelprefix}{proposition\fancyrefdefaultspacing#1}
+\Frefformat{\fancyrefdefaultformat}{\fancyrefprolabelprefix}{Proposition\fancyrefdefaultspacing#1}
+
+\frefformat{\fancyrefdefaultformat}{\fancyreftablabelprefix}{table\fancyrefdefaultspacing#1}
+\Frefformat{\fancyrefdefaultformat}{\fancyreftablabelprefix}{Table\fancyrefdefaultspacing#1}
+
+\frefformat{\fancyrefdefaultformat}{\fancyreffiglabelprefix}{figure\fancyrefdefaultspacing#1}
+\Frefformat{\fancyrefdefaultformat}{\fancyreffiglabelprefix}{Figure\fancyrefdefaultspacing#1}
+
+\frefformat{\fancyrefdefaultformat}{\fancyrefalglabelprefix}{algorithm\fancyrefdefaultspacing#1}
+\Frefformat{\fancyrefdefaultformat}{\fancyrefalglabelprefix}{Algorithm\fancyrefdefaultspacing#1}
+
+\frefformat{\fancyrefdefaultformat}{\fancyreflemlabelprefix}{lemma\fancyrefdefaultspacing#1}
+\Frefformat{\fancyrefdefaultformat}{\fancyreflemlabelprefix}{Lemma\fancyrefdefaultspacing#1}
+
+% \titlecontents*{section}[1.8pc]
+%   {\addvspace{3pt}\bfseries}
+%   {\contentslabel[\thecontentslabel.]{1.8pc}}
+%   {}
+%   {\quad\thecontentspage}
+
+% \titlecontents*{subsection}[1.8pc]
+%   {\small}
+%   {\thecontentslabel. }
+%   {}
+%   {, \thecontentspage}
+%   [.---][.]
+
+
+
+\author{Jonas Teuwen}
+\title{Gradient Flows notes}
+\begin{document}
+
+\maketitle
+%\newpage
+\tableofcontents
+%\newpage
+\chapter{Hilbert space theory}
+
+\section{``Gradient flows'' on a Hilbert space}
+Let $(H, \langle \cdot, \cdot \rangle)$ be a real Hilbert space with norm $| \cdot |$. Now let $\phi:H \to \R$ and recall that $\phi$ is Fr\'echet differentiable at $x$ in $H$ if there exists a bounded operator $x^*$ on $H$ such that 
+\[
+\phi(x + h) - \phi(x) = x^*(h) + o(|h|)
+\]
+
+If such an $x^*$ exists, then it will be unique and will be called the gradient of $\phi$ at $x$. So, according to the Riesz representation theorem there is an unique $y$ in $H$ such that $\langle y, h \rangle = x^*(h)$ for all $h$ in $H$. Further we have $\|x^*\| = |y|$. This $y$ will also be called the gradient of $\phi$ at $x$. We will denote this one as $\nabla \phi(x)$. Now if $\phi$ is differentiable at every $x$ in $H$ and the map $\nabla \phi$ from $H$ into itself is continuous, we say that $\phi$ is continuously differentiable and we write this as $\phi \in C^1(H,\R)$. Further if $\nabla \phi$ is Lipschitz, then $\phi$ is said to be in $C^{1,1}(H,\R)$.
+
+Now let $\phi \in C^{1,1}(H,\R)$ and let $\{S(t)\}_{t \in \R}$ be the group of operators associated with $F = \nabla \phi$. That is, we solve $\dot{u}(t) = F(u(t))$ for $t \in \R$ with $u(0) = x$. So, then we define $\Phi(t,x) = u_x(t)$. Now the semigroup of operators is given by $S(t)x := \Phi(t,x)$. Now clearly the orbits $t \mapsto S(t)x$ are continuously differentiable and so is the map $t \mapsto \phi(S(t)x)$. Further by the definition of $S$
+
+\[
+\frac{d}{dt} \phi(S(t)x) = \left \langle \nabla \phi(S(t)x), \frac{d}{dt} S(t)x \right \rangle = |\nabla \phi(S(t)x)|^2 \geq 0
+\]
+Hence, $t \mapsto \phi(S(t)x)$ is nondecreasing. We could as well do this with $\tilde{S}(t) = S(-t)$, then $t \mapsto \phi(\tilde{S}(t)x)$ nonincreasing. We also call this a gradient flow. In the sequel we will consider (semi)-flows associated with  $-\nabla \phi$.
+
+\begin{lemma} \label{lemma:hgf1}
+Let $\psi: H \to \R$ be convex and Fr\'echet differentiable at $x \in H$. Further let $y \in H$. Now the following statements are equivalent:
+\begin{enumerate}
+  \item\label{item:hg1} $y = \nabla \psi(x)$,
+  \item\label{item:hg2} $\langle y, h \rangle + \psi(x) \leq \psi(x + h)$ for every $h \in H$.
+\end{enumerate}
+\end{lemma}
+Remark: For a function $\psi: D(\psi) \subset H \to \R$ and every $x \in D(\psi)$ we say that $y \in H$ is a subgradient of $\psi$ at $x$ if
+\begin{equation}
+\langle y, z - x \rangle + \psi(x) \leq \psi(z) \text{ for every $z \in D(\psi)$.}
+\end{equation}
+The collection of all subgradients of $\psi$ at $x$ is called the subdifferential of $\psi$ at $x$ and is denoted by $\partial \psi(x)$.
+
+\begin{proof}
+\ref{item:hg1}) $\implies$ \ref{item:hg2}): Let $x_1,x_2 \in H$. The convexity of $\psi$ implies the convexity of $t \mapsto \psi(x_1 + t x_2)$.
+It follows that the difference quotient
+\[
+t \mapsto \frac{\psi(x_2 + t x_2) - \psi(x_2)}{t}
+\]
+is nondecreasing. We can see this by noting that $x_1 + t x_2 = \frac{t}{t'} (x_1 + t' x_2) + \frac{t'-t}{t'} x_1$. Now if we choose $x_1 = x$ and $x_2 = h$ we have by the chain rule that
+
+\begin{equation}
+\begin{split}
+\langle y, h \rangle &= \langle \nabla \psi(x), h \rangle = \lim_{t \downarrow 0} \frac{\psi(x + t h) - \psi(x)}{t} = \inf_{t \downarrow 0} \frac{\psi(x + t h) - \psi(x)}{t}\\
+& \leq \psi(x + h) - \psi(x)
+\end{split}
+\end{equation}
+\ref{item:hg2}) $\implies$ \ref{item:hg1}): If we replace $h$ with $th$ in \ref{item:hg2}) with $t > 0$ we obtain
+\[
+\langle y, h \rangle \leq \frac{\psi(x + t h) - \psi(x)}{t}
+\]
+so taking the limit $t \to 0$ we get $\langle y, h \rangle \leq \langle \nabla \psi(x), h \rangle$. If we replace $h$ by $-h$ we reach equality. So now if we set $h = y - \nabla \psi(x)$ we get
+\[
+\langle y, y - \nabla \psi(x) \rangle = \langle \nabla \psi(x), y - \nabla \psi(x) \rangle
+\]
+So we get $y = \nabla \psi(x)$. This implies \ref{item:hg1}).
+\end{proof}
+
+\begin{corollary}
+If $u \in C^1((a,b),H)$ for some $a,b \in R$, $a < b$ and $\psi:H \to \R$ is everywhere Fr\'echet differentiable and convex, then
+\[
+\dot{u}(t) = -\nabla \psi(u(t)), \text{ $t$ in $(a,b)$}
+\]
+iff
+\[
+\frac{1}{2} \frac{d}{dt} d(u(t), z)^2 + \psi(u(t)) \leq \psi(z) \text{ for every $z \in H$, $t \in (a,b)$}
+\]
+
+\end{corollary}
+\begin{proof}
+By the previous Lemma we have
+\[
+\langle \dot{u}(t), z - u(t) \rangle + \psi(u(t)) \leq \psi(z) \text{ for every $z \in H$, $t \in (a,b)$.}
+\]
+Which is what we want since
+\begin{equation*}
+\frac{d}{dt} |u(t) - z|^2 = 2 \langle \dot{u}(t), u(t) - z \rangle
+\end{equation*}
+\end{proof}
+
+We can now consider a slightly more general situation. We set $e(x) = \frac{1}{2} |x|^2$ for $x \in H$. So we now have that
+\begin{equation}
+\nabla e(x) = x, \quad e(x - y) = \frac{1}{2} d(x,y)^2, \text{ for $x,y \in H$}
+\end{equation}
+
+\begin{proposition}
+Let $\phi: H \to \R$ be everywhere Fr\'echet differentiable such that $\phi - \alpha e$ is convex for some $\alpha \in \R$. Further, let $J$ be a nonempty interval of $\mathbf R$ and $u \in C^1(J,H)$. Then the following are equivalent:
+\begin{enumerate}
+  \item \label{item:evi1} $\dot{u}(t) = -\nabla \phi(u(t))$ for $t \in J$,
+  \item $\displaystyle \frac{1}{2} \frac{d}{dt} d(u(t), z)^2 + \frac{\alpha}{2} d(u(t), z)^2 + \phi(u(t)) \leq \phi(z)$ for every $z \in H$ and $t \in J$. This inequality is called the \textit{evolution variational inequality}.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Let $\psi = \phi - \alpha e$. Now \ref{item:evi1}) is equivalent to $\nabla \psi(u(t)) = -\dot{u}(t) - \alpha u(t)$. By Lemma \ref{lemma:hgf1} this is equivalent to
+\[
+\langle -\dot{u}(t) - \alpha u(t), z - u(t) \rangle + \psi(u(t)) \leq \psi(z) \text{ for all $z \in H$}
+\]
+Now, we can use the definition of $\psi$ we get
+\[
+\langle - \dot{u}(t), z - u(t) \rangle - \alpha \langle u(t), z - u(t) \rangle + \phi(u(t)) - \frac{\alpha}{2} |u(t)|^2 \leq \phi(z) - \frac{\alpha}{2} |z|^2 \text{ for $z \in H$}.
+\]
+Grouping terms together and using that $\frac{d}{dt} |u(t) - z|^2 = 2 \langle \dot{u}(t), u(t) - z \rangle$, $d(u(t), z)^2 = |u(t)|^2 - 2 \langle u(t), z \rangle + |z|^2$ we get
+\begin{equation*}
+\frac{1}{2} d(u(t), z)^2 + \underbrace{\frac{\alpha}{2} |u(t)|^2 - \alpha \langle u(t), z \rangle + \frac{\alpha}{2} |z|^2}_{d(u(t), z)^2} + \phi(u(t)) \leq \phi(z) \text{ for $z \in H$}.
+\end{equation*}
+\end{proof}
+
+Now it would be nice if $\phi \in C^{1,1}(H, \R)$ there would exist an $\alpha \in \R$ such that $\phi - \alpha e$ is convex ($\phi$ is said to be $\alpha$-convex). This is the case
+\begin{lemma}\label{lemma:monotone}
+Let $\psi: H \to \R$ be everywhere Fr\'echet differentiable, then $\phi$ is convex iff $\nabla \psi$ is monotone, that is if
+\[
+\langle \nabla \psi(x_1), \nabla \psi(x_2), x_1 - x_2 \rangle \geq 0 \text{ for all $x_1, x_2 \in H$}.
+\]
+\end{lemma}
+
+\begin{proof}
+$\implies:$ Let $\psi$ be convex and let $x_1, x_2 \in H$, set $y_1 = \nabla \psi(x_1)$ and $y_2 = \nabla \psi(x_2)$. From Lemma \ref{lemma:hgf1} we obtain $\langle y_i, h \rangle + \psi(x_i) \leq \psi(x_i + h)$ for $i = 1,2$ and $h \in H$. For $i = 1$, choose $h = x_2 - x_1$ and for $i = 2$ choose $h = x_1 - x_2$. Adding both inequalities
+\[
+\langle y_1, x_2 - x_1 \rangle + \langle y_2, x_1 - x_2 \rangle \leq 0 \text{ thus } \langle y_2 - y_1, x_2 - x_1 \rangle \geq 0
+\]
+$\Leftarrow:$ Let $\nabla \psi$ be monotone and let $x,y \in H$ and $t \in \R$. Define
+\[
+\alpha(t) := \psi((1 - t)x + ty) - (1 - t) \psi(x) - t \psi(y)
+\]
+Now $\alpha(0) = \alpha(1) = 0$ and $\alpha$ is differentiable
+\[
+\alpha'(t) = \langle \nabla \psi((1 - t)x + ty), y - x \rangle + \psi(x) - \psi(y).
+\]
+Now let $t_1 < t_2$. Note that $[(1 - t_2)x + t_2 y] - [(1 - t_1)x + t_1 y] = (t_2 - t_1)(y - x)$. We have
+\begin{equation}
+\begin{split}
+\alpha'(t_2) - \alpha'(t_1) &= \langle \nabla \psi((1 - t_2)x + t_2 y) - \nabla \psi((1 - t_1)x + t_1y)\\
+ &[(1 - t_2)x + t_2 y] - [(1 - t_1)x + t_1 y] \rangle \cdot \frac{1}{t_2 - t_1} \geq 0.
+\end{split}
+\end{equation}
+From this we conclude that $\alpha'$ is nondecreasing. So now if $\alpha$ had a maximum in $\xi = (0,1)$, then $\alpha'(\xi) = 0$. So by the mean value theorem there exists $\zeta \in (t, \xi)$ such that $\alpha(\xi) - \alpha(t) = \alpha'(\zeta)(\xi - t) \geq 0$. So $\alpha$ is nonincreasing on $(t, \epsilon)$. By a similar argument $\alpha$ is nondecreasing for $t > \xi$, which is a contradiction because then $\alpha$ would not be maximal in $\xi$. So. $\alpha(t) \geq 0$ this $\psi$ is convex.
+\end{proof}
+
+Now by Cauchy-Schwarz we have $\langle \nabla \psi(x_2) - \nabla \psi(x_1), x_2 - x_1 \rangle \geq [\nabla \psi]_\text{Lip} |x_2 - x_1|^2$ for all $x_1, x_2 \in H$. Now, for the correct $\alpha$ we can make $\psi - \alpha e$ convex by Lemma \ref{lemma:monotone}. We summarize this
+
+\begin{proposition}\label{prop:abscauchysol}
+Let $\phi: H \to \R$ be such that $\phi - \alpha e$ is convex for some $\alpha \in \R$. If we have that for every $\phi \in C^{1,1}(H, \R)$, then for every $x \in H$ there is a unique function $u \in C^1(\R, H)$  satisfying the EVI together with $u(0) = x$. Moreover if $u_1, u_2 \in C^1(\R,H)$ satisfy the EVI with $J = \R$, then
+\[
+d(u_1(t), u_2(t)) \leq e^{-\alpha(t - s)} d(u_1(s), u_2(s))
+\]
+for every $s < t$, $s, t \in \R$.
+\end{proposition}
+
+\section{Uniqueness and a priori estimates}
+A function $\phi: X \to (-\infty, \infty]$ is called \textit{proper}
+if its effective domain $D(\phi) := \{x \in X : \phi(x) < \infty\}$ is
+non-empty. A proper function is called \textit{lower semicontinuous}
+(lsc) at $x \in X$ if for every sequence $(x_n)$ converging to $x$ we
+have that $\phi(x) \leq \liminf_n \phi(x_n)$. So $\phi$ is lsc at $x$ if for
+every $\epsilon > 0$ there exist $\delta > 0$ such that $\phi(y) \geq
+\phi(x) - \epsilon$ for every $y \in X$ such that $d(x,y) \leq
+\delta$. A function is everywhere lsc iff for every $c \in \R$ we have
+that $\{x \in X : \phi(x) \leq c \}$. A lsc function on a compact
+metric space is bounded from below and attains its minimum.
+
+A function $u:I \to X$ is said to be locally absolutely continuous on $I$,
+notation $u \in \text{AC}_\text{loc}(I, X)$ if $u \in \text{AC}([a,b];
+X)$ for every $a,b \in I$ with $a < b$ and $[a,b] \subset I$.
+
+Recall that if $u$ is absolutely continuous on $[a,b]$, then for every
+$z \in X$ the function $t \mapsto d(u(t), z)^2$ is absolutely
+continuous on $[a,b]$ as well.
+
+\begin{definition}
+Let $\phi : X \to (-\infty, \infty]$ be proper and lsc, and let
+$\alpha \in \R$. If we have a function $u$ in $C([0, \infty); X) \cap
+\text{AC}_\text{loc}((0, \infty); X)$ satisfying
+\begin{equation}
+  u(0) \in \overline{D(\phi)}, \quad u(t) \in D(\phi)\quad \text{ for
+    every $t > 0$,}
+\end{equation}
+and for every $z \in D(\phi)$
+\begin{equation}\tag{\Radioactivity}\label{eq:evi}
+  \frac12 \frac d{dt} d(u(t), z)^2 + \frac\alpha2 d(u(t),z)^2 +
+  \phi(u(t)) \leq \phi(z) \text{ a.e.\ in $(0, \infty)$.}
+\end{equation}
+then $u$ is called a solution to the Evolution Variational Inequality
+(\eqref{eq:evi}). The value $u(0)$ is called the initial value of $u$.
+\end{definition}
+
+\begin{theorem}[A priori estimate]\label{th:apriori}
+Suppose $u$ and $v$ are solutions to (\eqref{eq:evi}), then we have the
+following estimate:
+\begin{equation}
+  d(u(t), v(t)) \leq e^{-\alpha (t - s)} d(u(s), v(s)) \text{ for all
+    $0 \leq s < t < \infty$}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The function $[a,b] \ni t \mapsto \phi(u(t))$ is lsc, hence Borel and
+bounded from below. From \eqref{eq:evi} we see that this function is
+bounded from above on $[a,b]$ by a Lebesgue integrable function, hence
+\begin{equation*}
+  \int_a^b |\phi(u(t))| \, dt < \infty.
+\end{equation*}
+Integrating \eqref{eq:evi} gives us
+\begin{equation}\label{eq:intevi}
+\begin{split}
+ \frac12 (d(u(b),z)^2 &- d(u(a), z)^2) + \frac\alpha2 \int_a^b d(u(t),
+ z)^2 \, dt + \int_a^b \phi(u(t)) \, dt\\
+ &\leq (b - a) \phi(z), \text{
+   for every $z \in D(\phi)$.} 
+\end{split}
+\end{equation}
+Similarly for $v$. We now define $g(t) := \frac12 e^{2 \alpha t}
+d(u(t), v(t))^2$. Now $t \mapsto g(t)$ is non-increasing on $[0,
+\infty)$, to see this note that we want to show that the derivative
+must be smaller of equal to zero. Using the weak-derivative formulism
+we note that it is sufficient to show
+\begin{equation}\label{eq:gdif}
+- \int_0^\infty g(t) \eta'(t) \, dt \leq 0 \text{ for every non-negative
+  $\eta \in C_c^1(0, \infty)$.}
+\end{equation}
+Now let $\eta$ be as in \eqref{eq:gdif}. Extend $\eta$ by $0$ on on the
+rest of the real axis. Further let $h_0 > 0$ be such that $\eta(t) =
+0$ for all $-\infty < t \leq h_0$. We now have for $h \in (0, h_0)$
+\begin{equation}
+  - \int_0^\infty g(t) \frac1h (\eta(t) - \eta(t - h)) \, dt =
+  \int_0^\infty \frac1h (g(t + h) - g(t)) \eta(t) \, dt.
+\end{equation}
+by substitution. Note that
+
+\begin{equation*}
+\begin{split}
+  g(t + h) - g(t) &= \frac12 [e^{2 \alpha (t + h)} - e^{2 \alpha t}]
+  d(u(t + h), v(t + h))^2\\
+  &+ \frac12 e^{2 \alpha t} [d(u(t + h), v(t + h))^2 - d(u(t), v(t +
+  h))^2]\\
+  &+ \frac12 e^{2 \alpha t} [d(u(t), v(t + h))^2 - d(u(t), v(t +
+  h))^2]\\
+  &= I_1 + I_2 + I_3.
+\end{split}
+\end{equation*}
+So, now if we pick $a = t$, $b = t + h$ and $z = v(t + h)$ we get from
+\eqref{eq:intevi} that 
+\begin{equation}
+I_2 \leq \frac12 e^{2 \alpha t} \left ( 2 h \phi(v(t + h)) - \alpha
+  \int_t^{t + h} d(u(r), v(t + h))^2 \, dr - 2 \int_h^{t + h}
+  \phi(u(r)) \, dr \right )
+\end{equation}
+Similarly, if we replace $u$ b $v$ in \eqref{eq:intevi} and set $a =
+t$, $b = t + h$ and $z = u(t)$ we obtain
+\begin{equation}
+I_3 \leq \frac12 e^{2 \alpha t} \left ( 2 h \phi(u(t)) - \alpha
+  \int_t^{t + h} d(v(r), u(t))^2 \, dr - 2 \int_h^{t + h}
+  \phi(v(r)) \, dr \right )
+\end{equation}
+So, using that $\eta \geq 0$ we obtain that
+\begin{equation*}
+\begin{split}
+  \int \eta(t) &\frac1h (g(t + h) - g(t)) \, dt\\
+  &\leq \int_0^\infty \frac12 e^{2 \alpha t} \Bigg \{ \left [ \frac1h
+    (e^{2 \alpha h} - 1) d(u(t + h), v(t + h))^2 \right ]\\
+  &+ 2 \left [ \phi(v(t + h)) - \frac1h \int_t^{t + h} \phi(u(r)) \,
+    dr - \frac\alpha2 \frac1h \int_t^{t + h} d(u(r), v(t + h))^2 \, dr
+  \right ]\\
+  &+ 2 \left [\phi(u(t)) - \frac1h \int_t^{t + h} \phi(v(r)) \, dr -
+    \frac\alpha2 \frac1h \int_t^{t + h} d(v(r), u(t))^2 \,dr \right ]
+  \Bigg \} \, dt.
+\end{split}
+\end{equation*}
+By the integrability of $\phi \circ v$ we have that
+\begin{equation*}
+  \frac1h \int_t^{t + h} \phi(u(r)) \, dr \to \phi \circ u(t) \text{
+    as $h \to 0$}.
+\end{equation*}
+So, as $h \to 0$ we have
+\begin{align*}
+  -\int_0^\infty g(t) \eta'(t) \, dt &= \lim_{h \to 0} -\frac1h
+  \int_0^\infty g(t)(\eta(t) - \eta(t - h)) \, dt\\
+  &\leq \int_0^\infty \eta(t) \frac12 e^{2 \alpha t} \Big [ 2 \alpha
+  d(u(t), v(t))^2 + 2 \phi(v(t)) - 2 \phi(u(t))\\
+  &- \alpha d(u(t), v(t))^2 + 2 \phi(u(t)) - 2\phi(u(t)) - \alpha d(u(t), v(t))^2 \Big \}\\
+  &= 0
+\end{align*}
+\end{proof}
+
+\section{Integral formulation of EVI}
+\begin{definition}
+Let $\phi : X \to (-\infty, \infty]$ be proper and lsc and let $\alpha
+\in \R$. A function $u \in C([0, \infty); X)$ is called an ``integral
+solution'' if for every $0 < a < b$ the function $\phi \circ u \in
+L^1(a,b)$ and satisfies \eqref{eq:intevi}.
+\end{definition}
+
+\begin{proposition}\label{prop:intform}
+\mbox{}
+\begin{enumerate}
+  \item \label{it:intevi1} A solution to \ref{eq:evi} is an ``integral solution'' to
+    \ref{eq:evi};
+  \item \label{it:intevi2} If $u$ and $v$ are ``integral solutions'' to \ref{eq:evi},
+    then they satisfy the estimate of \fref{th:apriori}. They coincide
+    if $u(0) = v(0)$;
+  \item \label{it:intevi3} If $u$ is an ``integral solution'' to \ref{eq:evi} and if $u
+    \in \text{Lip}([a,b]; X)$ for every $0 < a < b$, then $u$ is a
+    solution to \ref{eq:evi}.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Part \ref{it:intevi1}) and part \ref{it:intevi2}) follow from the
+proof of \fref{th:apriori}. \ref{it:intevi3}): Let $z \in D(\phi)$ and
+$0 < a' < b'$. Further let $u \in \text{Lip}([a', b']; X)$ with $\phi
+\circ u \in L^1(a', b')$ satisfying \eqref{eq:intevi}. Now we will
+show that there exist a null set $N$ in $(a', b')$ such that $u$
+satisfies \ref{eq:evi} on $(a', b') \setminus N$ and $\phi \circ u$
+is bounded from above on $(a', b') \setminus N$ by a finite number
+$C$. Since $\phi \circ u \in L^1(a',b')$ and $u \in \text{Lip}([a',
+b']; X)$ there exists $N$ such that every $t_0 \in (a', b') \setminus
+N$ is a Lebesgue point of $\phi \circ u$ in $(a', b')$ (that is this
+point satisfies Lebesgue's differentiation lemma) and $N$ is a null
+set. Further $t_0$ is a point of differentiability of $t \mapsto
+d(u(t), z)$ in $(a', b')$ because $u$ is Lipschitz. This is because
+Lipschitz implies absolute continuity. Now we choose $a = t_0 \in (a',
+b') \setminus N, b = t_0 + h$ with $0 < h < b' - t_0$, so if we divide
+\eqref{eq:intevi} by $h$ and let $h$ tend to $0$, then we obtain
+\begin{equation*}
+\frac12 \frac{d}{dt} d(u(t_0), z)^2 + \frac\alpha2 d(u(t_0), z)^2 +
+\phi(u(t_0)) \leq \phi(z)
+\end{equation*}
+Now, set $C_1(a', b') := \max_{t \in [a', b']} d(u(t), z)$, then we
+get after we note that
+\begin{equation*}
+\begin{split}
+  |d(u(t), z)^2 - d(u(t'), z)^2| &\leq [d(u(t), z) + d(u(t'),
+  z)]d(u(t), u(t'))\\
+  &\leq 2 C_1 [u]_\text{Lip} |t - t'|.
+\end{split}
+\end{equation*}
+\begin{equation*}
+  \phi(u(t_0)) \leq \phi(z) + \frac{|\alpha|}2 C_1^2 + C_1
+  [u]_\text{Lip} =: C(a', b').
+\end{equation*}
+Now $(a', b') \setminus N$ is dense in $(a', b')$ because if it were
+not $N$ would contain an open interval, further $u$ is continuous and
+$\phi$ is lsc so we get $\phi(u(t)) \leq C$ for every $t \in (a',
+b')$, hence $u(t) \in D(\phi), t \in (a', b')$.
+\end{proof}
+
+\section{``Existence'' in case $X$ is a Hilbert space}
+Let $(X, \langle \cdot, \cdot \rangle)$ be a real Hilbert space with
+norm $| \cdot |$ and metric $d( \cdot, \cdot)$ and let $\phi:X \to
+(-\infty, \infty]$ be a proper lsc function such that $\phi - \alpha
+e$ is convex for some $\alpha \in \R$. In this case $\phi$ is said to
+be $\alpha$-convex.
+
+We already know that for any $x \in \overline{D(\phi)}$ there exists
+at most one solution $u$ to the Evolution Variational Inequality
+\eqref{eq:evi} with initial value $u(0) = x$. The goal of this section
+is to prove the existence of such a solution.
+
+The proof of the existence will be done by approximating $\phi$ by a
+family of functions $(\phi_h)_{h \in I_\alpha}$ where 
+\begin{equation}
+I_\alpha:=
+\begin{cases}
+(0, \infty) & \text{ if $\alpha \geq 0$},\\
+(0, |\alpha|^{-1}) & \text{ if $\alpha < 0$}.
+\end{cases}
+\end{equation}
+The functions $\phi_h$ are usually called the \textit{Moreau-Yosida
+  approximations} of $\phi$. These converge to $\phi$ as $h$ tends to
+$0$ and they are $\frac{\alpha}{1 + \alpha h}$-convex.
+
+\subsection{Preliminaries}
+\begin{lemma}\label{lem:prelim1}
+Let $\psi: X \to (-\infty, \infty]$ be proper, lsc and convex. Then
+there exists $b \in X$ and $x \in \R$ such that
+\begin{equation}\label{eq:lemmapre11}
+\psi(x) \geq \langle b, x \rangle + c, \quad x \in X.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Define the epigraph of $\psi$ by $\text{epi}(\psi) := \{(x,t) \in X
+\times \R : \psi(x) \leq t\}$, so this are the points above the
+graph. Note that since $\psi$ is proper and convex, the epigraph of $\psi$ is
+non-empty and convex. We introduce the inner product $\llangle \cdot,
+\cdot \rrangle$ on $X \times \R$ defined by $\llangle (x_1, t_1),
+(x_2, t_2) \rrangle := \langle x_1, x_2 \rangle + t_1 t_2$. Now $(X
+\times \R, \llangle \cdot, \cdot \rrangle)$ is a Hilbert space. The
+subset $\text{epi}(\psi)$ is closed in $X \times \R$ as a consequence
+of the lower semicontinuity of $\psi$.
+
+Let $x_0 \in D(\psi)$ and $t_0 < \psi(x_0)$. Then $(x_0, t_0) \notin
+\text{epi}(\psi)$. By the projection theorem on closed convex sets in
+Hilbert spaces, there exists a unique element $(\overline{x},
+\overline{t}) \in \text{epi}(\psi)$ satisfying
+\begin{equation}\label{eq:lemmapre12}
+\langle x - \overline{x}, x_0 - \overline{x} \rangle + (t -
+\overline{t})(t_0 - \overline{t}) \leq 0
+\end{equation}
+for every $(x, t) \in \text{epi}(\psi)$.
+First we choose $x = x_0$ and $t \geq \psi(x_0)$ in
+\eqref{eq:lemmapre12}. Then we can see that $t_0 - \overline{t}$ must
+be non-zero. Further, if we choose $t > \overline{t}$ we can see that
+$t_0 - \overline{t} < 0$. Finally if we choose $x \in D(\psi)$ in
+\eqref{eq:lemmapre12} we obtain \eqref{eq:lemmapre11} with
+\begin{equation*}
+b := \frac{1}{\overline{t} - t_0}(\overline{x} - x_0) \text{ and } c
+:= \overline{t} - \frac{1}{\overline{t} - t_0} \langle \overline{x},
+\overline{x} - x_0 \rangle.
+\end{equation*}
+Equation \eqref{eq:lemmapre11} trivially holds for $x \in X \setminus D(\psi)$.
+\end{proof}
+
+\begin{lemma}\label{lem:prelim2}
+Let $\phi : X \to (-\infty, \infty]$ be proper, lsc and
+$\alpha$-convex for some $\alpha \in \R$. For every $h \in I_\alpha$
+and every $x \in X$ the function
+\begin{equation}\label{eq:prelim21}
+\psi(y) :=
+\begin{cases}
+\frac{1}{2h} |y - x|^2 + \phi(y) & y \in D(\phi),\\
+\infty & \text{otherwise}
+\end{cases}
+\end{equation}
+has a unique global minimizer, which we will denote by $J_h x$.
+\end{lemma}
+
+\begin{proof}
+By $\alpha$-convexity of $\phi$ and \fref{lem:prelim1} the function
+$\phi$ can be rewritten as
+\begin{equation}
+\psi(y) = \left ( \alpha + \frac1h \right ) \frac12 |y|^2 + \left
+  \langle b - \frac1h x, y \right \rangle + \left ( c + \frac1{2h}
+  |x|^2 \right ) + \phi_1(y)
+\end{equation}
+where $\phi: X \to [0, \infty]$ is proper, lsc and convex. We can see
+that $\alpha + \frac1h > 0$ and $\phi_1 \geq 0$, so $\psi$ is bounded
+from below. Set $\gamma := \inf_{y \in X} \phi(y) \in \R$. Let
+$(y_n) \subset D(\psi)$ be a minimizing sequence, that is $\lim_{n \to
+  \infty} \psi(y_n) = \lambda$. Now we claim that $(y_n)$ is a Cauchy
+sequence. Suppose it is and $\overline{y}$ is its limit in $X$. By
+lower semicontinuity we obtain
+\begin{equation*}
+\gamma \leq \psi(\overline{y}) \leq \liminf_{n \to \infty} \psi(y_n)
+= \gamma.
+\end{equation*}
+Now given $y, \hat{y} \in D(\phi)$ we have because $\psi \left (
+  \frac{y + \hat{y}}{2} \right ) \geq \gamma$ that
+\[
+\psi(y) + \psi(\hat{y}) - 2 \psi \left ( \frac{y + \hat{y}}{2} \right
+) \geq \left ( \alpha + \frac1h \right ) \left [ \frac12 |y|^2 +
+  \frac12 |\hat y|^2 - \left | \frac{y + \hat y}{2} \right |^2 \right
+] = \left ( \alpha + \frac1h \right ) \left | \frac{y + \hat y}{2}
+\right |^2.
+\]
+So since $\frac{y + \hat y}{2} \in D(\psi)$ (by convexity) we obtain
+\begin{equation}\label{eq:prelimcauchy}
+\begin{split}
+|y - \hat y| &\leq 2 \left (\alpha + \frac1h \right )^{-\frac12}
+\sqrt{\psi(y) + \psi(\hat y) - 2 \psi \left ( \frac{y + \hat y}{2}
+  \right )}\\
+&\leq  2 \left (\alpha + \frac1h \right )^{-\frac12}
+\sqrt{(\psi(y) - \gamma) + (\psi(\hat y) -\gamma)}.
+\end{split}
+\end{equation}
+Replacing $y$ by $y_m$ and $\hat y$ by $y_m$ in
+\eqref{eq:prelimcauchy} and noting that $\lim_{n \to \infty} \psi(y_n)
+= \gamma$ we can conclude that $(y_n)$ is Cauchy. The uniqueness
+follows from \eqref{eq:prelimcauchy} as well.
+\end{proof}
+
+\begin{definition}
+Let $\phi : X \to (-\infty, \infty]$ be proper, lsc and
+$\alpha$-convex for some $\alpha \in \R$. Set
+\begin{equation}
+\phi := \psi - \alpha e.
+\end{equation}
+For $h \in I_\alpha$ and $x \in X$ set
+\begin{equation}
+A_h x := \frac1h (x - J_h x).
+\end{equation}
+\end{definition}
+We will now give some properties of $J_h$ and $A_h$.
+
+\begin{lemma}\label{lem:jhahestimates}
+For $h \in I_\alpha$ and $x, \hat x \in X$ we have that
+\begin{align}
+&J_h x \in D(\partial \psi) \text{ and } A_h x - \alpha J_h x
+\in \partial \psi(J_h x),\label{eq:lemjhah1}\\
+&|J_h x - J_h \hat x| \leq \frac{1}{1 + \alpha h} |x - \hat x|,\label{eq:lemjhah2}\\
+&|A_h x - A_h \hat x| \leq \frac1h \frac{2 + \alpha h}{1 + \alpha h}
+|x - \hat x|,\label{eq:lemjhah3}\\
+&\langle A_h  - A_h \hat x, x - \hat x \rangle \geq \frac{\alpha}{1 +
+  \alpha h} |x - \hat x|^2\label{eq:lemjhah4}.
+\end{align}
+\end{lemma}
+
+\begin{proof}
+\eqref{eq:lemjhah1}. We have as in \fref{lem:prelim2} using $\psi :=
+\phi - \alpha e$ that
+\[
+\psi(y) = \left ( \alpha + \frac1h \right ) \frac12 |y|^2 - \left
+  \langle \frac1h x, y \right \rangle + \frac1{2h}
+  |x|^2 + \phi(y), \quad y \in X.
+\]
+Set $g(y) := \frac12 (\frac1h + \alpha)|y|^2 - \langle \frac1h x, y
+\rangle + \frac1{2h} |x|^2$, $y \in X$. So $\psi = g + \phi$. Because
+$J_h x$ is a global minimizer of $\psi$, we have for every $y \in
+D(\phi)$ and $t \in (0,1)$ that
+\[
+g((1 - t)J_h x + ty) + \phi((1 - t)J_h x + ty) \geq g(J_h x) +
+\phi(J_h x).
+\]
+By the convexity of $\phi$ we have
+\[
+-\frac1t (g((1 - t)J_h x + ty) - g(J_h x)) \leq \phi(y) - \phi(J_h x).
+\]
+So let $t \to 0$ we arrive at
+\[
+- \langle \nabla g(J_h x), y - J_h x \rangle \leq \phi(y) - \phi(J_h x).
+\]
+now note that $\nabla g(z) = (\frac1h + \alpha)z - \frac1h x$, $z \in
+X$, so now using the definition of $A_h$ and the definition of the
+subdifferential of $\phi$. So we obtain \eqref{eq:lemjhah1}.
+\eqref{eq:lemjhah2}. Let $x_1, x_2 \in X$. From \eqref{eq:lemjhah1}
+\[
+\frac1h (x_i - J_h x_i) - \alpha J_h x_i \in \partial \phi(J_h x_i),
+\quad i = 1,2.
+\]
+$\partial \phi$ is monotone \fbox{fill in} so we get
+\[
+\left \langle \left [- \left (\frac1h + \alpha \right ) J_h x_2 +
+    \frac1h x_2 \right ] - \left [- \left ( \frac1h + \alpha \right )
+    J_h x_1 + \frac1h x_1 \right ], J_h x_2 - J_h x_1 \right \rangle
+\geq 0.
+\]
+Splitting up and using Cauchy-Schwarz we obtain
+\[
+(1 + \alpha h)|J_h x_2 - J_h x_1|^2 \leq \langle x_2 - x_1, J_h x_2 -
+J_h x_1 \rangle \leq |x_2 - x_1| |J_h x_2 - J_h x_1|
+\]
+which implies \eqref{eq:lemjhah2} because $1 + \alpha h > 0$.
+\eqref{eq:lemjhah3} follows from \eqref{eq:lemjhah2} and the
+definition of $A_h$ because
+\begin{equation*}
+\begin{split}
+|A_h x - A_h \hat x| &= \frac1h |(x - \hat x) + (J_h x - J_h \hat
+x)|\\
+&\leq \frac1h |x - \hat x| + \frac1h |J_h x - J_h \hat x|\\
+&\leq \frac1h |x - \hat x| + \frac1h \frac1{1 + \alpha h} |x - \hat
+x|\\
+&= \frac1h \frac{2 + \alpha h}{1 + \alpha h}  |x - \hat x|.
+\end{split}
+\end{equation*}
+\eqref{eq:lemjhah4}. We have that
+\[
+(1 + \alpha h)h A_h = (1 + \alpha h)I - (1 + \alpha h)J_h = (I - C) +
+\alpha h I,
+\]
+where $C:=(1 + \alpha h)J_h$. By \eqref{eq:lemjhah2} we know that $|C
+x_2 - C x_1| \leq |x_2 - x_1|$ so $\langle (I - C)x_2 - (I - C)x_1,
+x_2 - x_1 \rangle \geq 0$ by rearranging terms. Now
+\begin{align*}
+\langle A_h x_2 - A_h x_1, x_2 - x_1 \rangle &= \frac1h \frac1{1 + \alpha h} \langle (I - C)x_2 - (I - C)x_1,
+x_2 - x_1 \rangle + \frac{\alpha h}{1 + \alpha h} |x_2 - x_1|^2\\
+&= \frac1h \frac1{1 + \alpha h} |x_2 - x_1|^2 - \frac1h \langle J_h
+x_2 - J_h x_1, x_2 - x_1 \rangle + \frac{\alpha h}{1 + \alpha h} |x_2 - x_1|^2\\
+&\geq \frac1h \frac1{1 + \alpha h} |x_2 - x_1|^2 - \frac1h |J_h x_2 - J_h
+x_1| |x_2 - x_1| + \frac{\alpha h}{1 + \alpha h} |x_2 - x_1|^2\\
+&\geq \frac1h \frac1{1 + \alpha h} |x_2 - x_1|^2 - \frac1h \frac1{1 +
+  \alpha h} |x_2 - x_1|^2 + \frac{\alpha h}{1 + \alpha h} |x_2 -
+x_1|^2\\
+&= \frac{\alpha h}{1 + \alpha h} |x_2 - x_1|^2.
+\end{align*}
+\end{proof}
+
+\subsection{Moreau-Yosida approximation}
+\begin{definition}
+Let $\phi$ be proper, lsc and $\alpha$-convex and let $\psi$ as in
+\eqref{eq:prelim21}. Further, let $h \in I_\alpha$. Then we define
+\begin{equation}
+\phi_h(x) := \psi(J_h x), \quad x \in X.
+\end{equation}
+\end{definition}
+
+\begin{proposition}\label{prop:myphih}
+Let $\phi, \phi_h$ be as above. Then
+\begin{equation}\label{eq:phih}
+\phi_h(x) = \frac{h}2 |A_h x|^2 + \phi(J_h x), \quad x \in X.
+\end{equation}
+$\phi_h \in C^{1,1}(X; \R)$, $\nabla \phi_h = A_h$ and $\phi_h$ is
+$\frac{\alpha}{1 + \alpha h}$-convex.
+\end{proposition}
+
+\begin{proof}
+\eqref{eq:phih} follows from
+\begin{equation*}
+\begin{split}
+\phi_h(x) &= \psi(J_h x)\\
+&=\frac1{2h} |J_h x - x|^2 + \phi(J_h x)\\
+&=\frac{h^2}{2h} |A_h|^2 + \phi(J_h x)\\
+&=\frac{h}{2} |A_h|^2 + \phi(J_h x).
+\end{split}
+\end{equation*}
+Now we will show that $\nabla \phi(x) = A_h x$ for $x \in X$. Let
+$x,y \in X$. From \eqref{eq:lemjhah1} we know that $A_h x - \alpha J_h
+x \in \partial \psi(J_h x)$. So, by the definition of the subgradient
+we have for $z = J_h y$ that
+\begin{equation*}
+\langle A_h x - \alpha J_h x, J_h y - J_h x \rangle  + \psi(J_h x) \leq
+\psi(J_h y)
+\end{equation*}
+So, by rearranging we get
+\begin{equation*}
+\langle A_h x - \alpha J_h x, J_h y - J_h x \rangle  \leq \psi(J_h y) -
+\psi(J_h x)
+\end{equation*}
+From \eqref{eq:phih} and $\psi = \phi - \alpha e$ we obtain
+\begin{equation*}
+\begin{split}
+\phi_y(y) - \phi_h(x) &= \psi(J_h y) - \psi(J_h x) + \frac{\alpha}2
+|J_h y|^2 - \frac{\alpha}2 |J_h x|^2 + \frac{h}2 |A_h y|^2 - \frac{h}2
+|A_h x|^2\\
+&\geq \langle A_h x - \alpha J_h x, J_h y - J_h x \rangle + \frac{\alpha}2
+|J_h y|^2 - \frac{\alpha}2 |J_h x|^2 + \frac{h}2 |A_h y|^2 - \frac{h}2
+|A_h x|^2.
+\end{split}
+\end{equation*}
+We can rewrite
+\begin{equation}
+\langle A_h x - \alpha J_h x, J_h y - J_h x \rangle = -\langle A_h x -
+\alpha J_h x, x - y \rangle + \langle A_h x - \alpha J_h x, h A_h x -
+h A_h y \rangle.
+\end{equation}
+By rearranging the terms we eventually obtain
+\begin{align*}
+\phi_h(y) - \phi_h(x) - \langle A_h x, y - x \rangle &\geq \langle
+\alpha J_h x, x + y \rangle + \langle A_h x - \alpha J_h x, h A_h x -
+h A_h y \rangle\\
+&=\alpha \langle J_h x, x - y\rangle + h \langle A_h x, A_h x - A_h y
+\rangle - h \alpha \langle J_h x, A_h x - A_h y \rangle\\
+&+ \frac{\alpha}2
+|J_h y|^2 - \frac{\alpha}2 |J_h x|^2 + \frac{h}2 |A_h y|^2 - \frac{h}2
+|A_h x|^2\\
+&=\alpha \langle J_h x, x - y\rangle + h \langle A_h x, A_h x - A_h y
+\rangle\\
+&- \alpha \langle J_h x, x - y \rangle + \alpha \langle J_h x,
+J_h x - J_h y \rangle\\
+&+ \frac{\alpha}2
+|J_h y|^2 - \frac{\alpha}2 |J_h x|^2 + \frac{h}2 |A_h y|^2 - \frac{h}2
+|A_h x|^2\\
+&= h \langle A_h x, A_h x - A_h y
+\rangle + \alpha \langle J_h x,
+J_h x - J_h y \rangle\\
+&+ \frac{\alpha}2
+|J_h y|^2 - \frac{\alpha}2 |J_h x|^2 + \frac{h}2 |A_h y|^2 - \frac{h}2
+|A_h x|^2\\
+&= \frac{h}2 |A_h x - A_h y|^2 + \frac{\alpha}2 |J_h x - J_h y|^2.
+\end{align*}
+Now we switch the role of $y$ and $x$ and we add $\langle A_h y - A_h
+x, x - y \rangle$ (which is a negative term) to obtain
+\begin{equation}\label{eq:myexistence}
+\phi_h(x) - \phi_h(y) - \langle A_h x, x - y \rangle \geq \frac{h}2
+|A_h x - A_h y|^2 + \frac{\alpha}2 |J_h x - J_h y|^2 + \langle A_h y - A_h
+x, x - y \rangle.
+\end{equation}
+Now because the LHS of the previous inequality is negative we have by
+\eqref{eq:lemjhah2}, \eqref{eq:lemjhah3} and Cauchy-Schwarz some $M
+> 0$ independent on $x$ or $y$ such that
+\begin{equation}
+\begin{split}
+|\phi_h(x) - \phi_h(y) - \langle A_h x, x - y \rangle| &\leq \frac{h}2
+|A_h x - A_h y|^2 + \frac{\alpha}2 |J_h x - J_h y|^2 + |\langle A_h y - A_h
+x, x - y \rangle|\\
+&\leq M |x - y|^2.
+\end{split}
+\end{equation}
+Hence $\nabla \phi_h(x) = A_h x$. $A_h$ is Lipschitz because of
+\eqref{eq:lemjhah3}, so we have $\phi_h \in C^{1,1}(X; \R)$.
+\end{proof}
+To be able to handle the case $\alpha \geq 0$ and $\alpha < 0$ at the
+same time we introduce
+\begin{equation}
+  h_\alpha:=
+  \begin{cases}
+    1 &\text{if $\alpha \geq 0$,}\\
+    \frac1{2|\alpha|} &\text{if $\alpha < 0$}.
+  \end{cases}
+\end{equation}
+Then we have that
+\begin{equation}\label{eq:halphainterval}
+  1 + h \alpha \in \left [\frac12, 1 + |\alpha| \right ] \text{ for $0
+    < h \leq h_\alpha$}.
+\end{equation}
+
+We use the following notation. Let $x \in D(\partial \psi)$ with $\psi
+:= \phi - \alpha e$. The set $\{y \in X : y \in \partial \psi((x)\}$
+is a non-empty closed convex set so by the projection theorem on
+closed convex sets in Hilbert spaces this set has a minimal element,
+which we denote as $(\partial \psi)^\circ x$.
+
+
+\begin{lemma}\label{lem:boundsahjh}
+\begin{align}
+\label{eq:mylem1}\sup_{h \in (0, h_\alpha)} |A_h x| &\leq \infty \quad \text{if $x \in
+  D(\partial \psi)$},\\
+\label{eq:mylem2}\sup_{h \in (0, h_\alpha)} |J_h x| &\leq \infty \quad \text{for every $x \in
+  X$},\\
+\label{eq:mylem3}\inf_{h \in (0, h_\alpha)} \phi(J_h x) &> -\infty \quad \text{for every $x
+  \in X$}.
+\end{align}
+\end{lemma}
+
+\begin{proof}
+\eqref{eq:mylem1}. From \eqref{eq:lemjhah1} and the monotonicity of
+$\partial \psi$ we have
+\begin{equation*}
+\langle y, x - J_h x \rangle - \langle A_h x - \alpha J_h x, x - J_h x
+\rangle = \langle y - A_h x + \alpha J_h x, x - J_h x \rangle \geq 0
+\end{equation*}
+So
+\begin{equation*}
+  \frac1h \langle y - A_h x + \alpha J_h x, x - J_h x \rangle \geq 0.
+\end{equation*}
+Thus by the definition of $A_h$ we have 
+\begin{equation*}
+  \langle y, A_h x \rangle - |A_h x|^2 + \alpha \langle x, A_h x
+  \rangle - \alpha h |A_h x|^2 \geq 0,
+\end{equation*}
+so
+\begin{equation*}
+  \begin{split}
+    |A_h x|^2 &\leq \langle y, A_h x \rangle + \alpha \langle x, A_h x
+    \rangle - \alpha h |A_h x|^2\\
+    &\leq |y| |A_h x| + \alpha |x||A_h x| - \alpha h |A_h x|^2.
+  \end{split}
+\end{equation*}
+Hence, by rearranging
+\begin{equation*}
+  (1 + h \alpha) |A_h x|^2 \leq (|y| + |\alpha| |x|)|A_h x|.
+\end{equation*}
+Now by \eqref{eq:halphainterval} and using the minimal $y$ we have
+\begin{equation*}
+  |A_h x| \leq 2(|(\partial \psi)^\circ x| + |\alpha| |x|),
+\end{equation*}
+which implies \eqref{eq:mylem1}.
+
+\eqref{eq:mylem2}. Let $x \in X$ and $\hat x \in D(\partial
+\psi)$. Set $C := \sup_{h \in (0, h_\alpha)} |A_h \hat x|$. Using the
+definition of $A_h$, \eqref{eq:lemjhah2} and the previous result
+\eqref{eq:mylem1} we get that
+\begin{equation*}
+  |J_h x| \leq |J_h x - J_h \hat x| + |J_h \hat x| \leq 2 |x - \hat x|
+  + h|A_h \hat x| \leq 2 |x - \hat x| + |\hat x| + h_\alpha C,
+\end{equation*}
+from which the result follows.
+
+\eqref{eq:mylem3}. Let $x \in X$ and $M:= \sup_{h \in (0, h_\alpha)}
+  |J_h x|$. Then by using $\psi = \phi - \alpha e$,
+  \fref{lem:prelim1}, \fref{prop:myphih} and Cauchy-Schwarz we get
+\[
+  \phi(J_h x) = \psi(J_h x) + \frac\alpha2 |J_h x|^2 \geq -|b|M + c -
+  \frac{|\alpha|}2 M^2.
+\]
+\end{proof}
+Another useful lemma
+\begin{lemma}\label{lem:limlemma}
+  \begin{align}
+    \label{eq:limlemma1}
+    \lim_{h \to 0} |x - J_h x| &= 0 \text{ iff $x \in
+      \overline{D(\partial \psi)}$},\\
+    \label{eq:limlemma2}
+    \sup_{h \in (0, h_\alpha)} \phi_h(x) &= \infty \text{ if $x \notin \overline{D(\psi)}$}.
+  \end{align}
+\end{lemma}
+\begin{proof}
+  \eqref{eq:limlemma1}. Assume that $x \in \overline{D(\partial
+    \psi)}$, so for any $\hat x \in D(\partial \psi)$ we have by the
+  definition of $A_h$, the bounds on $1 + h \alpha$ and
+  \eqref{eq:lemjhah2},
+  \begin{equation*}
+    |x - J_h x| \leq |x - \hat x| + |\hat x - J_h \hat x| \leq |x -
+    \hat x| + |x - J_h \hat x| + 2|x - \hat x| \leq 3 |x - \hat x| +
+    h|A_h \hat x|.
+  \end{equation*}
+  So because $|A_h x|$ is bounded by the previous lemma and the fact
+  that we can pick $\hat x = x$ we obtain the result. Conversely, if
+  $\lim_{h \to 0} |x - J_h x| = 0$ then $x \in \overline{D(\partial
+    \psi)}$ because $J_h x \in D(\partial \psi)$.
+
+  \eqref{eq:limlemma2}. By \fref{prop:myphih} and the third part of
+  \fref{lem:boundsahjh} it is sufficient to check that\\ \mbox{$\sup_{h \in
+    (0, h_\alpha)} h |A_h x|^2 = \infty$} if $x \notin
+  \overline{D(\partial \psi)}$. Now note that
+  \begin{equation*}
+    h |A_h x|^2 = |x - J_h x| |A_h x| \geq d(x, \overline{D(\partial
+      \psi)}) |A_h x|
+  \end{equation*}
+  since $J_h x \in D(\partial \psi)$. Now $d(x, \overline{D(\partial
+      \psi)}) > 0$ by assumtpion so it is sufficient to show that
+    $\sup_{h \in (0, h_\alpha)} |A_h x| = \infty$ for $x \notin
+    \overline{D(\partial \psi)}$. Set $M := \sup_{h \in (0, h_\alpha)}
+    |A_h x| < \infty$ so then $|x - J_h x| \leq h M$ by the definition
+    of $A_h$ so by the first part we have a contradiction.
+\end{proof}
+
+\begin{proposition}
+  Let $\phi$, $\phi_h$ and $\psi$ be as above. Then
+  \begin{align}
+    \label{eq:propconvphih1}
+    \phi_h(x) \uparrow \phi(x) \text{ for every $x \in X$ and $h
+      \downarrow 0$,}\\
+    \label{eq:propconvphih2}
+    D(\partial \psi) \subset D(\phi) \subset \overline{D(\partial
+      \phi)} = \overline{D(\phi)}.
+  \end{align}
+\end{proposition}
+
+\begin{proof}
+ For $0 < h_2 < h_1 \leq h_\alpha$ and $x \in X$ we have
+ \begin{equation*}
+   \begin{split}
+     \phi_{h_1}(x) &= \psi_{h_1}(J_{h_1} x)\\
+     &\leq \psi_{h_1}(J_{h_2} x)\\
+     &=\frac{1}{2h_1} |J_{h_2} x - x|^2 + \phi(J_{h_2} x)\\
+     &\leq \frac{1}{2h_2} |J_{h_2} x - x|^2 + \phi(J_{h_2} x)\\
+     &=\phi_{h_2}(x).
+   \end{split}
+ \end{equation*}
+ Now we will show that $\phi_h$ is bounded by above by $\phi$. To see
+ this note that $\phi_h(x) = \psi(J_h x) \leq \psi(y)$ and choosing $y
+ = x$ we have $\phi_h(x) \leq \psi(x) = \phi(x)$. So, by
+ \fref{lem:limlemma}, \eqref{eq:limlemma2} we have that if $x \notin
+ \overline{D(\partial \psi)}$ then $\sup_{h \in (0, h_\alpha)}
+ \phi_h(x) = \infty$ hence $x \notin D(\phi)$. This implies
+ \eqref{eq:propconvphih1} for $x \notin \overline{D(\partial \psi)}$
+ and thus also the inclusion $D(\phi) \subset \overline{D(\partial
+   \psi)}$ in \eqref{eq:propconvphih2}.
+ If $x \in \overline{D(\partial \psi)}$ and $h_n \in (0, h_\alpha)$,
+ $h_n \downarrow 0$ we have by \fref{lem:limlemma},
+ \eqref{eq:limlemma1} that $\lim_{n \to \infty} |x - J_{h_n} x| = 0$
+ and by the lower semicontinuity of $\phi$
+ \begin{equation*}
+   \phi(x) \leq \liminf_{n \to \infty} \phi(J_{h_n} x) \leq \liminf_{n
+     \to \infty} \phi_{h_n}(x) \leq \limsup_{n \to \infty}
+   \phi_{h_n}(x) \leq \phi(x).
+ \end{equation*}
+ So we conclude that $\phi_h$ is decreasing in $h$, is bounded from
+ above by $\phi$ and the limit is $\phi$, so we have
+ \eqref{eq:propconvphih1}.
+
+By definition we have $D(\partial \psi) \subset D(\psi) = D(\phi)$, so
+also $\overline{D(\partial \psi)} \subset \overline{D(\phi)}$. We
+already know that $D(\phi) \subset \overline{D(\partial \psi)}$ so
+\eqref{eq:propconvphih2} follows.
+\end{proof}
+
+\subsection{A quasi-contractive semigroup associated with $\phi$}
+Let $\phi: X \to (-\infty, \infty]$ be proper, lsc and $\alpha$-convex
+for some $\alpha \in \R$. Further, let $h \in (0, h_\alpha]$ and let
+$\phi_h$ be the Moreau-Yosida approximation of $\phi$. We consider the
+abstract Cauchy problem
+\begin{equation}
+  \label{eq:abscauchymy}
+  \frac{du}{dt}(t) + A_h u(t) = 0, t \quad \in \R,
+\end{equation}
+together with the condition
+\begin{equation}
+  \label{eq:abscauchymyiv}
+  u(0) = x \text{ with $x \in X$}.
+\end{equation}
+In view of \fref{prop:abscauchysol} and \fref{prop:myphih} this
+problem has exactly one solution which we will denote by $\phi_{h,x}$
+or simply as $\phi_h$ and we set
+\begin{equation}
+  \label{eq:semigroupphih}
+  S_h(t) x := u_{h,x}(t), \quad t \in \R, x \in X.
+\end{equation}
+Further, this family $\{S_h(t)\}_{t \in \R}$ is a $C_0$-group of
+operators on $X$ which satisfy
+\begin{equation}
+  \label{eq:semigroupphihbound}
+  |S_h(t)x - S_h(t)y| \leq e^{-\frac\alpha{1 + \alpha h}(t - s)}
+  |S_h(s)x - S_h(s)y|
+\end{equation}
+for $s < t$ and $x, y \in X$ since $\nabla \phi_h = A_h$ and $\phi_h$
+is $\frac{\alpha}{1 + \alpha h}$-convex. In this section we will
+establish the following
+
+\begin{theorem}\label{th:qcsemigroup}
+  For every $x \in \overline{D(\phi)}$ and $t \geq 0$:
+  \begin{align}
+    \label{eq:consemiphi1}
+    S(t)x &:= \lim_{h \to 0} S_h(t) x \text{ exists in $(X, |\cdot|)$},\\
+    \label{eq:consemiphi2}
+    S(t)x &\in \overline{D(\phi)}.
+  \end{align}
+  The family of operators $\{S(t)\}_{t \geq 0}: \overline{D(\phi)} \to
+  \overline{D(\phi)}$ is a $C_0$-semigroup satisfying
+  \begin{equation}
+    \label{eq:consemiphi3}
+    [S(t)]_{\text{Lip}} \leq e^{-\alpha t}, \quad t \geq 0.
+  \end{equation}
+\end{theorem}
+
+\begin{proof}
+  The idea is that we prove
+  \eqref{eq:consemiphi1}-\eqref{eq:consemiphi3} for $x \in D(\partial
+  \psi)$ and then approximate together with the estimate
+  \eqref{eq:semigroupphihbound}. We do this in a couple of steps.
+  
+  \textit{Step 1.} By \fref{lem:boundsahjh} we can set $M_1 := \sup_{h
+    \in (0, h_\alpha)} |A_h(x)| < \infty$. Let $T > 0$.
+  
+  \textbf{Claim.}
+  \begin{equation}
+    \label{eq:boundahuh}
+    |A_h u_h(t)| \leq M_1 e^{2|\alpha| T} =: M_2(\alpha, T) \text{
+      for $h \in (0, h_\alpha)$ and $t \in [0, T]$}.
+  \end{equation}
+  To prove this take estimate \eqref{eq:semigroupphihbound} with $y =
+  S_h x$ with $h > 0$ and $s = 0$ to obtain
+  \begin{equation}
+    \label{eq:semigroupestimatestep11}
+    \begin{split}
+      |u_h(t) - u_h(t + h)| &\leq e^{-\frac{\alpha}{1 + \alpha h} t}
+      |u_h(0) - u_h(h)|\\
+      &\leq e^{2 |\alpha| T} |u_h(0) - u_h(h)|.
+    \end{split}
+  \end{equation}
+  If we now divide by $h$ and send $h$ to $0$ we get
+  \begin{equation}
+    \label{eq:semigroupestimatestep12}
+    |\dot u_h(t)| \leq e^{2 |\alpha| T} |\dot u_h(0)| = e^{2 |\alpha|
+      T} |A_h x| \leq e^{2 |\alpha| M} M_1.
+  \end{equation}
+  So if we take $\dot u_h(t) = -A_h u_h(t)$ we are done.
+  
+  \textit{Step 2.} In this step we prove the following estimate
+  \begin{equation}
+    \label{eq:semigroupestimate21}
+    \langle A_h u_h(t) - A_{h'} u_{h'}(t), u_h(t) - u_{h'}(t) \rangle
+    \geq -2 |\alpha| |u_h(t) - u_{h'}(t)|^2 - \lambda M_3,
+  \end{equation}
+  where
+  \begin{equation}
+    \label{eq:semigroupestimate22}
+    M_3 := (8 |\alpha| h_\alpha + 4)M_2^2(\alpha, T)
+  \end{equation}
+  By the monotonicity of $\partial \psi$ and \fref{lem:jhahestimates},
+  \eqref{eq:lemjhah1} we get immediately that
+  \begin{equation*}
+    \langle (A_h u_h(t) - \alpha J_h u_h(t)) - (A_{h'} u_{h'}(t) -
+    \alpha J_{h'} u_{h'}(t)), J_h u_h(t) - J_{h'} u_{h'}(t) \rangle
+    \geq 0.
+  \end{equation*}
+  By rearranging terms we quickly see that
+  \begin{equation*}
+     \langle A_h u_h(t) - A_{h'} u_{h'}(t), J_h u_h(t) - J_{h'} u_{h'}(t) \rangle
+    \geq \alpha |J_h u_h(t) - J_{h'} u_{h'}(t)|^2.
+  \end{equation*}
+  From the definition of $A_h$ and the definition of $M_2$ we obtain
+  \fbox{HOW????????????????????????}
+  \begin{equation*}
+    |J_h u_h(t) - J_{h'}u_{h'}(t)|^2 \leq 2|u_h - u_{h'}|^2 + 8M_2^2
+    h_\alpha \lambda,
+  \end{equation*}
+  and finally \fbox{ROT?}
+  \begin{equation*}
+    \langle A_h u_h(t) - A_{h'} u_{h'}(t), J_h u_h(t) - J_{h'}
+    u_{h'}(t) \rangle \geq \langle A_h u_h(t) - A_{h'} u_{h'}(t),
+    u_h(t) - u_{h'}(t) \rangle - 4 M_2^2 \lambda
+  \end{equation*}
+  And the claim follows \fbox{HOW????}
+
+  \textit{Step 3.} From ACP for $u_{h}$ and $u_{h'}$ and
+  \eqref{eq:semigroupestimate21}
+  \begin{equation*}
+    \begin{split}
+      \frac12 \frac{d}{dt} |u_h(t) - u_{h'}(t)|^2 &= \langle \dot u_h(t)
+      - \dot u_{h'}(t), u_h(t) - u_{h'}(t) \rangle\\
+      &=-\langle A_h u_h(t) - A_{h'} u_{h'}(t), u_h(t) - u_{h'}(t)
+      \rangle\\
+      &\leq 2 | \alpha |u_h(t) - u_{h'}(t)|^2 + \lambda M_3\\
+      &\leq \frac{2 |\alpha|}{\lambda M_3 T} e^{2 |\alpha| T} \lambda M_3 + \lambda M_3.
+    \end{split}
+  \end{equation*}
+  If we integrate we arrive at
+  \begin{equation}
+    \label{eq:semigroupestimate31}
+    |u_h(t) - u_{h'}(t)|^2 \leq \lambda M_3 M_4 \text{ for some $M_4 =
+      M_4(\alpha, T)$.}
+  \end{equation}
+
+  \textit{Step 4} (Convergence for $x \in D(\partial \psi)$). From
+  \eqref{eq:semigroupestimate31} it follows that if $h_n \to 0$
+  $\{u_{h_n}(t) \}_{n \geq 1}$ is a Cauchy sequence in $(X,
+  |\cdot|)$. So this allows us to set
+  \begin{equation}
+    \label{eq:semigroupidentity41}
+    S(t)x := \lim_{n \to \infty} u_{h_n}(t).
+  \end{equation}
+  So $S(t) x := \lim_{h \to 0} u_h(t) = \lim_{h \to 0} S_h(t) x$. Now,
+  $T > 0$ is arbitrary, so $S(t) x$ is well-defined for every $t >
+  0$. From \eqref{eq:semigroupidentity41} it follows that the
+  convergence is uniform on $[0, T]$ hence $t \mapsto S(t)x \in
+  C([0,T]; X)$, $T > 0$. From the definition of $A_h$ and $M_2$ it
+  follows that
+  \begin{equation*}
+    |S(t)x - J_{h_n} u_{h_n}(t)| \leq |S(t)x - u_{h_n}(t) + h_n
+    A_{h_n}(y)| \leq |S(t)x - u_{h_n}(t)| + h_n M_1.
+  \end{equation*}
+  Now, $J_{h_n} u_{h_n}(t) \in D(\partial \psi)$ by
+  \fref{lem:jhahestimates}, \eqref{eq:lemjhah1}, so $S(t) \in
+  \overline{D(\partial \psi)} = \overline{D(\phi)}$ by
+  \eqref{eq:propconvphih2}.
+
+  \textit{Step 5} (Convergence for $x \in \overline{D(\phi)}$. Let $x
+  \in \overline{D(\phi)}$, $\epsilon > 0$ and $T > 0$. Then for every
+  $\hat x \in D(\partial \psi)$ we have
+  \begin{equation*}
+    \begin{split}
+      |S_h(t) x - S_{h'} x| &\leq |S_h(t) x - S_h(t) \hat x| + |S_h(t)
+      \hat x - S_{h'}(t) \hat x| + |S_{h'}(t) \hat x - S_{h'}(t) x|\\
+      &=2 e^{2 |\alpha| T} |x - \hat x| + |S_h(t) \hat x - S_{h'} \hat
+      x|, \quad t \in [0,T].
+    \end{split}
+  \end{equation*}
+  Now since $\overline{D(\partial \psi)} = \overline{D(\phi)}$ we can
+  pick the first term smaller than $\frac\epsilon2$ and there is a
+  $\overline{h} \in (0, h_\alpha]$ such that the last term is also
+  smaller than $\frac\epsilon2$ for $t \in [0,T]$ and $0 < h < \lambda
+  \leq \overline{h}$. So we conclude that $\lim_{h \to 0} S_h(t) x$
+  exists in $X$ and we denote it by $S(t) x$, $t \geq 0$. By uniform
+  continuity on $[0,T]$, $t \mapsto S(t)x$ is continuous on $[0,
+  T]$. Property \eqref{eq:consemiphi3} follows from
+  \eqref{eq:semigroupphihbound} with $s = 0$ and the fact that the
+  limit exists. So now we prove \eqref{eq:consemiphi2}. Let $x_n \in
+  D(\partial \psi)$, $n \geq 1$ with $\lim_{n \to \infty} x_n = x$. So
+  \begin{equation*}
+    |S(t) x - S(t) x_n| \leq S(t)x_n| \leq e^{-\alpha t} |x - x_n| \to 0.
+  \end{equation*}
+  So, since $S(t)x_n \in \overline{D(\phi)}$ this also holds for $S(t)
+  x$.
+
+  \textit{Step 6} (Semigroup property).
+  Let $x \in \overline{D(\phi)}$, $t, s \geq 0$, $h \in (0,
+  h_\alpha]$. So we have
+  \begin{equation*}
+    \begin{split}
+      |S(t + s)x - S(t)S(x)x| &\leq |S(t + s)x - S_h(t + s)x| + |S_h(t
+      + s)x - S_h(t)S_h(s)x|\\
+      &+|S_h(t)S_h(s)x - S_h(s)S(s)x| + |S_h(t)S(s)x - S(t)S(s)x|\\
+      &\leq |S(t + s)x - S_h(t + s)x| + e^{2 |\alpha| T}|S_h(s) -
+      S(s)x|\\
+      &+ |S_h(t)S_h(s)x - S(t)S(s)x| \to 0.
+    \end{split}
+  \end{equation*}
+  Hence $\{S(t)\}_{t \geq 0}$ is a semigroup of operators on $\overline{D(\phi)}$.
+\end{proof}
+
+\subsection{``Existence'' theorem}
+
+Let $\phi: X \to (-\infty, \infty]$ be proper, lsc and $\alpha$-convex
+for some $\alpha \in \R$. Let $\{S(t)\}_{t \geq 0}$ be the semigroup
+from \fref{th:qcsemigroup}. We then have
+
+\begin{theorem}
+  For every $u_0 \in \overline{D(\phi)}$ the function $u : [0, \infty)$
+  given by $u(t) := S(t)u_0$ is a solution to \eqref{eq:evi} with initial value $u_0$.
+\end{theorem}
+
+\begin{proof}
+  We know from \fref{th:qcsemigroup} that $u \in C([0, \infty);
+  X)$. So we still have to show that for every $a, b$ with $0 < a < b$
+  the following three things hold:
+  \begin{enumerate}
+  \item\label{item:existenceproof1} $u \in \text{AC}([a,b]; X)$,
+  \item\label{item:existenceproof2} $u \in D(\phi)$ for $t \in [a,b]$,
+  \item\label{item:existenceproof3} $u$ satisfies for every $z \in D(\phi)$:
+    \begin{equation}
+      \label{eq:evicutoff}
+      \frac12 \frac{d}{dt} |u(t) - z|^2 + \frac\alpha2 |u(t) - z|^2 +
+      \phi(u(t)) \leq \phi(z) \text{ a.e.\ in $(a,b)$.}
+    \end{equation}
+  \end{enumerate}
+  We first establish the following estimate, there exists $C = C(\phi,
+  \alpha, u_0, a, b) > 0$ such that
+  \begin{equation}
+    \label{eq:ahboundexistence}
+    |A_h u_h(t)| \leq C, \quad h \in (0, h_\alpha), t \in [a,b],
+  \end{equation}
+  where
+  \begin{equation}
+    \label{eq:shdefexistence}
+    u_h(t) := S_h(t) u_0, \quad t \in \R, h \in (0, h_\alpha).
+  \end{equation}
+  Recall that $u_h \in C^1(\R; X)$ and satisfies the ACP for
+  $A_h$. From \eqref{eq:semigroupphihbound} with $x = S_h(h) u_0$, $y
+  = u_0$, $h > 0$ we obtain after dividing by $h$ and sending $h$ to
+  $0$ that
+  \begin{equation*}
+    \begin{split}
+      |\dot u_h(t)| &\leq e^{-\frac\alpha{1 + \alpha h}} |\dot
+      u_h(0)|\\
+      &= e^{-\frac\alpha{1 + \alpha h}} |A_h(x)|\\
+      &= e^{-\frac\alpha{1 + \alpha h}} M_1 > 0,
+    \end{split}
+  \end{equation*}
+  so we conclude that
+  \begin{equation}
+    \label{eq:existencenoninc}
+    t \mapsto e^{\frac\alpha{1 + \alpha h}} |\dot u_h(t)| \text{ is
+      nonincreasing for $t \geq 0$.}
+  \end{equation}
+  If we take the inner product of ACP with $t e^{\frac{2\alpha}{1 +
+      \alpha h}t} \dot u_h(t)$ and integrate from $0$ to $a$ we get
+  \begin{equation*}
+    \int_0^a t e^{\frac{2\alpha}{1 + \alpha h}} |\dot u_h(t)|^2 \, dt
+    + \int_0^a e^{\frac{2\alpha}{1 + \alpha h}} \langle A_h u_h(t),
+    \dot u_h(t) \rangle \, dt = 0.
+  \end{equation*}
+  So since we have by \fref{prop:myphih} that $A_h u_h(t) = \nabla
+  \phi_h(u_h(t))$ we also have
+  \begin{equation*}
+    \langle A_h u_h(t), \dot u_h(t) \rangle = \frac{d}{dt} \phi_h(u_h(t)).
+  \end{equation*}
+  Using \eqref{eq:existencenoninc} and integration by parts we obtain
+  \begin{equation*}
+    \begin{split}
+          \frac{a^2}2 e^{\frac{2\alpha}{1 + \alpha h}a} |\dot
+          u_h(a)|^2 &\leq \int_0^a t e^{\frac{2\alpha}{1 + \alpha h}t}
+          |\dot u_h(t)|^2 \, dt\\
+          &= -\int_0^a t e^{\frac{2\alpha}{1 + \alpha h}t}
+          \frac{d}{dt} \phi_h(u_h(t)) \, dt\\
+          &=-a e^{\frac{2\alpha}{1 + \alpha h}a} \phi_h(u_h(a)) +
+          \int_0^a \frac{d}{dt} (t e^{\frac{2\alpha}{1 + \alpha h} t})
+          \phi_h(u_h(t)) \, dt.
+    \end{split}
+  \end{equation*}
+  Using \eqref{eq:prelim21} and $\psi = \phi - \alpha e$ we get
+  \begin{equation*}
+    \phi_h(u_h(t)) \geq \phi(J_h u_h(t)) \geq \psi(J_h u_h(t)) -
+    \frac{|\alpha|}{2} |J_h u_h(t)|^2, \quad t \geq 0.
+  \end{equation*}
+  By \fref{lem:prelim1} we have $a_1, b_1 \in \R$ depending only on
+  $\psi$ such that
+  \begin{equation*}
+    \psi(J_h u_h(t)) \geq a_1 |J_h u_h(t)| + b_1.
+  \end{equation*}
+  From step 2 and 3 from \fref{th:qcsemigroup} we obtain for $0 < h
+  \leq h' \leq h_\alpha$
+  \begin{equation*}
+    |J_h u_h(t) - J_{h'} u_{h'}(t)|^2 \leq 2 \lambda M_3 M_4 + 8 M_2^2
+    h_\alpha \lambda,
+  \end{equation*}
+  where $M_4 = M_4(\alpha, T)$, $T = b$. So this implies that there
+  exists a constant\\ $C_1 = C_1(\phi, \alpha, u_0, a, b) > 0$ such that
+  \begin{equation}
+    \label{eq:qcsemigroupboundjh}
+    |J_h u_h(t)| \leq C_1, \quad t \in [a,b].
+  \end{equation}
+  This is because $u_{h'}$ is bounded and because of the inverse
+  triangle inequality.
+
+  So, there exists a $C_2 = C_2(\phi, \alpha, u_0, a, b) > 0$ such
+  that
+  \begin{equation}
+    \label{eq:qcsemigroupboundphih}
+    \phi_h(u_h(t)) \geq -C_2, \quad t \in [a,b], h \in (0, h_\alpha).
+  \end{equation}
+  We can see this by considering the cases $a_1 \geq 0$ and $a_1 < 0$.
+  Further, we have that 
+  \begin{equation*}
+    \frac{a^2}2 e^{\frac{2\alpha}{1 + \alpha h}a} |\dot
+    u_h(a)|^2 + a e^{\frac{2\alpha}{1 + \alpha h}a}
+    \phi_h(u_h(a)) \leq \int_0^a \frac{d}{dt} (t e^{\frac{2\alpha}{1 + \alpha h} t}
+     \phi_h(u_h(t)) \, dt.
+  \end{equation*}
+  If we now add $a e^{\frac{2\alpha}{1 + \alpha h}a} C_2$ to both
+  sides the elements on the LHS become positive, so
+ \begin{equation*}
+   \begin{split}
+    \frac{a^2}2 e^{\frac{2\alpha}{1 + \alpha h}a} |\dot
+    u_h(a)|^2 + a e^{\frac{2\alpha}{1 + \alpha h}a} (\phi_h(u_h(a)) +
+    C_2) &\leq \left | \int_0^a \frac{d}{dt} (t e^{\frac{2\alpha}{1 + \alpha h} t})
+     (\phi_h(u_h(t)) + C_2) \, dt - a e^{\frac{2\alpha}{1 +
+       \alpha h}a} C_2 \right |\\
+     &\leq \left | \int_0^a \frac{d}{dt} (t e^{\frac{2\alpha}{1 + \alpha h} t})
+     (\phi_h(u_h(t)) + C_2) \, dt \right | + a e^{\frac{2\alpha}{1 +
+       \alpha h}a} C_2\\
+   &\leq C_3 \left | \int_0^a \phi_h(u_h(t)) \, dt + C_2 \right| + a e^{\frac{2\alpha}{1 +
+       \alpha h}a} C_2,
+   \end{split} 
+  \end{equation*} 
+  where $C_3 = C_3(\alpha, a) > 0$.
+  So we conclude
+  \begin{equation}
+    \label{eq:existencebounduha}
+    e^{\frac{2\alpha}{1 + \alpha h}a} |\dot u_h(a)|^2 \leq C_4
+    \int_0^a \phi_h(u_h(t)) \, dt + C_5
+  \end{equation}
+  with $C_4, C_5 > 0$.
+  
+  We still need to estimate $\int_0^a \phi_h(u_h(t)) \, dt$, by
+  \fref{prop:abscauchysol} we have
+  \begin{equation}
+    \label{eq:existencevi}
+    \frac12 \frac{d}{dt} |u_h(t) - z|^2 + \frac\alpha2 |u_h(t) - z|^2
+    + \phi_h(u_h(t)) \leq \phi_h(z), \quad h \in (0, h_\alpha), \, t
+    \in \R, \, z
+    \in X.
+  \end{equation}
+  From the definition of $\psi$ an $\phi_h$ we see for $z \in
+  D(\phi)$ that $\phi_h(z) \leq \psi(z) = \phi(z)$. Now note that
+  $\sup_{h \in (0, h_\alpha)} \max_{t \in [a,b]} |u_h(t)| < \infty$
+  because of the inverse triangle inequality and
+  \eqref{eq:semigroupestimate31}.
+  So we can conclude that there exists a $C_6$ such that
+  \begin{equation}
+    \label{eq:existenceboundphiuh}
+    \int_0^a \phi_h(u_h(t)) \, dt \leq C_6, \quad h \in (0, h_\alpha)
+  \end{equation}
+  From \eqref{eq:existencenoninc}, \eqref{eq:existencebounduha} and
+  \eqref{eq:existenceboundphiuh} we obtain that $|A_h u_h(t)| \leq C$
+  for $h \in (0, h_\alpha)$ and $t \in [a,b]$.
+  So now we can prove \ref{item:existenceproof1}. Now $|\dot u_h(t)|
+  \leq C$ for $t \in [a,b]$ and $h \in (0, h_\alpha)$ we get $|u(t) -
+  u(s)| \leq C|t - s|$ for $a \leq s, t \leq b$ so $u \in
+  \text{Lip}([a,b]; X) \subset \text{AC}([a,b]; X)$.
+  \label{item:existenceproof2}. From \eqref{eq:myexistence} we have
+  for $z \in D(\phi)$ and $t \in [a,b]$:
+  \begin{equation*}
+    \begin{split}
+      \phi_h(u_h(t)) &\leq \phi_h(z) - \langle A_h u_h(t), z - u_h(t)
+      \rangle -\frac{h}2 |A_h x - A_h y|^2 - \frac\alpha2 |J_h x - J_h
+      y|^2\\
+      &\leq \phi_h(z) - \langle A_h u_h(t), z - u_h(t)
+      \rangle - \frac\alpha2 |J_h x - J_h
+      y|^2\\
+      &\leq \phi(z) + |A_h u_h(t)|(|z| + |u_h(t)|) + \frac{|\alpha|}2
+      (|J_h u_h(t)| + |J_h z|)^2\\
+      &\leq \phi(z) + |A_h u_h(t)|(|z| + |u_h(t)|) + |\alpha|
+      (|J_h u_h(t)|^2 + |J_h z|^2).
+    \end{split}
+  \end{equation*}
+  Using the bounded on $|A_h x|, |J_h x|$ and $\sup_{h \in (0,
+    h_\alpha)} |J_h x| < \infty$ we find a $\hat C = \hat C(\phi,
+    \alpha, u_0, a, b) > 0$ such that
+    \begin{equation}
+      \label{eq:existenceboundphiuh}
+      \phi_h(u_h(t)) \leq \hat C, \quad t \in [a,b], h \in (0, h_\alpha).
+    \end{equation}
+    Now let $h_n \in (0, h_\alpha) \to 0$. Since $J_{h_n}u_{h_n}(t)
+    \to u(t)$ for $t \in [a,b]$ we obtain by the lower semicontinuity
+    of $\phi$ that
+    \begin{equation*}
+      \phi(u(t)) \leq \liminf_{n \to \infty}
+    \phi(J_{h_n}(u_{h_n}(t)) \leq \liminf_{n \to \infty}
+    \phi_{h_n}(u_{h_n}(t)) \leq \hat C, \quad t \in [a,b].
+    \end{equation*}
+    We can now prove \label{item:existenceproof3}. Note that $t
+    \mapsto \phi(u(t))$ is lsc, hence bounded from below which
+    together with $\phi(u(t)) \leq \hat C$ proves that $\phi(u) \in
+    L^\infty(a, b)$. Using \eqref{eq:qcsemigroupboundphih} and Fatou's
+    lemma
+    \begin{equation}
+      \label{eq:existencefatou}
+      \int_t^s \phi(u(r)) \, dr \leq \int_s^t \liminf_{n \to \infty}
+      \phi_{h_n}(u_{h_n}(r)) \, dr \leq \liminf_{n \to \infty}
+      \int_s^t \phi_{h_n}(u_{h_n}(r)) \, dr.
+    \end{equation}
+    Integrating \eqref{eq:existencevi} on $[s,t] \subset [a,b]$,
+    taking $z \in D(\phi)$, using \fref{th:qcsemigroup} and
+    \eqref{eq:existencefatou} we obtain as $h_n \to 0$:
+    \begin{equation*}
+      \frac12 |u(t) - z|^2 - \frac12 |u(s) - z|^2 + \frac\alpha2
+      \int_s^t |u(r) - z|^2 \, dr + \int_s^t \phi(u(r)) \leq (t - s)\phi(z).
+    \end{equation*}
+    So now we can by $t -s$ and use the absolute continuity of $t
+    \mapsto |u(t) - z|^2$ and $t \mapsto \int_s^t \phi(u(r)) \, dr$ we
+    get
+    \begin{equation*}
+      \frac12 \frac{d}{dt} |u(t) - z|^2 + \frac\alpha2 |u(t) - z|^2 +
+      \phi(u(t)) \leq \phi(z) \text{ a.e.\ in $(a,b)$}.
+    \end{equation*}
+    This completes our proof.
+\end{proof}
+
+\chapter{Gradient flows in metric spaces}
+Let $(X, d)$ be a complete metric space and let $\phi:X \to (-\infty,
+\infty]$ be proper and lower semicontinuous. The goal now is to
+establish a solution to \eqref{eq:evi} with an arbitrary initial value
+$u_0 \in \overline{D(\phi)}$ under some additional assumptions which
+will strictly extend that $\alpha$-convexity condition of the Hilbert
+space case.
+
+We first reformulate the $\alpha$-convexity into a more usable form
+for the metric space case. Note that by rearranging terms
+\begin{equation}
+  \label{eq:convexity_condition_e}
+  e((1 - t)y_0 + t y_1) = (1 - t)e(y_0) + t e(y_1) - t(1 - t)e(y_0 - y_1)
+\end{equation}
+for all $y_0, y_1 \in H$ and $t \in \R$. Now we can deduce that iff
+$\phi: H \to (-\infty, \infty]$ is $\alpha$-convex then it satisfies
+\begin{equation}
+  \label{eq:rephrased_convexity_phi}
+  \phi((1 - t)y_0 + t y_1) \leq (1 - t)\phi(y_0) + t\phi(y_1) - \alpha
+  t(1 - t)e(y_0 - y_1).
+\end{equation}
+To see this note that $\phi$ is $\alpha$-convex iff
+\begin{equation}
+  \label{eq:alpha-convex_metric_space}
+  \phi((1 - t)y_0 + t y_1) - \frac\alpha2 e((1 - t)y_0 + t y_1) \leq
+  (1 - t)\phi(y_0) + t \phi(y_1) - \frac\alpha2 (1 - t) e(y_0) -
+  \frac\alpha2 t e(y_1).
+\end{equation}
+Now use \eqref{eq:convexity_condition_e}. Since $e(y_0 - y_1) =
+\frac12 d(y_0, y_1)^2$ we can see that condition
+\eqref{eq:alpha-convex_metric_space} can be expressed in terms of the
+distance function $d$ in the Hilbert space $(H, \langle \cdot, \cdot
+\rangle)$. In \fref{lem:prelim2} we introduced the function $\psi$
+which thus can be rewritten as
+\begin{equation}\label{eq:phi_metric_space}
+\psi(y) :=
+\begin{cases}
+\frac{1}{2h} d(x,y)^2 + \phi(y) & y \in D(\phi),\\
+\infty & \text{otherwise}
+\end{cases}
+\end{equation}
+for $h > 0$ and for $x \in X$. We can see as follows from
+\eqref{eq:convexity_condition_e} that if $\phi$ is $\alpha$-convex
+then $\psi$ is $\left ( \frac1h + \alpha \right )$-convex: \fbox{fill
+  in}
+
+We can now formulate additional assumptions on $\phi$:
+\begin{optional}[$H_1$]\label{hyp:ms_hypothesis_1}
+There exists a $\alpha \in \R$ such that for every $x, y_0, y_1 \in
+D(\phi)$ there exists a map $\gamma : [0,1] \to D(\phi)$ satisfying
+$\gamma(0) = y_0$ and $\gamma(1) = y_1$ for which the following inequality holds:
+\begin{equation}
+  \label{eq:ms_hypothesis_1}
+  \begin{split}
+    \frac1{2h} d(x, \gamma(t))^2 + \phi(\gamma(t)) &\leq (1 - t) \Bigg
+    [\frac{1}{2h} d(x, y_0)^2 + \phi(y_0) \Bigg ]\\
+    &+ t \Bigg [ \frac1{2h} d(x, y_1)^2 + \phi(y_1) \Bigg ] - \Bigg
+    (\frac1h + \alpha \Bigg ) \frac12 t(1 - t)d(y_0, y_1)^2
+  \end{split}
+\end{equation}
+for every $t \in [0,1]$ and for every $h \in I_\alpha$.
+\end{optional}
+We further assume
+
+\begin{optional}[$H_2$]\label{hyp:ms_hypothesis_2}
+There exists $x_* \in D(\phi)$, $r_* > 0$ and $m_* \in \R$ such that
+$\phi(y) \geq m_*$ for every $y \in X$ satisfying $d(x_*, y) \leq
+r_*$.
+\end{optional}
+
+\begin{lemma}
+  Let $\phi: X \to (-\infty, \infty]$ be proper and satisfy
+  \ref{hyp:ms_hypothesis_1} and \ref{hyp:ms_hypothesis_2}. Also let $\alpha$ be as in \ref{hyp:ms_hypothesis_1} and $x_*, r_*$ and $m_*$ be as in \ref{hyp:ms_hypothesis_2}
+  then we have for every $y \in X$ that
+  \begin{equation}
+    \label{eq:ms_lemma1}
+    \begin{cases}
+      \phi(y) \geq m_* & \text{if $d(x_*, y) \leq r_*$,}\\
+      \phi(y) \geq c - b d(x_*, y) + \frac12 d(x_*, y)^2 &\text{if
+        $d(x_*, y) > r_*$,}
+    \end{cases}
+  \end{equation}
+  where $c := \phi(x_*)$ and $b := \frac1{r_*} (\phi(x_* - m_*) -
+  \frac12 \alpha_+ r_*$ with $\alpha_+ := \max(\alpha, 0)$.
+\end{lemma}
+\begin{proof}
+  The first part of \eqref{eq:ms_lemma1} is just the second hypothesis
+  \ref{hyp:ms_hypothesis_2}. So we will prove the second part. Assume
+  that $y \in D(\phi)$ where $d(x_*, y) > r_*$. From \ref{hyp:ms_hypothesis_1} with $x := x_*$, $y_0 = x_*$, $y_1 := y$ and $t :=
+  \frac{r_*}{d(x_*, y)}$ we find $y_* := \gamma(t) \in D(\phi)$
+  independent on $h \in I_\alpha$ such that
+  \begin{equation}
+    \label{eq:proof_ms_lemma1_1}
+    \begin{split}
+      \frac1{2h} d(x_*, y_*)^2 + \phi(y_*) &\leq (1 - t) \left
+        [\frac1{2h} d(x_*, x_*) + \phi(x_*) \right ]\\
+      &+ t \left [ \frac1{2h} d(x_*, y)^2 + \phi(y) \right ] - \left (
+        \frac1h + \alpha \right ) \frac12 t(1 - t) d(x_*, y)^2
+    \end{split}
+  \end{equation}
+  for every $h \in I_\alpha$. Multiplying by $h > 0$ and sending $h$
+  to zero in \eqref{eq:proof_ms_lemma1_1} we get 
+  \begin{equation}
+    \label{eq:proof_ms_lemma1_2}
+    \begin{split}
+      \frac12 d(x_*, y_*)^2 &\leq \frac{t}2 d(x_*, y)^2 - \frac12 t(1
+      - t) d(x_*, y)^2\\
+      &=\frac12 (t - t(1 - t)) d(x_*, y)^2\\
+      &=\frac{t^2}2 d(x_*, y)^2\\
+      &=\frac12 r_*^2.
+    \end{split}
+  \end{equation}
+  Rearranging terms in \eqref{eq:proof_ms_lemma1_1} and using the
+  non-negativity of the first term we obtain
+  \begin{equation}
+    \label{eq:proof_ms_lemma1_3}
+    \phi(y) \geq \phi(x_*) - \frac1t (\phi(x_*) - m_*) - \left
+      (\frac1h + \alpha \right ) \frac{t}2 d(x_*, y)^2 + \frac\alpha2
+    d(x_*, y)^2.
+  \end{equation}
+  In case of $\alpha \geq 0$ we let $h$ tend to $\infty$ so we obtain
+  \begin{equation}
+    \label{eq:proof_ms_lemma1_4}
+    \phi(y) \geq \phi(x_*) - \frac1t (\phi(x_*) - m_*) -
+     \alpha \frac{t}2 d(x_*, y)^2 + \frac\alpha2
+    d(x_*, y)^2,
+  \end{equation}
+  so now we can use the definition of $t$ to obtain
+  \eqref{eq:proof_ms_lemma1_1}. In the case of $\alpha < 0$ let $h$
+  tend to $\frac1{|\alpha|}$.
+\end{proof}
+
+It will be convenient to define the following function
+\begin{equation}
+  \label{eq:ms_Phi}
+  \Phi(h, x; y) := \frac1{2h} d(x, y)^2 + \phi(y), \quad y > 0, \, x,y
+  \in X.
+\end{equation}
+
+\begin{corollary}\label{cor:ms_1}
+Let $\phi: X \to (-\infty, \infty]$ be proper and satisfy
+\ref{hyp:ms_hypothesis_1} and \ref{hyp:ms_hypothesis_2}, let $\alpha
+\in \R$ be as in \ref{hyp:ms_hypothesis_1}. Then for every $h > 0$
+satisfying $\frac1h + \alpha > 0$, for every $\overline{x} \in X, M >
+0$ there exists $\beta > 0$ and $\gamma \in \R$ such that
+\begin{equation}
+  \label{eq:ms_corollary_1_1}
+  \Phi(h, x; y) \geq \beta d(\overline{x}, y)^2 + \gamma \text{ for
+    every $x \in X$ such that $d(x, \overline{x}) \leq M$ and for
+    every $y \in X$}.
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+  We can use
+  \begin{equation}
+    \label{eq:ms_inequality_1}
+    d(x, y)^2 \geq (1 - \epsilon^2)d(\overline{x}, y)^2 - M^2 \left
+      (\frac1{\epsilon^2} - 1 \right ).
+  \end{equation}
+  To see this note
+  \begin{align}
+    %\label{eq:1}
+      d(\overline{x}, y) - M &\leq d(x,y)\\
+      \shortintertext{so we can square both sides to obtain}
+      d(\overline{x}, y)^2 + M^2 - 2M d(\overline{x}, y) &\leq d(x,
+      y)^2,\\
+      \shortintertext{now note that $2ab \leq a^2 + b^2$ so}
+      \frac{\epsilon}{\epsilon} 2 M d(\overline{x}, y) &\leq
+      \frac{M^2}{\epsilon^2} + \epsilon^2 d(\overline{x}, y)^2
+      \shortintertext{so we obtain}
+      d^2(\overline x, y)^2 + M^2 - \frac{M^2}{\epsilon^2} -
+      \epsilon^2 d(x, y)^2 &\leq d(x, y)^2.
+  \end{align}
+  So after rearranging terms we get
+  \eqref{eq:ms_inequality_1}. Similarly we have 
+  \begin{equation}
+    \label{eq:ms_inequality_2}
+    d(x_*, y)^2 \leq (1 + \eta^2) d(\overline{x}, y)^2 + \left ( 1 +
+      \frac1{\eta^2} \right ) d(x_*, \overline{x})^2,
+  \end{equation}
+  for $0 < \epsilon, \eta < 1$.
+\end{proof}
+So this corollary implies that $y \mapsto \Phi(h, x; y)$ is bounded
+from below. We define $\phi_h(x)$ as its infimum on $X$.
+
+\begin{definition}
+  Let $\phi: X \to (-\infty, \infty]$ be proper and satisfy
+\ref{hyp:ms_hypothesis_1} and \ref{hyp:ms_hypothesis_2}, $h +
+\frac1\alpha > 0$ with $h > 0$ and let $\alpha$ be as in
+\ref{hyp:ms_hypothesis_1}.
+\begin{equation}
+  \label{eq:ms_phi_h_def}
+  \phi_h(x) := \inf_{y \in X} \Phi(h, x; y).
+\end{equation}
+\end{definition}
+
+\begin{remark}
+  \mbox{}
+  \begin{itemize}
+  \item $\phi_h$ is a map from $X$ to $\R$.
+  \end{itemize}
+\end{remark}
+
+\begin{lemma}\label{lem:ms_lem_2}
+  Let $\phi:X \to (-\infty, \infty]$ be proper, lsc and satisfy
+  \ref{hyp:ms_hypothesis_1} and \ref{hyp:ms_hypothesis_2}. For every
+  $h \in I_\alpha$ the function $\phi_h: X \to \R$ is continuous and
+  for every $x \in \overline{D(\phi)}$ the function $X \ni y \mapsto
+  \Phi(h, x; y)$ has a unique global minimizer in $D(\phi)$ which we
+  will denote by $J_h x$.
+\end{lemma}
+
+\begin{proof}
+  First we will show the continuity of $\phi_h$. We will do this by
+  showing that $\phi_h$ is upper semicontinuous and lower
+  semicontinuous. First we will show the upper semicontinuity
+  To this end let $(x_n)_{n \geq 1}$ and $\overline{x} \in X$ be such
+  that $x_n \to \overline{x}$. Now let $y \in D(\phi)$ then we have by
+  definition of $\Phi$ that $\phi_h(x_n) \leq \Phi(h, x_n; y)$ for all
+  $n \geq 1$. So,
+  \begin{equation}
+    \label{eq:ms_cor_1_usc_1}
+    \limsup_{n \to \infty} \phi_h(x_n) \leq \limsup_{n \to \infty}
+    \Phi(h, x_n; y) = \Phi(h, \overline{x}, y),
+  \end{equation}
+  where the last equality follows from the continuity of $d$. So now
+  we can take the infimum over $y \in D(\phi)$ to obtain
+  \begin{equation}
+    \label{eq:ms_cor_1_usc_2}
+    \limsup_{n \to \infty} \phi(x_n) \leq \phi_h(\overline{x}) < \infty.
+  \end{equation}
+  This proves the upper semicontinuity, now we can prove the lower
+  semicontinuity. Let $(y_n)_{n \geq 1} \in D(\phi)$ be such that (by
+  definition of the $\inf$)
+  \begin{equation}
+    \label{eq:ms_cor_1_lsc_1}
+    \Phi(h, x_n; y_n) \leq \phi_h(x_n) + \frac1n, \quad n \geq 1.
+  \end{equation}
+  Now by \fref{cor:ms_1} and \eqref{eq:ms_cor_1_usc_1} we have $C > 0$
+  such that for all $n \geq 1$ we have that $d(\overline{x}, y_n) \leq
+  C$. We also have that $\phi_h(\overline{x}) \leq \Phi(h,
+  \overline{x}; y_n)$ for $n \geq 1$ hence
+  \begin{equation}
+    \label{eq:ms_cor_1_lsc_2}
+    \begin{split}
+      \phi_h(\overline{x}) &\leq \liminf_{n \to \infty} \Phi(h,
+      \overline{x}; y_n)\\
+      \shortintertext{now because $d(\overline{x}, y_n)$ is bounded we
+        have}
+      &=\liminf_{n \to \infty} \left \{ \frac1{2h} d(\overline{x},
+        y_n)^2 - \frac1h d(x_n, \overline{x})d(\overline{x}, y_n) +
+        \phi(y_n) \right \}\\
+      \shortintertext{because $x_n \to \overline{x}$ we have}
+      &=\liminf_{n \to \infty} \left \{ \frac1{2h} (d(\overline{x},
+        y_n) - d(\overline{x}, x_n))^2 + \phi(y_n) \right \}\\
+      &\leq \left \{\frac1{2h} d(x_n, y_n)^2 + \phi(y_n) \right \}\\
+      &\leq \liminf_{n \to \infty} \phi_h(x_n),
+    \end{split}
+  \end{equation}
+  hence $\phi_h$ is also lower semicontinous hence using the upper
+  semicontinuity $\phi_h$ is continuous.
+  Let $\overline{x} \in \overline{D(\phi)}$ and let $(y_n)_{n \geq 1}
+  \subset D(\phi)$ be a minimizing sequence, that is $\lim_{n \to
+    \infty} \Phi(h, \overline{x}, y_n) = \phi_h(\overline{x})$. We
+  will show that in view of the lower semicontinuity of $\Phi(h,
+  \overline{x}, \cdot)$ and the completeness of $(X, d)$ that it is
+  sufficient to prove that $(y_n)_n$ is a Cauchy sequence. Suppose
+  this is true, then let its limit be $\overline{y}$. Let $\gamma$ be
+  the infimum then
+  \begin{equation*}
+    \gamma \leq \Phi(h, \overline{x}; \overline{y}) \leq \liminf_{n
+      \to \infty} \Phi(h, \overline{x}; y_n) = \gamma.
+  \end{equation*}
+  Further note that $\Phi(h, \overline{x}, \overline{y}) < \infty$
+  hence $\overline{y} \in D(\phi)$. In order to show that $(y_n)$ is a
+  Cauchy sequence we use \ref{hyp:ms_hypothesis_1} with $x := x_n$,
+  $y_0 := y_n$, $y_1 := y_m$ and $t = \frac12$ where $D(\phi) \supset
+  x_n \to \overline x$. Now let $C_1 > 0$ be such that $d(x_n,
+  \overline x) \leq C_1$ for $n \geq 1$. From
+  \ref{hyp:ms_hypothesis_1} we obtain a $y_{n,m} \in D(\phi)$ such
+  that
+  \begin{equation}
+    \label{eq:ms_cor_1_exis_1}
+    \Phi(h, x_n; y_{n, m}) \leq \frac12 \Phi(h, x_n; y_n) + \frac12
+    \Phi(h, x_n; y_m) - \frac18 \left ( \frac1h + \alpha \right)
+    d^2(y_n, y_m).
+  \end{equation}
+  By noting that $\Phi(h, x_n; y_{n, m}) \geq \phi_h(x_n)$ we can
+  quickly deduce by rearranging terms that
+  \begin{equation}
+    \label{eq:ms_cor_1_exis_2}
+    d^2(y_n, y_m) \leq 4 \left (\frac1h + \alpha \right )^{-1}
+    [(\Phi(h, x_n; y_n) - \phi_h(x_n)) + \Phi(h, x_n; y_m) - \phi_h(x_n)],
+  \end{equation}
+  for $m, n \geq 1$. We will show that the right-hand side of
+  \eqref{eq:ms_cor_1_exis_2} tends to $0$ as $m, n \to \infty$. For
+  this we note that by \fref{cor:ms_1} we have that $\beta d(\overline
+  x, y_n)^2 + \gamma \leq \Phi(h, \overline x; y_n) \leq
+  \phi_h(\overline x) + \frac1n \leq C_2$ for all $n \geq 1$. So it
+  follows that
+  \begin{equation}
+    \label{eq:ms_cor_1_exis_3}
+    \begin{split}
+      |\Phi(h, x_n; y_n) - \Phi(h, \overline x; y_n)| &= \frac1{2h}
+      |d(x_n, y_n)^2 - d(\overline x, y_n)^2|\\
+     \shortintertext{now note that $d(x_n, y_n) - d(\overline x, y_n)
+       \leq d(x_n, \overline x)$ so $(d(x_n, y_n) - d(\overline x,
+       y_n))(d(x_n, y_n) + d(\overline x, y_n)) = d(x_n, y_n)^2 -
+       d(\overline x, y_n)^2 \leq d(x_n, \overline x)(d(x_n, y_n) +
+       d(\overline x, y_n))$ so,}
+      &\leq\frac1{2h} d(x_n, \overline x)(d(x_n, y_n) +
+       d(\overline x, y_n))\\
+       &\leq \frac1{2h} d(x_n, \overline x)(d(x_n, \overline x) +
+       d(\overline x, y_n) + d(\overline x, y_n)\\
+       &\leq \frac1{2h} d(x_n, \overline x)(C_1 + 2C_2) \to 0
+    \end{split}
+  \end{equation}
+  when $n \to \infty$. So now we have
+  \begin{equation}
+    \label{eq:ms_cor_1_exis_4}
+    \begin{split}
+      |\Phi(h, x_n; y_n) - \phi_h(x_n)| &\leq |\Phi(h, x_n; y_n) -
+      \Phi(h, \overline x; y_n)| + |\Phi(h, \overline x; y_n) -
+      \phi_h(\overline x)|\\
+      &+ |\phi_h(\overline x) - \phi_h(x_n)| \to 0,
+    \end{split}
+  \end{equation}
+  to see this note that the first term tends to $0$ by
+  \eqref{eq:ms_cor_1_exis_3}, for the second note that
+  \begin{equation}
+    \label{eq:ms_cor_1_exis_5}
+    |\Phi(h, x_m; y) - \phi_h(x_n)| \leq |\phi_h(x_m) - \phi_h(x_n)|
+    \to 0,
+  \end{equation}
+  by the continuity of $\phi_h$. The last term tends to $0$ by the
+  continuity of $\phi_h$.
+
+  Finally similarly to \eqref{eq:ms_cor_1_exis_3} we have
+  \begin{equation}
+    \label{eq:ms_cor_1_exis_6}
+    \begin{split}
+      |\Phi(h, x_m; y_m) - \Phi(h, x_n; y_m)| &= \frac1{2h} |d(x_m,
+      y_m)^2 - d(x_n, y_m)^2|\\
+      &\leq \frac1{2h} d(x_m, x_n) \cdot 2(C_1 + C_2) \to 0 \text{ as
+        $m, n \to \infty$}.
+    \end{split}
+  \end{equation}
+  Since $|\phi_h(x_n) - \phi_h(x_m)| \to 0$ we get that the right-hand
+  side of \eqref{eq:ms_cor_1_exis_2} tends to $0$ proving that the
+  minimizer exists. To see uniqueness repeat the argument with two
+  minimizing sequences.
+\end{proof}
+
+\begin{definition}
+  Let $(Y, d_Y)$ be a metric space and $\phi : Y \to (-\infty,
+  \infty]$ be proper. Further, let $x \in D(\phi)$. Then
+  \begin{equation}
+    \label{eq:ms_def_1_1}
+    |\partial \phi|(x) :=
+    \begin{cases}
+      \displaystyle \limsup_{\substack{y \to x \\ y \neq x}} \frac{(\phi(x) -
+        \phi(y))^+}{d(x,y)} & \text{if $x$ is not isolated in
+        $D(\phi)$,}\\
+      0 &\text{otherwise.}
+    \end{cases}
+  \end{equation}
+  Set $D(|\partial \phi|) := \{x \in D(\phi) : |\partial \phi|(x) <
+  \infty\}$. $|\partial \phi|(x)$ is called the \textit{local slope of
+    $\phi$ at $x$}.
+\end{definition}
+
+\begin{proposition}
+  Let $\phi : X \to (-\infty, \infty]$ be proper, lsc an let it
+  satisfy \ref{hyp:ms_hypothesis_1} and
+  \ref{hyp:ms_hypothesis_2}. Then
+  \begin{enumerate}
+  \item\label{item:ms_prop_1_1} if $h > 0$, $1 + h \alpha > 0$ where
+    the $\alpha$ is from \ref{hyp:ms_hypothesis_1}, $x \in
+    \overline{D(\phi)}$, then $J_h x \in D(|\partial \phi|)$ and
+    \begin{equation}
+      \label{eq:ms_prop_1_1}
+      |\partial \phi|(J_h x) \leq \frac1h d(x, J_h x).
+    \end{equation}
+  \item\label{item:ms_prop_1_2} if $h > 0$, $1 + h\alpha > 0$, $x \in
+    \overline{D(\phi)}$ then we have
+    \begin{align}
+      \label{eq:ms_prop_1_2}
+      \phi(J_h x) &\leq \phi_h(x) \leq \phi(x),\\
+      \shortintertext{if $0 < h_0 < h_1$, $1 + h_i \alpha > 0$, then,}
+      \label{eq:ms_prop_1_3}
+      \phi_{h_1}(x) &\leq \phi_{h_0}(x), \quad x \in X\\
+      \label{eq:ms_prop_1_3_2}
+      d(J_{h_0} x, x) &\leq d(J_{h_1}x, x), \quad x \in
+      \overline{D(\phi)},\\
+      \phi(J_{h_1} x) &\leq \phi(J_{h_0} x), \quad x \in \overline{D(\phi)},
+    \end{align}
+  \item\label{item:ms_prop_1_3} if $x \in \overline{D(\phi)}$, then
+    \begin{align}
+      \label{eq:ms_prop_1_4}
+      d(x, J_h x) &\downarrow 0 \text{ as $h \downarrow 0$,}\\
+      \label{eq:ms_prop_1_4_2}
+      \phi(J_h x) &\uparrow \phi(x) \text{ as $h \downarrow 0$,}\\
+      \label{eq:ms_prop_1_4_3}
+      \phi_h(x) &\uparrow \phi(x) \text{ as $h \downarrow 0$.}
+    \end{align}
+  \item\label{item:ms_prop_1_4}
+    \begin{equation}
+      \label{eq:ms_prop_1_5}
+      \overline{D(|\partial \phi|)} = \overline{D(\phi)}.
+    \end{equation}
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  \ref{item:ms_prop_1_1}. By definition we have 
+  \begin{equation}
+    \label{eq:ms_prop_1_6}
+    \begin{split}
+      \phi(J_h x) - \phi(y) &= \Phi(h, x; J_h x) - \Phi(h, x; y) +
+      \frac1{2h} d(x,y)^2 - \frac1{2h} d(x, J_h x)^2\\
+      &\leq \frac1{2h} (d(x, y)^2 - d(x, J_h x)^2)\\
+      &\leq \frac1{2h} d(y, J_h x)(d(x, y) + d(x, J_h x))
+    \end{split}
+  \end{equation}
+  for every $y \in D(\phi)$. If $J_h x$ is isolated in $D(\phi)$, then
+  $|\partial \phi|(J_h x) = 0$ and so \eqref{eq:ms_prop_1_1}
+  holds. Otherwise there exists a sequence $(y_n) \subset D(\phi)$
+  such that $y_n \neq J_h x$ for $n \geq 1$ and $y_n \to J_h$ From\eqref{eq:ms_prop_1_6} we obtain
+  \begin{equation}
+    \label{eq:ms_prop_1_7}
+    \begin{split}
+      \frac{\phi(J_h x) - \phi(y_n)}{d(J_h x, y_n)} &\leq \frac1{2h}
+    (d(x, y_n) + d(x, J_h x))\\
+    &\leq \frac1{2h} (d(y_n, J_h x) + d(x, J_h x) + d(x, J_h x)),
+    \end{split}
+  \end{equation}
+  hence
+  \begin{equation}
+    \label{eq:ms_prop_1_8}
+    \limsup_{n \to \infty} \frac{\phi(J_h x) - \phi(y_n)}{d(J_h x,
+      y_n} \leq \frac1h d(x, J_h x),
+  \end{equation}
+  so
+  \begin{equation}
+    \label{eq:ms_prop_1_9}
+    |\partial \phi|(J_h x) = \limsup_{\substack{y \to J_h x\\ x \neq
+        J_h x}} \frac{(\phi(J_h x) - \phi(y))^+}{d(J_h x, y)} \leq
+    \frac1h d(x, J_h x).
+  \end{equation}
+
+  \ref{item:ms_prop_1_2}. For any $x \in \overline{D(\phi)}$ we have
+  \begin{equation}
+    \label{eq:ms_prop_1_10}
+    \phi(J_h x) \leq \phi(J_h x) + \frac1{2h} d(x, J_h x)^2 =
+    \phi_h(x) \leq \phi(h, x;x) = \phi(x).
+  \end{equation}
+  Further, let $0 < h_0 < h_1$ with $1 + \alpha h_i >
+  0$. \eqref{eq:ms_prop_1_3} is a consequence of the definition of
+  $\phi_h$. About \eqref{eq:ms_prop_1_3_2} we have
+  \begin{equation}
+    \label{eq:ms_prop_1_11}
+    \begin{split}
+      \frac1{2h_0} d(x, J_{h_0} x)^2 + \phi(J_{h_0} x) &\leq
+      \frac1{2h_0} d(x, J_{h_1} x)^2 + \phi(J_{h_1} x)\\
+      &\leq \frac1{2h_0} d(x, J_{h_1} x)^2 - \frac1{2h_1} d(x, J_{h_1}
+      x)^2 + \frac1{2h_1} d(x, J_{h_1} x)^2 + \phi(J_{h_1} x)\\
+      &=\left (\frac1{2h_0} - \frac1{h_1} \right ) d(x, J_{h_1} x)^2 +
+      \Phi(h_1, x; J_{h_1} x)\\
+      &\leq \left (\frac1{2h_0} - \frac1{h_1} \right ) d(x, J_{h_1}
+      x)^2 + \frac1{2h_1} d(x, J_{h_0} x)^2 + \phi(J_{h_0} x).
+    \end{split}
+  \end{equation}
+  Hence
+  \begin{equation}
+    \label{eq:ms_prop_1_12}
+    \left (\frac1{2h_0} - \frac1{h_1} \right ) d(x, J_{h_0} x)^2 \leq \left (\frac1{2h_0} - \frac1{h_1} \right ) d(x, J_{h_1} x)^2,
+  \end{equation}
+  so \eqref{eq:ms_prop_1_3_2} follows.
+
+  From $\Phi(h_1, x; J_{h_1} x) \leq \Phi(h_1, x; J_{h_0} x)$ we
+  obtain
+  \begin{equation}
+    \label{eq:ms_prop_1_13}
+    \begin{split}
+      \phi(J_{h_1} x) &\leq \frac1{2h_1} \underbrace{(d(x, J_{h_0} x)^2 - d(x,
+      J_{h_1} x)^2)}_{\leq 0} + \phi(J_{h_0} x) \leq \phi(J_{h_0} x),
+    \end{split}
+  \end{equation}
+  because of \eqref{eq:ms_prop_1_3_2}
+
+  \ref{item:ms_prop_1_3}. Note
+  \begin{equation}
+    \label{eq:ms_prop_1_14}
+    \begin{split}
+      d(x, J_h x)^2 &= 2h \Phi(h, x; J_h x) - 2h \phi(J_h x)\\
+      &\leq 2h \Phi(h, x, y) - 2h \phi(J_h x)\\
+      &= d(x, y)^2 - 2h \phi(J_h x) + 2h \phi(y)\\
+      \shortintertext{For every $y \in D(\phi)$. Since $-\phi(J_h x)
+        \leq -\phi(J_{h_0} x)$, $0 < h < h_0$ we obtain}
+      d(x, J_h x)^2 &\leq -2h \phi(J_{h_0}) + d(x, y)^2 + 2h \phi(y),\\
+      \shortintertext{taking the $\limsup$ yields}
+      \limsup_{h \to 0} d(x, J_h x)^2 &\leq d(x, y)^2, \text{ for all
+        $y \in D(\phi)$.}
+    \end{split}
+  \end{equation}
+  Now since $x \in \overline{D(\phi)}$ we can take $(y_n) \subset
+  D(\phi)$ converging to $x$, so then we see
+  \begin{equation}
+    \label{eq:ms_prop_1_15}
+    \limsup_{h \to 0} d(x, J_h x)^2 = 0.
+  \end{equation}
+  So \eqref{eq:ms_prop_1_4} follows from \eqref{eq:ms_prop_1_3_2}
+  \fbox{and part i) but why??}.
+
+  \eqref{eq:ms_prop_1_4_2} follows from \eqref{eq:ms_prop_1_2}
+  (bounded from above by $\phi$), \eqref{eq:ms_prop_1_3_2}
+  (increasing) and by the lower semicontinuity
+  \begin{equation}
+    \label{eq:ms_prop_1_16}
+    \phi(J_h x) \leq \phi(x) \leq \liminf_{n \to \infty} \phi(x_n),
+  \end{equation}
+  where $x_n := J_{\frac1n} x$ which converges to $x$ by
+  \eqref{eq:ms_prop_1_4}. So \eqref{eq:ms_prop_1_4_2} follows.
+
+  For \eqref{eq:ms_prop_1_4_3} we note that by \eqref{eq:ms_prop_1_2}
+  we have $\phi_h \leq \phi$, from \eqref{eq:ms_prop_1_3} that
+  $\phi_h$ is increasing and \eqref{eq:ms_prop_1_4_2} gives the result
+  by noting that
+  \begin{equation}
+    \label{eq:ms_prop_1_17}
+    \phi(J_h x) \leq \phi_h(x) \leq \phi(x).
+  \end{equation}
+
+  For \ref{item:ms_prop_1_4} and \eqref{eq:ms_prop_1_5} we note that
+  it one direction is direct and for the other one we need to show
+  \begin{equation}
+    \label{eq:ms_prop_1_18}
+    \overline{D(\phi)} \subset \overline{D(|\partial \phi|)}
+  \end{equation}
+  \fbox{How??}
+\end{proof}
+
+\begin{proposition}
+  Let $\phi : X \to (-\infty, \infty]$ be proper, lsc and satisfy
+  \ref{hyp:ms_hypothesis_1} and \ref{hyp:ms_hypothesis_2}. Then we
+  have
+  \begin{enumerate}
+  \item\label{item:ms_prop_2_1} For all $x \in D(\phi)$ and $x$ is not isolated in $D(\phi)$:
+    \begin{equation}
+      \label{eq:ms_prop_2_1}
+      |\partial \phi|(x) = \sup_{\substack{y \in D(\phi)\\ y \neq x}}
+        \left ( \frac{\phi(x) - \phi(y)}{d(x, y)} + \frac\alpha2 d(x,
+          y) \right )^+
+    \end{equation}
+    where $\alpha$ is as in \ref{hyp:ms_hypothesis_1}.
+   \item\label{item:ms_prop_2_1} The functional $|\partial \phi|: D(\phi) \to [0, \infty]$ is lsc.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  \ref{item:ms_prop_2_1}. We know that
+  \begin{equation}
+    \label{eq:ms_prop_2_2}
+    \begin{split}
+      |\partial \phi|(x) &= \limsup_{\substack{z \to x\\ z \in
+          D(\phi)}} \left (\frac{\phi(x) - \phi(z)}{d(x,z)} + \frac12
+        \rho d(x, z) \right )^+\\
+      \shortintertext{because $\limsup = \inf \sup$ we have}
+      &\leq \sup_{\substack{z \neq x\\ z \in D(\phi)}} \left (\frac{\phi(x) - \phi(z)}{d(x,z)} + \frac12
+        \rho d(x, z) \right )^+,
+    \end{split}
+  \end{equation}
+  and in particular for $\rho = \alpha$. If the right-hand side of
+  \eqref{eq:ms_prop_2_1} is equal to zero we are done. In the other
+  case we can restrict the set on which the supremum is taken to the
+  elements $z \in D(\phi)$ and $z \neq x$ such that
+  \begin{equation}
+    \label{eq:ms_prop_2_3}
+    \phi(x) - \phi(z) + \frac12 \alpha d(x, z)^2 > 0.
+  \end{equation}
+  Now we can use \ref{hyp:ms_hypothesis_1} with $x, y_0 := x$ and $y_1
+  := z$ where $z$ satisfies \eqref{eq:ms_prop_2_3}. So we get
+  \begin{equation}
+    \label{eq:ms_prop_2_4}
+    \begin{split}
+      \frac1{2h} d(x, \gamma(t))^2 + \phi(\gamma(t)) &\leq (1 - t)
+      \phi(x) + t \left [ \frac1{2h} d(x, z)^2 + \phi(z) \right ] -
+      \left ( \frac1h + \alpha \right ) \frac12 t (1 - t) d(x, z)^2\\
+      &=(1 - t) \phi(x) + \left [ \frac1{2h} t - \left ( \frac1h +
+          \alpha \right )\frac12 t(1 - t) \right ] d(x, z)^2 + t
+      \phi(z)\\
+      &= (1 - t) \phi(x) - \frac12 t \alpha d(x, z)^2 + t \phi(z) +
+      \frac12 t^2 \left ( \frac1h + \alpha \right ) d(x, z)^2\\
+      &= \phi(x) - t (\phi(x) - \phi(z) + \frac12 \alpha d(x, z)^2 ) +
+      \frac1{2h} t^2 d(x, z)^2,
+    \end{split}
+  \end{equation}
+  so after multiplying by $h$ and sending $h$ to $0$ we get,
+  \begin{equation}
+    \label{eq:ms_prop_2_5}
+    d(x, \gamma(t))^2 \leq t^2 d(x, z)^2, \quad t \in [0,1].
+  \end{equation}
+  We can now use \ref{hyp:ms_hypothesis_1} again with the same $x,
+  y_0, y_1$ and $(\gamma(t))_{t \in [0,1]}$, so we fix $h > 0$ with $1
+  + h \alpha > 0$ and we obtain by deleting the first term in
+  \ref{hyp:ms_hypothesis_1} that
+  \begin{equation}
+    \label{eq:ms_prop_2_6}
+    \begin{split}
+      \phi(x) - \phi(\gamma(t)) &\geq - \left [ \frac1{2h} t - \left (
+          \frac1h + \alpha \right ) + \frac12 t (1 - t) \right ] d(x, z)^2 + t
+        \phi(x) - t \phi(z)\\
+        &= \left [ \frac{\phi(x) - \phi(z)}{d(x, z)} - \frac1{2h} d(x,
+          z) + \left ( \frac1h + \alpha \right ) \frac12 (t - 1) d(x,
+          z) \right ] t d(x, z)\\
+        &= \left [ \frac{\phi(x) - \phi(z)}{d(x, z)} - \frac1{2h}
+          (\alpha h(1 - t) - t) d(x, z) \right ] t d(x, z),
+    \end{split}
+  \end{equation}
+  for every $t \in [0,1]$.
+  Since $h > 0$ is fixed in \eqref{eq:ms_prop_2_6} and $z$ satisfies
+  \eqref{eq:ms_prop_2_3} there is $t_0 \in (0, 1]$ such that the
+  right-hand side of \eqref{eq:ms_prop_2_6} is positive for $t \in (0,
+  t_0)$. So $\gamma(t) \neq x$ for $t \in (0, t_0)$. For $t \in (0,
+  t_0)$ we divide \eqref{eq:ms_prop_2_6} by $d(x, \gamma(t))$, use the
+  sign of the right-hand side together with \eqref{eq:ms_prop_2_5} we
+  obtain
+  \begin{align}
+    \label{eq:ms_prop_2_7}
+    \frac{\phi(x) - \phi(\gamma(t))}{d(x, \gamma(t))} &\geq \frac{\phi(x) - \phi(z)}{d(x, z)} - \frac1{2h}
+          (\alpha h(1 - t) - t) d(x, z)\\
+    \shortintertext{hence,}
+    \label{eq:ms_prop_2_8}
+    |\partial \phi|(x) &\geq \limsup_{t \downarrow 0} \frac{\phi(x) -
+      \phi(\gamma(t))}{d(x, \gamma(t)} \geq \frac{\phi(x) -
+      \phi(z)}{d(x, z)} - \frac1{2} \alpha d(x, z)
+  \end{align}
+  and so
+  \begin{equation}
+    \label{eq:ms_prop_2_9}
+    |\partial \phi|(x) \geq \sup_{\substack{z \neq x \\ z \in D(\phi)}}
+      \left ( \frac{\phi(x) - \phi(z)}{d(x, z)} + \frac12 \alpha d(x,
+        z) \right )^+.
+  \end{equation}
+  \ref{item:ms_prop_2_1}. Let $x \in D(\phi)$ and $y \neq x$, $y \in
+  D(\phi)$. Further let $(x_n) \subset D(\phi)$ with $x_n \to x$. Then
+  there exists $n_0 \geq 1$ such that $x_n \neq y$ for $n \geq
+  n_0$. So we have
+  \begin{equation}
+    \label{eq:ms_prop_2_10}
+    \begin{split}
+     \liminf_{n \to \infty} \sup_{\substack{z \neq x_n\\ z \in
+         D(\phi)}} \left ( \frac{\phi(x_n) - \phi(z)}{d(x_n, z)} + \frac12 \alpha d(x_n,
+        z) \right )^+ &\geq \liminf_{n \to \infty} \left ( \frac{\phi(x_n) - \phi(y)}{d(x_n, y)} + \frac12 \alpha d(x_n,
+        y) \right )^+\\
+      \shortintertext{now because $\phi$ is lsc,}
+      &\geq  \left ( \frac{\phi(x) - \phi(y)}{d(x, y)} + \frac12 \alpha d(x,
+        y) \right )^+.
+    \end{split}
+  \end{equation}
+  Taking the supremum over $y \in D(\phi)$ and $y \neq x$ we obtain
+  using \eqref{eq:ms_prop_2_1} that
+  \begin{equation}
+    \label{eq:ms_prop_2_11}
+    |\partial \phi|(x) \leq \liminf_{n \to \infty} |\partial \phi|(x_n).
+  \end{equation}
+  This concludes the proof.
+\end{proof}
+
+The following estimates will be useful in what follows
+
+\begin{proposition}
+  Let $\phi : X \ to (-\infty, \infty]$ be proper, lsc and satisfy
+  \ref{hyp:ms_hypothesis_1} and \ref{hyp:ms_hypothesis_2}. Further let
+  $h > 0$, $1 + h \alpha > 0$. Then
+  \begin{enumerate}
+  \item for $x \in D(\phi)$,
+    \begin{equation}
+      \label{eq:ms_prop_3_1}
+      d(x, J_h x)^2 \leq 2( 1 + h\alpha)^{-1} h[\phi(x) - \phi_h(x)]
+    \end{equation}
+  \item for $x \in D(|\partial \phi|)$,
+    then
+    \begin{align}
+      \label{eq:ms_prop_3_2}
+      \phi(x) - \phi_h(x) &\leq \frac12 (1 + h \alpha)^{-1} h |\partial \phi|^2(x),\\
+      \label{eq:ms_prop_3_3}
+      |\partial \phi|(J_h x) &\leq (1 + h \alpha)^{-1} |\partial
+      \phi|(x),\\
+      \label{eq:ms_prop_3_4}
+      \phi(x) - \phi(J_h x) & \leq \frac12 h (1 + h \alpha)^{-2} (2 +
+      h \alpha)|\partial \phi|^2(x),
+    \end{align}
+  \item for $x \in \overline{D(\phi)}$, \fbox{Fix labels}
+    \begin{align}
+      %\label{eq:ms_prop_3_5}
+      x \in D(|\partial \phi|) & \text{ iff } \sup_{\substack{h > 0\\
+          1 + h \alpha \geq \frac12}} |\partial \phi|(J_h x) < \infty,
+      \label{eq:ms_prop_3_6}
+      &\text{ iff } \sup_{\substack{h > 0\\
+          1 + h \alpha \geq \frac12}} |\partial \frac{d(x, J_h x)}{h} < \infty,
+    \end{align}
+  \item for $x \in D(\phi)$
+    \begin{equation}
+      \label{eq:ms_prop_3_7}
+      x \in D(|\partial \phi|) \text{ iff } \sup_{\substack{h > 0\\
+          1 + h \alpha \geq \frac12}} |\partial \frac{\phi(x) - \phi_h(x)}{h} < \infty
+    \end{equation}
+  \item for $x \in D(|\partial \phi|)$
+    \begin{equation}
+      \label{eq:ms_prop_3_8}
+      |\partial \phi|(x) = \lim_{h \to 0} |\partial \phi|(J_h x) =
+      \lim_{h \to 0} \frac{d(x, J_h x)}{h} = \lim_{h \to 0} \left ( 2
+        \frac{\phi(x) - \phi_h(x)}{h} \right )^{\frac12}.
+    \end{equation}
+  \item for $x \in D(|\partial \phi|)$
+      $|\partial \phi|(x) = 0$ iff there exist $h_0 > 0$ with $1
+        + h_0 \alpha > 0$ such that $x = J_{h_0} x$ iff for all $h >
+        0$ with $1 + \alpha h > 0$: $x = J_h x$
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  \fbox{Later}
+\end{proof}
+
+\begin{definition}
+  We will denote by $J_h$ the opertor from $\overline{D(\phi)}$ into
+  $D(\phi)$ defined by $x \mapsto J_h x$.
+\end{definition}
+
+The first main result is
+\begin{theorem}\label{th:ms_thm_1}
+  Assume that $(X, d)$ is a complete metric space and that $\phi: X
+  \to (-\infty, \infty]$ is proper, lsc and satisfies conditions
+  \ref{hyp:ms_hypothesis_1} with $\alpha \in \R$ and
+  \ref{hyp:ms_hypothesis_2}. Then we have for every $x \in D(|\partial
+  \phi|)$ \eqref{eq:evi} with $\alpha$ of \ref{hyp:ms_hypothesis_1}
+  one unique solution $u$ with initial condition $u(0) = x$. Further
+  the following holds:
+  \begin{align}
+    \label{eq:ms_thm_1_1}
+    &\lim_{n \to \infty} J_{\frac{t}{n}}^n x = u(t) \text{ for every $t
+        > 0$,}\\
+    \label{eq:ms_thm_1_2}
+    &u(t) \in D(|\partial \phi|) \text{ for every $t > 0$,}\\  
+    \label{eq:ms_thm_1_3}
+    &u|_{[0, T]} \in \text{Lip}([0, T]; X) \text{ for every $T >
+      0$,}\\
+    \label{eq:ms_thm_1_4}
+    &[0, \infty) \ni t \mapsto \phi(u(t)) \text{ is nonincreasing,}\\
+    \label{eq:ms_thm_1_5}
+    &[0, \infty) \ni t \mapsto e^{\alpha t} |\partial \phi|(u(t)
+    \text{ is nonincreasing and right-continuous,}\\
+    \label{eq:ms_thm_1_6}
+    &\phi(u(t)) = \lim_{n \to \infty} \phi(J_{\frac{t}{n}}^n x) \text{
+      for every $t > 0$,}\\
+    \label{eq:ms_thm_1_7}
+    &\frac12 \int_0^t |\dot u|^2(s) \, ds + \frac12 \int_0^t |\partial
+    \phi|^2(u(s)) \, ds + \phi(u(t)) \leq \phi(x) \text{ for every $t \geq 0$.}
+  \end{align}
+  Finally we set
+  \begin{equation}
+    \label{eq:ms_thm_1_8}
+    S(t)x := u(t), \quad t \geq 0,
+  \end{equation}
+  where $u$ is the unique solution to \eqref{eq:evi} with initial
+  condition $u(0) = x$. In this case $(S(t))_{t \geq 0}$ is a contractive
+  $C_0$-semigroup of operators on $D(|\partial \phi|)$, i.e.\
+  \begin{equation}
+    \label{eq:ms_thm_1_9}
+    [S(t)]_\text{Lip} \leq e^{\alpha t}, \quad t \geq 0.
+  \end{equation}
+\end{theorem}
+
+\begin{proof}
+  \textit{Step 1} (A variational inequality for $J_h x$).
+  \begin{equation}
+    \label{eq:ms_thm_1_10}
+    \frac1{2h}[d(J_h x, z)^2 - d(x, z)^2] + \frac\alpha2 d(J_h x, x)^2
+    + \phi_h(x) \leq \phi(z)
+  \end{equation}
+  for every $z \in D(\phi)$. Because $J_h x$ is the minimum of $\Phi$
+  we have for every $\hat z \in D(\phi)$
+  \begin{equation}
+    \label{eq:ms_thm_1_11}
+    \frac1{2h} d(x, J_h x)^2 + \phi(J_h x) \leq \frac1{2h} d(x, \hat
+    z)^2 + \phi(\hat z).
+  \end{equation}
+  Let $z \in D(\phi)$. So if we use \ref{hyp:ms_hypothesis_1} with $x
+  := x_0$, $y_0 := z$ and $y_1 := J_h x$ and substituting $\hat z =
+  \gamma(t)$, $t \in (0,1)$ in \eqref{eq:ms_thm_1_11} we obtain
+  \begin{equation}
+    \label{eq:ms_thm_1_12}
+    \begin{split}
+      \frac1{2h} d(x, \hat z)^2 + \phi(\hat z) &\leq (1 - t) \left [
+        \frac1{2h} d(x, z)^2 + \phi(z) \right]\\
+      &+ t \left [\frac1{2h} d(x, J_h x)^2 + \phi(J_h x) \right ] - \left
+        ( \frac1h + \alpha \right ) \frac12 t(1 - t) d(z, J_h x)^2.
+    \end{split}
+  \end{equation}
+  So now we can use \eqref{eq:ms_thm_1_11} we get
+  \begin{equation}
+    \label{eq:ms_thm_1_13}
+    \begin{split}
+      \frac1{2h} d(x, J_h x)^2 + \phi(J_h x) &\leq (1 - t) \left [
+        \frac1{2h} d(x, z)^2 + \phi(z) \right]\\
+      &+ t \left [\frac1{2h} d(x, J_h x)^2 + \phi(J_h x) \right ] - \left
+        ( \frac1h + \alpha \right ) \frac12 t(1 - t) d(z, J_h x)^2,
+    \end{split}
+  \end{equation}
+  rearranging terms and dividing by $(1 - t)$ and letting $t$ tend to
+  $1$ we obtain
+  \begin{equation}
+    \label{eq:ms_thm_1_14}
+    \frac1{2h} d(x, J_h x)^2 + \phi(J_h x) \leq \frac1{2h} d(x, z)^2 +
+    \phi(z) - \frac12 \left ( \frac1h + \alpha \right ) d(J_h x, z)^2.
+  \end{equation}
+  This proves \eqref{eq:ms_thm_1_10}.
+
+  \textit{Step 2} (an estimate for $d(J_\gamma^m x, J_\delta^n
+  x)^2$). Let $x \in D(\partial \phi|)$, $\gamma, \delta > 0$ such
+  that $1 + \alpha \gamma > 0$ and $1 + \alpha \delta > 0$ and let
+  $m,n$ be nonnegative integers. We want to estimate $d(J_\gamma^m x, J_\delta^n
+  x)^2$ where for $n = 0$ we have $J_\delta^n x := x$. The idea is to
+  first establish the estimate in the case $m = 0 $ or $n = 0$ and
+  then to find a recursive identity. We will restrict ourselves to the
+  case $\alpha \leq 0$. \textit{Case $n = 0$ or $m = 0$;} $\alpha \leq
+  0$. We have for $x \in D(|\partial \phi|)$, $\gamma > 0$, $1 +
+  \alpha \gamma > 0$ and $m \geq 1$:
+  \begin{equation}
+    \label{eq:ms_thm_1_14a}
+    d(J_\gamma^m x, x) \leq (m \gamma)^2 (1 + \alpha \gamma)^{-2m}
+    |\partial \phi|^2(x).
+  \end{equation}
+  To see this set $z = x$ in \eqref{eq:ms_thm_1_10}, then we obtain
+  \begin{equation}
+    \label{eq:ms_thm_1_14b}
+    \frac1{2h} (d(J_h x, x)^2 - d(x, x)^2) + \frac\alpha2 d(J_h x,
+    x)^2 + \phi_h(x) \leq \phi(x),
+  \end{equation}
+  now multiply by $2h$ and replace $h$ by $\gamma$ we get
+  \begin{equation}
+    \label{eq:ms_thm_1_14c}
+    (1 + \gamma \alpha) d(J_h x, x)^2 \leq 2 \gamma [\phi(x) -
+    \phi_\gamma(x)],
+  \end{equation}
+  divide by $1 + \alpha \gamma$ to obtain
+  \begin{equation}
+    \label{eq:ms_thm_1_14d}
+    d(J_h x, x)^2 \leq  (1 + \gamma \alpha)^{-1} 2 \gamma [\phi(x) -
+    \phi_\gamma(x)],
+  \end{equation}
+  so now
+  \begin{equation}
+    \label{eq:ms_thm_1_15}
+    \begin{split}
+      d(J_\gamma^m x, x) &\leq \left ( \sum_{k = 1}^m d(J_\gamma^k x,
+        J_\gamma^{k - 1} x) \right )^2\\
+      &\leq m \sum_{k = 1}^m d(J_\gamma^k x, J_\gamma^{k - 1})^2\\
+      &\leq m \sum_{k = 1}^m [d(J_\gamma^k x, x) + d(J_\gamma^{k - 1},
+      x)]^2\\
+      \shortintertext{now using \eqref{eq:ms_thm_1_14} we have}
+      \leq 2 m \gamma (1 + \alpha \gamma)^{-1} \sum_{k = 1}^m
+      [\phi(J_\gamma^{k - 1} x) - \phi_\gamma(J_\gamma^{k - 1} x)].
+    \end{split}
+  \end{equation}
+  By the triangle inequality and Cauchy-Schwarz. Now we can use
+  \eqref{eq:ms_prop_3_2} to obtain
+  \begin{equation}
+    \label{eq:ms_thm_1_16}
+    d(J_\gamma^m, x) \leq m \gamma^2 (1 - \alpha \gamma)^{-2} \sum_{k
+      = 1}^m |\partial \phi|^2(J_\gamma^{k - 1} ).
+  \end{equation}
+  Now we can use \eqref{eq:ms_prop_3_3} to obtain
+  \begin{equation}
+    \label{eq:ms_thm_1_17}
+    d(J_\gamma^m x, x)^2 \leq m \gamma^2 (1 + \alpha \gamma)^{-2}
+    \left ( \sum_{k = 1}^m (1 + \alpha \gamma)^{-2(k - 1)} \right )
+    |\partial \phi|^2(x).
+  \end{equation}
+  So now we can compute the sum and use some basic estimates to get
+  since $\alpha \leq 0$ that
+  \begin{equation}
+    \label{eq:ms_thm_1_18}
+    d(J_\gamma^m, x) \leq m^2 \gamma^2 (1 + \alpha \gamma)^{-2m}
+    |\partial \phi|^2(x),
+  \end{equation}
+  which proves our claim. Similarly we have for $m = 0$, $n \geq 1$,
+  $\alpha \leq 0$, $\delta > 0$ and $1 + \alpha \delta > 0$:
+  \begin{equation}
+    \label{eq:ms_thm_1_19}
+    d(J_\delta^n, x) \leq n^2 \delta^2 (1 + \alpha \delta)^{-2n}
+    |\partial \phi|^2(x),
+  \end{equation}
+  \textit{Case $n \geq 1$, $m \geq 1$ and $\alpha \geq 0$} we claim
+  that
+  \begin{equation}
+    \label{eq:ms_thm_1_20}
+    \begin{split}
+    d(J_\gamma^m x, J_\delta^n x)^2 \leq |\partial \phi|^2(x) &\cdot
+    \max \left \{(1 + \alpha \gamma)^{-2(m + 1)}, (1 + \alpha \delta)^{-2(n +
+        1)} \right \}\\
+      &\cdot \{[m \gamma - n \delta) + (m - n) \alpha \gamma \delta ]^2 +
+      (\gamma + \delta) \cdot \min(m\gamma, n\delta) \}
+    \end{split}
+  \end{equation}
+  To see this let $1 \leq i \leq m$, $1 \leq j \leq n$, $x_0 = y_0 :=
+  x$, $x_i := J_\gamma x_{i - 1}$. Now use $\phi(J_h x) \leq \phi_h(x)
+  \leq \phi(x)$ and \eqref{eq:ms_thm_1_10} to obtain
+  \begin{align}
+    \label{eq:ms_thm_1_21}
+    \frac1{2\gamma} [d(x_i x, z)^2 - d(x_{i - 1}, z)^2 ] +
+    \frac\alpha2 d(x_i, z)^2 \leq \phi(z)\\
+   \label{eq:ms_thm_1_22}
+   \frac1{2\delta} [d(y_i x, \hat z)^2 - d(y_{i - 1}, \hat z)^2 ] +
+    \frac\alpha2 d(y_i, \hat z)^2 \leq \phi(z)
+  \end{align}
+  Now we can set $z := y_j$ in \eqref{eq:ms_thm_1_21} and $\hat z :=
+  x_i$ in \eqref{eq:ms_thm_1_22} and adding we obtain
+  \begin{equation}
+    \label{eq:ms_thm_1_23}
+    \begin{split}
+      \frac1{2\gamma} &[d(x_i, y_j)^2 - d(x_{i - 1}, y_j)] +
+      \frac1{2\delta} [d(y_j, x_i)^2 - d(y_{j - 1}, x_i)^2]\\
+      &= \left (
+        \frac1{2\gamma} + \frac1{2\delta} + \alpha \right ) d(x_i, y_j)^2 -
+      \frac1{2\gamma} d(x_{i - 1}, y_j)^2 - \frac1{2\delta} d(y_{j -
+        1}, x_i)^2\\
+      &\leq 0.
+    \end{split}
+  \end{equation}
+  So, multiplying with $2 \gamma \delta$ we get 
+  \begin{equation}
+    \label{eq:ms_thm_1_24}
+    d(x_i, y_j)^2 \leq \frac{\delta}{\delta + \gamma + 2 \gamma \delta
+      \alpha} d(x_{i - 1}, y_j)^2 + \frac{\gamma}{\delta + \gamma + 2 \gamma \delta
+      \alpha} d(y_{j - 1}, x_i)^2.
+  \end{equation}
+  Now we multiply \eqref{eq:ms_thm_1_24} by $(1 + \alpha \gamma)^i (1
+  + \alpha \delta)^j$ and then defining (also for $i,j =0$),
+  \begin{equation}
+    \label{eq:ms_thm_1_25}
+    a_{i,j} := (1 + \alpha \gamma)^i (1 + \alpha \delta)^j d(x_i, y_j)^2,
+  \end{equation}
+  so we obtain
+  \begin{equation}
+    \label{eq:ms_thm_1_26}
+    a_{i, j} \leq \frac{\gamma (1 + \alpha \delta)}{\delta + \gamma + 2 \gamma \delta
+      \alpha} a_{i, j - 1} + \frac{\delta (1 + \alpha \gamma)}{\delta + \gamma + 2 \gamma \delta
+      \alpha} a_{i - 1, j}.
+  \end{equation}
+  So now we set
+  \begin{equation}
+    \label{eq:ms_thm_1_27}
+    \hat \gamma := \gamma ( 1 + \alpha \delta), \quad
+  \hat \delta := \delta (1 + \alpha \gamma),
+  \end{equation}
+  and we arrive at
+  \begin{equation}
+    \label{eq:ms_thm_1_28}
+    a_{i, j} \leq \frac{\hat \gamma}{\hat \gamma + \hat \delta} a_{i,
+      j - 1} + \frac{\hat \delta}{\hat \gamma + \hat \delta} a_{i - 1, j}.
+  \end{equation}
+  From \eqref{eq:ms_thm_1_14a}, \eqref{eq:ms_thm_1_27} and using that
+  $\alpha \leq 0$ such that $(1 + \alpha \gamma)^{-1} \geq 1$ and $(1
+  + \alpha \delta)^{-1} \geq 1$ we get
+  \begin{equation}
+    \label{eq:ms_thm_1_29}
+    a_{i, 0} \leq |\partial \phi|^2(x) \cdot (1 + \alpha \gamma)^{-m}
+    (1 + \alpha \delta)^{-2} (i \hat gamma)^2,
+  \end{equation}
+  similarly from \eqref{eq:ms_thm_1_19} we obtain
+  \begin{equation}
+    \label{eq:ms_thm_1_30}
+    a_{0, j} \leq |\partial \phi|^2(x) \cdot (1 + \alpha \delta)^{-n}
+    (1 + \alpha \gamma)^{-2} (j \hat \delta)^2.
+  \end{equation}
+  By pairwise comparison we obtain
+  \begin{equation}
+    \label{eq:ms_thm_1_31}
+    \begin{split}
+    |\partial \phi|^2(x) \max \{(1 + \alpha \gamma)^{-m} (1 + \alpha \delta)^{-2}&, (1 +
+    \alpha \delta)^{-n} (1 + \alpha \gamma)^{-2} \}\\
+    &\leq |\partial \phi|^2(x) \max \{(1 + \alpha \gamma)^{-(m + 2)}, (1 +
+    \alpha \delta)^{-(n + 2)} \}
+    \end{split}
+  \end{equation}
+  \fbox{Now use Lemma 2}
+  \textit{Step 3} (Convergence of $J_{\frac{t}{m}}^m$). Let $x \in
+  D(|\partial \phi|)$, $t > 0$, $\alpha \leq 0$ and $n_0 \in \N$ be
+  such that
+  \begin{equation}
+    \label{eq:ms_thm_1_32}
+    1 + \alpha \frac{t}{n_0} > 0.
+  \end{equation}
+  Now let $m,n \geq n_0$, then $J_{\frac{t}{m}}^m x$ and
+  $J_{\frac{t}{n}}^n$ are well defined by \fref{lem:ms_lem_2} and
+  because of \eqref{eq:ms_thm_1_20} with $\gamma := \frac{t}{m}$,
+  $\delta := \frac{t}{n}$ we obtain
+  \begin{equation}
+    \label{eq:ms_thm_1_33}
+    \begin{split}
+    d(J_{\frac{t}{m}} x, J_{\frac{t}{n}} x) &\leq |\partial \phi|(x)
+    \cdot \max \left \{\left (1 + \alpha \frac{t}{m} \right )^{-(m +
+        1)},\left (1 + \alpha \frac{t}{n} \right )^{-(n +
+        1)} \right \}\\
+    &\cdot \left \{ \left [ \frac{m - n}{mn} t^2 \alpha \right ]^2 + \left
+        ( \frac{t}{n} + \frac{t}{m} \right ) \cdot \min \{t, t\}
+    \right \}^\frac{1}{2},
+    \end{split}
+  \end{equation}
+  now we use $\frac{m - n}{mn} = \left ( \frac{1}{m} - \frac{1}{n}
+  \right )^2$ to obtain
+  \begin{equation}
+    \label{eq:ms_thm_1_34}
+    \begin{split}
+    d(J_{\frac{t}{m}} x, J_{\frac{t}{n}} x) &\leq |\partial \phi|(x)
+    \cdot t
+    \cdot \max \left \{\left (1 + \alpha \frac{t}{m} \right )^{-(m +
+        1)},\left (1 + \alpha \frac{t}{n} \right )^{-(n +
+        1)} \right \}\\
+    &\cdot \left [\frac1m + \frac1n + (\alpha t)^2 \left ( \frac1m - \frac1n \right )^2 \right ]^\frac{1}{2},
+    \end{split}
+  \end{equation}
+  this proves that $(J_{\frac{t}{n}}^n x)_{n \geq n_0}$ is a Cauchy
+  sequence in the complete space $(X, d)$, so we can set
+  \begin{equation}
+    \label{eq:ms_thm_1_35}
+    u(t) := \lim_{n \to \infty} J_{\frac{t}{n}}^n x, \quad t > 0,
+  \end{equation}
+  with the estimate
+  \begin{equation}
+    \label{eq:ms_thm_1_35}
+    d(u(t), J_{\frac{t}{n}} x) \leq |\partial \phi|(x)
+    \cdot t
+    \cdot \max \left \{e^{-\alpha t},\left (1 + \alpha \frac{t}{n} \right )^{-(n +
+        1)} \right \} \cdot \left [\frac1n + \left (\frac{\alpha t}n \right )^2 \right ]^\frac{1}{2}.
+  \end{equation}
+  Now we need to show that $u(t) \in D(|\partial \phi|)$. by
+  \eqref{eq:ms_prop_3_3} we have
+  \begin{equation}
+    \label{eq:ms_thm_1_36}
+    |\partial \phi(J_{\frac{t}{n}} x) \leq \left ( 1 + \alpha \frac{t}n
+    \right )^{-1} |\partial \phi|(x),
+  \end{equation}
+  hence by induction
+  \begin{equation}
+    \label{eq:ms_thm_1_37}
+    |\partial \phi(J_{\frac{t}{n}}^n x) \leq \left ( 1 + \alpha \frac{t}n
+    \right )^{-n} |\partial \phi|(x).
+  \end{equation}
+  By the lower semicontinuity of $|\partial \phi|$ we get
+  \begin{equation}
+    \label{eq:ms_thm_1_38}
+    |\partial \phi|(u(t)) \leq e^{-\alpha t} |\partial \phi|(x), \quad
+    t > 0.
+  \end{equation}
+  \textit{Step 4} (Local Lipschitz continuity of $u$). Let $x \in
+  D(|\partial \phi|)$ and further set
+  \begin{equation}
+    \label{eq:ms_thm_1_39}
+    u(0) := x,
+  \end{equation}
+  and for $t > 0$, $\alpha \leq 0$, $u(t)$ is defined by
+  \eqref{eq:ms_thm_1_35}. From \eqref{eq:ms_thm_1_19} with $\delta :=
+  \frac{t}{n}$, $n \geq n_0$ and \eqref{eq:ms_thm_1_32} we have
+  \begin{equation}
+    \label{eq:ms_thm_1_40}
+    \begin{split}
+    d(J_\frac{t}{n}^n x, x) \leq t \left (1 + \alpha \frac{t}n
+    \right )^{-n} |\partial \phi|(x),
+    \end{split}
+  \end{equation}
+  so if we take the limit when $n$ tends to infinity we have
+  \begin{equation}
+    \label{eq:ms_thm_1_41}
+    d(u(t), u(0)) \leq t e^{-\alpha t} |\partial \phi|(x).
+  \end{equation}
+  Hence $u$ is continuous at $0$. Now let $0 < s < t$, $m = n \geq
+  n_0$ and $\gamma := \frac{t}{n}$, $\delta := \frac{s}{n}$. If we
+  apply \eqref{eq:ms_thm_1_20} we have
+  \begin{equation}
+    \label{eq:ms_thm_1_42}
+    d(J_{\frac{t}{n}}^n x, J_{\frac{s}{n}}^n x)^2 \leq |\partial
+  \phi|^2(x) \left ( 1 + \alpha \frac{t}{n} \right )^{-2(n + 1)} \cdot
+  \left [(t - s)^2 + \left ( \frac{t}n + \frac{s}n \right ) \cdot s
+  \right ],
+  \end{equation}
+  if we now take the limit as $n$ tends to infinity we obtain
+  \begin{equation}
+    \label{eq:ms_thm_1_43}
+    d(u(t), u(s)) \leq |\partial \phi|(x) e^{-\alpha t} |t - s|, \quad
+    0 < s < t,
+  \end{equation}
+  now taking the limit as $s$ tends to $0$ we obtain
+  \begin{equation}
+    \label{eq:ms_thm_1_44}
+    d(u(t), u(s)) \leq |\partial \phi|(x) e^{-\alpha t} |t - s|, \quad
+    0 \leq s < t.
+  \end{equation}
+  If $\alpha > 0$ then $u$ is also a solution to \eqref{eq:evi} with
+  $\alpha = 0$, hence we obtain for any $\alpha \in \R$ \fbox{WHY??}
+  \begin{equation}
+    \label{eq:ms_thm_1_45}
+    d(u(t), u(s)) \leq |\partial \phi|(x) e^{-\alpha^- t} |t - s|, \quad
+    0 \leq s < t.
+  \end{equation}
+  \textit{Step 5} ($u$ is a solution to \eqref{eq:evi}). Let $x \in
+  D(|\partial \phi|)$ and $\alpha \in \R$ as in
+  \ref{hyp:ms_hypothesis_1}. If $\alpha > 0$, then for $h > 0$, $1 + h
+  \alpha > 0$, $J_h x$ is well defined by \fref{lem:ms_lem_2} and
+  satisfies \eqref{eq:ms_thm_1_10} so all the estimates that follow
+  from this hold. We have defined $u$ in \eqref{eq:ms_thm_1_35}. We
+  will prove that if $u$ is a solution to \eqref{eq:evi} with initial
+  condition $u(0) = x$ and $\alpha \leq 0$ as above.
+
+  If $\alpha > 0$, then for every $h > 0$, $J_h x$ is well defined by
+  \fref{lem:ms_lem_2} and also satisfies the variational inequality
+  \eqref{eq:ms_thm_1_10} where $\alpha > 0$, hence also for $\alpha =
+  0$. Thus it follows from the proofs of step 2, 3 and 4 that $J_h x$
+  satisfies all the estimates as well with $\alpha = 0$. So $\lim_{n
+  \to \infty} J_{\frac{t}{n}}^n x$ exists for every $t > 0$ and so we
+  can define $u(t)$ as in \eqref{eq:ms_thm_1_35} for $t > 0$ and
+  $u(0) = x$. In this case $u$ satisfies \eqref{eq:ms_thm_1_2} and
+  \eqref{eq:ms_thm_1_3}. In this case we also want to prove that $u$
+  is a solution to \eqref{eq:evi} with $\alpha > 0$. To prove this
+  we start from \eqref{eq:ms_thm_1_10} with $\alpha > 0$. From now
+  one we will take $\alpha \in \R$ and distinguish between the cases
+  $\alpha \leq 0$ and $\alpha > 0$ if necessary. Because of
+  \eqref{eq:ms_thm_1_3} and \fref{prop:intform} it is sufficient to
+  prove that $u$ is an ``integral solution'' to \eqref{eq:evi}, this
+  means that for every $0 < a < b$, $\phi \circ u \in L^1(a,b)$ and
+  $\phi \circ u$ satisfies the integral formulation of
+  \fref{prop:intform}. If follows from the continuity of $u$
+  (because then we can pass limits) that if $\phi \circ u \in
+  L^1(a,b)$ and $\phi \circ u$ satisfies the integral \ref{eq:evi}
+  with $0 < a < b$ where $a, b$ are rational numbers, then $u$ is an
+  ``integral solution'' to \eqref{eq:evi}.
+
+  Let $0 < a < b$ with $a, b$ rational numbers. So now there exists
+  $s > 0$ rational, $p > q > 0$ integers such that $a = qs$ and $b =
+  ps$. Let $k_0 \in \N$ be such that
+  \begin{equation}
+   \label{eq:ms_thm_1_46}
+    1 + \alpha \frac{s}{k_0} > 0,
+  \end{equation}
+  and $k \geq k_0$. Then we have
+  \begin{equation}
+    \label{eq:ms_thm_1_47}
+    J_\frac{s}{k}^{qk} x = J_{\frac{qs}{qk}}^{qk} x =
+    J_\frac{a}{qk}^{qk} x \to u(a),
+  \end{equation}
+  and similarly
+  \begin{equation}
+    \label{eq:ms_thm_1_48}
+    J_\frac{s}{k}^{pk} \to u(b).
+  \end{equation}
+  Now we set $h := \frac{s}k$, now we also have $1 + \alpha
+  \frac{s}{k_0} > 0$, $x_m := J_h^m x$, $m \geq 1$ is well defined
+  because of \fref{lem:ms_lem_2}. Further we set $x_0 := x$, for all
+  $z \in D(\phi)$, $m \geq 1$ we have because $\phi(J_h x) \leq
+  \phi_h(x) \leq \phi(x)$ and \eqref{eq:ms_thm_1_10}
+  \begin{equation}
+    \label{eq:ms_thm_1_49}
+    \frac12 [d(x_m, z)^2 - d(x_{m - 1}, z)^2 ] + \frac{\alpha h}{2}
+    d(x_m, z)^2 + h \phi(x_m) \leq h \phi(z).
+  \end{equation}
+  So, summing \eqref{eq:ms_thm_1_49} from $m := qk + 1$ to $pk$ we
+  have 
+  \begin{equation}
+    \label{eq:ms_thm_1_50}
+    \begin{split}
+    \frac12 [d(x_{pk}, z)^2 - d(x_{qk}, z)^2] &+ \frac\alpha2 \frac{s}k
+    \sum_{l = qk + 1}^{pk} d(x_l, z)^2 + \frac{s}k \sum_{l = qk +
+      1}^{pk} \phi(x_l)\\
+    &\leq \frac{s}k \sum_{l = qk + 1}^{pk} \phi(z)\\
+    &=(b - a)\phi(z).
+    \end{split}
+  \end{equation}
+  Now we take the limit of \eqref{eq:ms_thm_1_50} as $k$ tends to
+  infinity. Note that because of \eqref{eq:ms_thm_1_47} and
+  \eqref{eq:ms_thm_1_48} that $\lim_{k \to \infty} x_{pk} = u(b)$ and
+  $\lim_{k \to \infty} x_{qk} = u(a)$. The following lemma will take
+  care of the limit in the third and fourth term of
+  \eqref{eq:ms_thm_1_50}.
+  \begin{lemma}\label{lem:ms_lem_3}
+    Let $x, u, s, a, b, p, q$ be as above and let $k \geq k_0$ where
+    $k_0$ satisfies $1 + \alpha \frac{s}{k_0} > 0$
+    \begin{enumerate}
+    \item\label{item:ms_lem_3_1} if $\phi: X \to \R$ is Lipschitz continuous on bounded
+      subsets of $X$, then
+      \begin{equation}
+        \label{eq:ms_thm_1_51}
+        \lim_{k \to \infty} \frac{s}k \sum_{l = qk + 1}^{pk}
+        \phi \left (J_\frac{s}{k}^l x \right ) = \int_a^b \phi(u(t))
+        \, dt.
+      \end{equation}
+    \item\label{item:ms_lem_3_2} if $\phi: X \to (-\infty, \infty]$ is proper, lsc and
+      satisfies assumptions \ref{hyp:ms_hypothesis_1} with $\alpha \in
+      \R$ and \ref{hyp:ms_hypothesis_2}, then $\phi \circ u$ is lsc
+      (hence Lebesgue measurable) and $\phi \circ|_{[a,b]}$ is bounded
+      below. Further if $C \geq 0$ is such that $\phi(u(t)) + C \geq
+      0$, $t \in [a,b]$, then
+      \begin{equation}
+        \label{eq:ms_thm_1_52}
+        \int_a^b \phi(u(t)) + C \leq \liminf_{k \to \infty}
+        \frac{s}{k} \sum_{l = qk + 1}^{pk} \phi(J_{\frac{s}{k}}^l x) +
+        C (b - a).
+      \end{equation}
+    \end{enumerate}
+    In particular if the rhs of \eqref{eq:ms_thm_1_52} is finite, then
+    $\phi \circ u|_{[a,b]} \in L^1(a,b)$.
+  \end{lemma}
+  Before we prove \fref{lem:ms_lem_3} we will apply it so prove that
+  $\phi \circ u|_{[a,b]} \in L^1(a,b)$ and satisfies the integral form
+  of \ref{eq:evi}. Remember that $y \mapsto d(y, z)^2$ is Lipschitz
+  continuous on bounded subsets of $X$, to see this note
+  \begin{equation}
+    \label{eq:ms_thm_1_53}
+    d(y, z)^2 - d(\hat y, z)^2 \leq d(y, \hat y)(d(y, z) + d(\hat y, z).
+  \end{equation}
+  We can use \fref{lem:ms_lem_3} to prove that the third term in
+  \eqref{eq:ms_thm_1_50} converges to $\frac\alpha2 \int_a^b d(u(t),
+  z) \, dt$ as $k$ tends to infinity. So it follows that
+  \begin{equation}
+    \label{eq:ms_thm_1_54}
+    \begin{split}
+      \liminf_{k \to \infty} \sum_{l = qk + 1}^{pk} \phi(x_l) \leq (b
+      - a)\phi(z) - \frac12 d(u(b), z)^2 + \frac12 d(u(a), z)^2 -
+      \frac\alpha2 \int_a^b d(u(t), z)^2 \, dt < \infty.
+    \end{split}
+  \end{equation}
+  It follows from \fref{lem:ms_lem_3} that $\phi \circ u|_{[a,b]} \in
+  L^1(a,b)$ and from \eqref{eq:ms_thm_1_52} that $u$ satisfies
+  integral \ref{eq:evi}. Hence $u$ is a solution to \eqref{eq:evi}.
+  So now we can prove \fref{lem:ms_lem_3}.
+  \begin{proof}[of \fref{lem:ms_lem_3}]
+    First we prove \ref{item:ms_lem_3_1}. Since $u|_{[a,b]} \in
+    C[a,b]$ we have $\phi \circ u \in u|_{[a,b]}$ and
+    \begin{equation}
+      \label{eq:ms_thm_1_55}
+      \int_a^b \phi(u(t)) \, dt = \lim_{k \to \infty} \frac{s}k
+      \sum_{l = qk + 1}^{pk} \phi \left ( u \left ( l \frac{s}k \right
+        ) \right ).
+    \end{equation}
+    Note that $\{ u(l \frac{s}{k}) : k \geq k_0, qk + 1 \leq l \leq pk
+    \} \subset u([a,b])$ is bounded in $X$. From
+    \eqref{eq:ms_thm_1_35} we get
+    \begin{equation}
+      \label{eq:ms_thm_1_55}
+      \begin{split}
+        d \left (u \left (l \frac{s}k \right ), J_{\frac{s}k}^l x
+        \right ) &=  d \left (u \left (l \frac{s}k \right ),
+          J_{\frac{sl}{lk}}^l x \right )\\
+        &\leq |\partial \phi|(x) s \frac{l}{k} \left [ \frac1l +\left
+            ( \frac{\alpha l \frac{s}{k}}{l} \right )^2 \right
+        ]^{\frac12} \cdot \max \left \{e^{-\alpha t}, \left ( 1 + \alpha
+          \frac{s}k \right )^{-(l + 1)} \right \}\\
+       &\leq |\partial \phi|(x) \left ( \frac{ls}{k} \right ) \cdot \left [ \frac1l +\left
+            ( \frac{\alpha l \frac{s}{k}}{l} \right )^2 \right
+        ]^{\frac12} C(|\alpha|, b),
+      \end{split}
+    \end{equation}
+    for some constant $C = C(|\alpha|, b) > 0$, since $e^{-\alpha l
+      \frac{s}k} \leq e^{|\alpha| b}$ and $\lim_{k \to \infty} \left (
+      1 + \frac1\alpha \frac{t}n \right)^{-(n + 1)} = e^{-\alpha t}
+    \leq e^{|\alpha| b}$. Since $0 < \frac{ls}{k} \leq b$, it follows
+    that $\left \{ J_{\frac{s}{k}} x : k \geq k_0, qk + 1 \leq
+    l \leq pk \right \}$ is bounded in $X$ (by writing out the
+    limit definition). Let $k \geq k_0$ and let $qk + 1 \leq l \leq
+    pk$. Then in view of the Lipschitz continuity of $\phi$ on
+    bounded subsets of $X$ there exists $M > 0$ such that
+    \begin{equation}
+      \label{eq:ms_thm_1_56}
+      \begin{split}
+      \left | \phi \left ( u \left ( l \frac{s}{k} \right ) \right ) -
+        \phi \left ( J_\frac{s}{k}^l x \right ) \right | &\leq M d
+      \left ( u \left ( l \frac{s}{k} \right ), J_{\frac{s}{k}}^l x
+      \right ).\\
+      \shortintertext{now using \eqref{eq:ms_thm_1_55} we get}
+      &\leq M |\partial \phi|(x) \left ( l \frac{s}{k} \right ) \left
+        [ \frac1l + \left ( \alpha \frac{ls}{k} \right )^2 \frac1{l^2}
+      \right ]^\frac12 C(|\alpha|, b)\\
+      &= M |\partial \phi|(x) C(|\alpha|, b) \left
+        [ 1 + \left ( \alpha s \right )^2 
+      \right ]^\frac12 s \frac{l^2}{k}.
+      \end{split}
+    \end{equation}
+    Hence,
+    \begin{equation}
+      \label{eq:ms_thm_1_57}
+      \begin{split}
+      \frac{s}{k} \left | \sum_{l = qk + 1}^{pk} \phi \left ( u \left ( l \frac{s}{k} \right ) \right ) -
+        \phi \left ( J_\frac{s}{k}^l x \right ) \right | \leq M
+      |\partial \phi|(x) C'(|\alpha|, b, s) \frac{1}{k^2} \sum_{l = qk
+        + 1}^{pk} \sqrt{l} = O \left ( \frac1{\sqrt k} \right ),
+      \end{split}
+    \end{equation}
+    as $k$ tends to infinity. Therefore in view of
+    \eqref{eq:ms_thm_1_55} we find \eqref{eq:ms_thm_1_51}. Now we
+    prove \ref{item:ms_lem_3_2}. $u \in C([a,b]; X)$ and $\phi$ is
+    lsc, $[a,b]$ compact hence $\phi \circ u|_{[a,b]}$ is bounded from
+    below. Now let $\overline C \geq 0$ be such that $\phi(u(t)) +
+    \overline C \geq 0$ for all $t \in [a,b]$. Then $\int_a^b
+    \phi(u(t)) + \overline C \, dt$ is well defined (possibly equal to
+    $\infty$). We now claim that $\phi$ is bounded from below on $B =
+    \left \{ J_{\frac{s}{k}}^l x : k \geq k_0, qk \leq l \leq pk
+    \right \}$ where $x$ is as in \fref{th:ms_thm_1}. And $k_0$
+    satisfies $1 + \alpha \frac{s}{k_0} > 0$ and $p, q$ as defined
+    above. Note that $B \subset D(\phi)$. \fbox{WHY??} Suppose for
+    contradiction that $\phi$ is not bounded from below on $B$. For $k
+    \geq k_0$ let $l_k \in \N$ be such that $qk \leq l_k \leq pk$ and
+    \begin{equation}
+      \label{eq:ms_thm_1_58}
+      \phi_k := \phi \left ( J_{\frac{s}{k}}^{l_k} x \right ) = \min
+      \left \{J_{\frac{s}{k}}^{l} x : qk \leq l \leq pk \right \}
+    \end{equation}
+    There exists a subsequence $\phi_{j_k}$ tending to $-\infty$ as $k
+    \to \infty$. Let $t_k := l_k \frac{s}{k}$, $k \geq k_0$. Since
+    $t_k \in [a,b]$ there exists a subsequence of $t_{j_k}$ which we
+    will still denote by $t_{j_k}$ and $\overline t \in [a,b]$ such
+    that $\lim_{k \to \infty} t_{j_k} = \overline t$. We now claim
+    that
+    \begin{equation}
+      \label{eq:ms_thm_1_58}
+      d \left ( u(\overline t), J_\frac{s}{j_k}^{l_{j_k}} x \right ) = 0.
+    \end{equation}
+    Clearly we have $d(u(\overline t), u(t_{j_k})) \to 0$. So set $m_k
+    = l_{j_k}$. In view of \eqref{eq:ms_thm_1_35}, using the same
+    constant as in \eqref{eq:ms_thm_1_55}
+    \begin{equation}
+      \label{eq:ms_thm_1_59}
+      \begin{split}
+        d \left ( u \left (m_k \cdot \frac{m_k s}{m_k j_k} \right ),
+          J_{\frac{s}{j_k}}^{m_k} x \right ) \leq |\partial \phi|(x)
+        C(|\alpha|, b) \cdot b \cdot \left ( \frac{q}{j_k} + (\alpha
+          s)^2 \frac{1}{j_k^2} \right )^{\frac12} \to 0,
+      \end{split}
+    \end{equation}
+    which proves the claim. Since $\phi$ is lsc we have
+    \begin{equation}
+      \label{eq:ms_thm_1_60}
+      \phi(u(\overline t)) \leq \liminf_{k \to \infty} \phi \left (
+        J_{\frac{s}{j_k}}^{m_k} x \right ) = \liminf_{k \to \infty}
+      \phi_{j_k} = -\infty,
+    \end{equation}
+    this is a contradiction since we know that $\phi \circ u|_{[a,b]}$
+    is bounded from below. Hence $\phi$ is bounded from below on $B$
+    and so there exists $C \geq \overline C \geq 0$ such that $\phi(y)
+    + C \geq 0$ when $y = u(t)$ for some $t \in [a,b]$ or $y \in B$.
+
+    Let $\tilde \phi(y) := \max \{\phi(y), -C\}$, $y \in X$. Then
+    $\tilde \phi : X \to (-\infty, \infty]$ is proper, lsc and
+    satisfies $\tilde \phi \geq -C$, $\tilde \phi(u(t)) = \phi(u(t))$,
+    $t \in [a,b]$ and $\tilde \phi(y) = \phi(y)$, $y \in B$. Now we
+    approximate $F$ by Lipschitz continuous functions $\phi_n$. Let
+    $\phi_n(y) := \inf \{\tilde \phi(z) : n d(y, z) : z \in X \}$
+    where $n \geq 1$, $y \in X$. One can then verify $\phi_n \geq -C$,
+    $\phi_n \leq \phi_{n + 1}$, $\phi_n \uparrow \tilde \phi$ and
+    $\phi_n \in \text{Lip}(X; \R)$. To see
+    this for all $y \in X$, $n \geq 1$ there exists $(y_n)$ such that
+    \begin{equation}
+      \label{eq:ms_thm_1_61}
+      \begin{split}
+        \phi_n(y) &\geq \phi(y_n) + n d(y, y_n) - \frac1n\\
+        & \geq \inf \phi + n d(y, y_n) - 1.
+      \end{split}
+    \end{equation}
+    So
+    \begin{equation}
+      \label{eq:ms_thm_1_61}
+      n d(y, y_n) \leq \phi_n(y) - \inf \tilde \phi + 1 \leq \tilde
+      \phi(y) - \inf \tilde \phi + 1.
+    \end{equation}
+    so $y_n \to y$. \fbox{fix the rest} For each of $n \in \N$ we can
+    apply part~\ref{item:ms_lem_3_2} of \fref{lem:ms_lem_3} and we
+    get
+    \begin{equation}
+      \label{eq:ms_thm_1_62}
+      \begin{split}
+        \int_a^b \phi_n(u(t)) \, dt &= \lim_{k \to \infty} \frac{s}{k}
+        \sum_{l = qk + 1}^{pk} \phi_n \left ( J_{\frac{s}{k}}^l x
+        \right )\\
+        &\leq \liminf_{k \to \infty} \frac{s}{k} \sum_{l = qk +
+          1}^{pk} \tilde \phi \left ( J_{\frac{s}{k}}^l x
+        \right )\\
+        &= \liminf_{k \to \infty} \frac{s}{k} \sum_{l = qk +
+          1}^{pk} \phi \left ( J_{\frac{s}{k}}^l x
+        \right )\\
+        &=: J.
+      \end{split}
+    \end{equation}
+    Suppose that $J < \infty$, otherwise there is nothing to prove. We
+    have $\phi_n + C \geq 0$ and
+    \begin{equation}
+      \label{eq:ms_thm_1_63}
+      \int_a^b \phi_n(u(t)) + C \, dt \leq J + C (b - a), \quad n \geq 1,
+    \end{equation}
+    So by the monotone convergence theorem and $\tilde \phi(u(t)) =
+    \phi(u(t))$ for $t \in [a,b]$ we get
+    \begin{equation}
+     \label{eq:ms_thm_1_64}
+      \int_a^b \phi(u(t)) + C \, dt \leq J + C (b - a), \quad n \geq 1,
+    \end{equation}
+    so we get $\phi \circ u + C \in L^1(a,b)$, hence $\phi \circ
+    u|_{[a,b]} \in L^1(a,b)$ and $\int_a^b \phi(u(t)) \, dt \leq J$.
+  \end{proof}
+
+  \textit{Step 6} (proof of
+  \eqref{eq:ms_thm_1_1}-\eqref{eq:ms_thm_1_6}, \eqref{eq:ms_thm_1_8}
+  and \eqref{eq:ms_thm_1_9}). The function $u$ defined above is the
+  unique solution to \eqref{eq:evi} to
+  \fref{th:apriori}. \eqref{eq:ms_thm_1_1} is clear from the
+  definition of $u$, \eqref{eq:ms_thm_1_2} follows from
+  \eqref{eq:ms_thm_1_38} which says
+  \begin{equation}
+    \label{eq:ms_thm_1_65}
+    |\partial \phi|(u(t)) \leq e^{-\alpha t} |\partial \phi|(x), \quad
+    t > 0,
+  \end{equation}
+  and $x \in D(|\partial \phi|)$. \eqref{eq:ms_thm_1_3} follows
+  directly from
+  \eqref{eq:ms_thm_1_45}.
+
+  Let $(S(t))_{t \geq 0}$ be the family of operators as defined in
+  \eqref{eq:ms_thm_1_8} by $S(t) x := u(t)$, $t \geq 0$. Then by
+  \eqref{eq:ms_thm_1_2} $S(t)$ maps $D(|\partial \phi|)$ into
+  itself. Clearly $S(0)$ is the identity and if $h > 0$ and $v(t) :=
+  u(t + h)$, $t \geq 0$ then $v$ is a solution to \eqref{eq:evi} with
+  initial value $v(0) = u(h)$. So by uniqueness we have $S(t + h)x =
+  S(t)u(h) = S(t)S(h)x$ so $S(t + h) = S(t) S(h)$ which is the
+  semigroup property of $(S(t))_{t \geq 0}$. Then
+  \eqref{eq:ms_thm_1_9} follows from \eqref{th:apriori}. Now we can
+  prove \eqref{eq:ms_thm_1_4}. We have
+  \begin{equation}
+    \label{eq:ms_thm_1_66}
+    \phi \left ( J_{\frac{t}{n}}^n x \right ) \leq \phi \left
+      (J_{\frac{t}{n}} x \right ) \leq \phi(x), \quad n \geq n_0, t > 0, x \in
+      D(|\partial \phi|) \text{ and } 1 + \alpha \frac{t}{n_0} > 0.
+  \end{equation}
+  Because $\phi$ is lsc, we have
+  \begin{equation}
+    \label{eq:ms_thm_1_67}
+    \phi \left ( \liminf_{n \to \infty} J_\frac{t}{n}^n x \right ) \leq
+    \liminf_{n \to \infty} \phi \left ( J_\frac{t}{n}^n x \right )
+  \end{equation}
+  Hence, $\phi(S(t)x) = \phi(u(t)) \leq \phi(x)$. If $h > 0$, then
+  \begin{equation}
+    \label{eq:ms_thm_1_68}
+    \phi(u(t + h)) = \phi(S(t + h)x) = \phi(S(t)S(h)x) \leq
+    \phi(S(h)x) = \phi(u(h)),
+  \end{equation}
+  which proves \eqref{eq:ms_thm_1_4}. Similarly we have from
+  \eqref{eq:ms_prop_3_3} for $x \in D(|\partial \phi|)$, $t > 0$ and
+  $n \geq n_0$
+  \begin{equation}
+    \label{eq:ms_thm_1_69}
+    |\partial \phi| \left (J_{\frac{t}{n}} x \right ) \leq \left ( 1 +
+        \alpha \frac{t}n \right )^{-1} |\partial \phi|(x),
+  \end{equation}
+  hence
+  \begin{equation}
+    \label{eq:ms_thm_1_70}
+    |\partial \phi| \left (J_\frac{t}{n}^n x \right ) \leq \left ( 1 +
+        \alpha \frac{t}n \right )^{-n} |\partial \phi|(x).
+  \end{equation}
+  So by lower semicontinuity we obtain $|\partial \phi|(u(t)) \leq
+  e^{-\alpha t} |\partial \phi|(x)$.
+  \begin{equation}
+    \label{eq:ms_thm_1_71}
+    \begin{split}
+      e^{\alpha (t + h)} |\partial \phi|(u(t + h)) &= e^{\alpha (t +
+        h)} |\partial \phi|(S(t + h)x)\\
+      &= e^{\alpha (t +
+        h)} |\partial \phi|(S(t)S(h)x)\\
+      &\leq e^{\alpha (t + h)} e^{-\alpha t} |\partial \phi|(S(h)x)\\
+      &= e^{\alpha h} |\partial \phi|(u(h)),
+    \end{split}
+  \end{equation}
+  which proves the first assertion in \eqref{eq:ms_thm_1_5}. For the
+  right continuity let $t_n \downarrow t$, then
+  \begin{equation}
+    \label{eq:ms_thm_1_72}
+    \begin{split}
+    e^{\alpha t} |\partial \phi|(u(t)) &\leq \liminf_{n \to \infty}
+    e^{\alpha t_n} |\partial \phi|(u(t_n))\\
+    &e^{\alpha t} |\partial \phi|(u(t)).
+    \end{split}
+  \end{equation}
+  So it remains to prove \eqref{eq:ms_thm_1_6}. We have by the lower
+  semicontinuity of $\phi$ that
+  \begin{equation}
+    \label{eq:ms_thm_1_73}
+    \phi(u(t)) \leq \liminf_{n \to \infty} \phi \left (
+      J_\frac{t}{n}^n x \right ), \quad t > 0.
+  \end{equation}
+  In view of \eqref{eq:ms_prop_2_1} we have for $y \in D(\phi)$ and $z
+  \in D(|\partial \phi|)$ that
+  \begin{equation}
+    \label{eq:ms_thm_1_74}
+    \phi(y) \geq \phi(z) - |\partial \phi|(z) d(y, z) + \frac\alpha2
+    d(y, z)^2.
+  \end{equation}
+  If we substitute $y = u(t)$ and $z = J_{\frac{t}{n}}^n x$ in
+  \eqref{eq:ms_thm_1_73} we have
+  \begin{equation}
+    \label{eq:ms_thm_1_75}
+    \phi \left ( J_{\frac{t}{n}}^n x \right ) \leq \phi(u(t)) +
+    |\partial \phi| \left (J_{\frac{t}{n}}^n x \right ) d \left (
+    J_{\frac{t}{n}}^n x, u(t) \right ) - \frac{\alpha}{2} d \left
+    (J_{\frac{t}{n}}^n x, u(t) \right ).
+  \end{equation}
+  Using \eqref{eq:ms_prop_3_3} we have
+  \begin{equation}
+    \label{eq:ms_thm_1_76}
+    |\partial \phi| \left (J_\frac{t}{n}^n x \right ) \leq \phi(u(t)),
+    \quad t > 0,
+  \end{equation}
+  which together with \eqref{eq:ms_thm_1_73} implies
+  \eqref{eq:ms_thm_1_6}.
+
+  \textit{Step 7} (proof of \eqref{eq:ms_thm_1_74}). We will need the
+  following lemma
+  \begin{lemma}\label{lem:ms_lem_4}
+    Let $\phi:  \to (-\infty, \infty]$ be proper, lsc and satisfy
+    assumptions \ref{hyp:ms_hypothesis_1} with $\alpha \in 
+    \R$ and \ref{hyp:ms_hypothesis_2}. Let $h > 0$ be such that $1 +
+    \alpha h > 0$. Then for any $y \in D(\phi)$ we have
+    \begin{equation}
+      \label{eq:ms_thm_1_77}
+      \phi(y) - \phi_h(y) = \frac12 \int_0^h \frac{d(y, J_s y)^2}{s^2}
+      \, ds.
+    \end{equation}
+  \end{lemma}
+  \begin{proof}[of \fref{lem:ms_lem_4}]
+    Because of the assumptions on $h$, $J_s y$ is well defined for $0
+    < s \leq h$ and $s \mapsto d(y, J_s y)^2$ is nondecreasing by
+    \eqref{eq:ms_prop_1_4}, hence Borel measurable and so is
+    $\frac{d(y, J_s y)^2}{s^2}$. Let $N(y) \subset (0, h)$ denote the
+    countable sets of points of discontinuity of $s \mapsto d(y, J_s
+    y)^2$. Because $\lim_{\overline h \to 0} \phi_{\overline h}(y) =
+    \phi(y)$ by \eqref{eq:ms_prop_1_6}, hence it is sufficient to prove
+    \begin{equation}
+      \label{eq:ms_thm_1_78}
+      \phi_{\overline h_0}(y) - \phi_{\overline h_1}(y) = \frac12
+      \int_{\overline h_0}^{\overline h_1} \frac{d(y, J_s y)^2}{s^2}
+      \, ds \text{ for $0 < \overline h_0 < \overline h_1$ such that $1
+        + \alpha \overline h_1 > 0$.}
+    \end{equation}
+    We claim that $h \mapsto \phi_h(y) \in \text{Lip}[\overline h_0,
+    \overline h_1]$. Let $h_0, h_1 \in [\overline h_0,
+    \overline h_1]$,
+    \begin{equation}
+      \label{eq:ms_thm_1_79}
+      \begin{split}
+        \phi_{h_0}(y) - \phi_{h_1}(y) &\leq \Phi(h_0, y; J_{h_1} y) -
+        \Phi(h_1, y; J_{h_1} y)\\
+        &=\frac1{2h_0} d(y, J_{h_1} y)^2 - \frac1{2h_1} d(y, J_{h_1
+          y})^2\\
+        &\leq \frac12 \frac{h_1 - h_0}{h_0 h_1} d(y, J_{h_1 y})^2.
+      \end{split}
+    \end{equation}
+    If we choose $h_0 < h_1$ we get by \eqref{eq:ms_prop_1_4} and
+    \eqref{eq:ms_prop_1_6} that
+    \begin{equation}
+      \label{eq:ms_thm_1_80}
+      |\phi_{h_0}(y) - \phi_{h_1}(y)| \leq (h_1 - h_0) \frac12
+      \frac1{\overline h_0^2} d(y, J_{\overline h_1} y)^2,
+    \end{equation}
+    which proves the claim that $h \mapsto \phi_h(y)$ is Lipschitz
+    continuous. So it follows that the derivative of $h \mapsto
+    \phi_h(y)$ exists a.e.\ in $(\overline h_0, \overline h_1)$ and
+    that
+    \begin{equation}
+      \label{eq:ms_thm_1_81}
+      \phi_{\overline h_0}(y) - \phi_{\overline h_1}(y) =
+      \int_{\overline h_0}^{\overline h_1} \frac{d}{dh} \phi_h(y) \, dh
+    \end{equation}
+    we now claim that for $h \in (\overline h_0, \overline h_1)
+    \setminus N(y)$ that
+    \begin{equation}
+      \label{eq:ms_thm_1_82}
+      \frac{d}{dh} \phi_h(y) = -\frac12 \frac{d(y, J_h y)^2}{h^2},
+    \end{equation}
+    which would imply \eqref{eq:ms_thm_1_78}. Interchanging $h_0$ and
+    $h_1$ in \eqref{eq:ms_thm_1_78}
+    \begin{equation}
+      \label{eq:ms_thm_1_82}
+       \phi_{h_0}(y) - \phi_{h_1}(y) \geq \frac12 \frac{h_1 - h_0}{h_0 h_1} d(y, J_{h_0 y})^2.
+    \end{equation}
+    Assuming $h_0 < h_1$ in \eqref{eq:ms_thm_1_78} and
+    \eqref{eq:ms_thm_1_82} we get
+    \begin{equation}
+      \label{eq:ms_thm_1_83}
+      \frac12 \frac1{h_0 h_1} d(y, J_{h_0} y)^2 \leq
+      \frac{\phi_{h_0}(y) - \phi_{h_1}(y)}{h_0 - h_1} \leq \frac12
+      \frac1{h_0 h_1} d(y, J_{h_1} y)^2.
+    \end{equation}
+    Recalling that $\lim_{h \to \overline h} d(y, J_h y)^2 = d(y,
+    J_{\overline h} y)^2$ for $\overline h \ni N(y)$ so we obtain
+    \eqref{eq:ms_thm_1_82} for every $h \in (\overline h_0, \overline
+    h_1) \setminus N(y)$.
+  \end{proof}
+  In order to prove \eqref{eq:ms_thm_1_7} we introduce dyadic
+  partitions of the interval $[0,t]$, for $k \geq 1$ we set
+  \begin{equation}
+    \label{eq:ms_thm_1_84}
+      h_k := \frac{t}{2^k}, \quad t_i^k := i h_k, \quad 0 \leq 1 \leq 2^k,
+  \end{equation}
+  and we choose $k \geq k_0$ where $k_0$ satisfies
+  \begin{equation}
+    \label{eq:ms_thm_1_85}
+    1 + \alpha h_{k_0} > 0,
+  \end{equation}
+  to make sure that $J_{h_k} x$ is well defined. We can use the
+  notation $J_{h_k}^0 x = x$ and introduce the following functions
+  associated with the above partitions where $1 \leq i \leq 2^k$
+  \begin{align}
+    \label{eq:ms_thm_1_86}
+    \overline{u}_k(s) &:= \begin{cases}
+      x, &s = 0,\\
+      J_{h_k}^i x, & s \in (t_{i -1}^k, t_i^k],
+      \end{cases}\\
+    \label{eq:ms_thm_1_87}
+    \tilde{u}_k(s) &:= \begin{cases}
+      x, & s = 0,\\
+      J_{s-t_{i - 1}k} J_{h_k}^{i - 1} x, & s \in (t_{i -1}^k, t_i^k],
+      \end{cases}\\
+    \label{eq:ms_thm_1_88}
+    v_k(s) &:= \begin{cases}
+      0, & s = 0,\\
+      \displaystyle \frac{d(J_{h_k}^i x, J_{h_k}^{i - 1} x)}{h_k}, & s \in (t_{i -1}^k, t_i^k],
+      \end{cases}\\
+    \shortintertext{and,}
+    \label{eq:ms_thm_1_89}
+    w_k(s) &:= \begin{cases}
+      0, & s = 0,\\
+     \displaystyle \frac{d(\tilde u_k(s), J_{h_k}^{i - 1} x)}{s - t_{i - 1}^k} & s \in (t_{i -1}^k, t_i^k],
+      \end{cases}
+  \end{align}
+  Clearly, $v_k$ and $w_k$ are non-negative real valued Borel
+  measurable on $[0, t]$. Note that
+  \begin{equation}
+    \label{eq:ms_thm_1_90}
+    \begin{split}
+      \frac12 \int_{t_{i - 1}^k}^{t_i^k} w_k^2(s) \, ds &= \frac12
+      w_k^2(s + t_{i - 1}^k\\
+      &=\frac12 \int_0^{h_k} \frac{d(J_{h_k}^{i - 1} x, J_s J_{h_k}^{i
+          - 1})}{s^2} \, ds\\
+      \shortintertext{and by \eqref{eq:ms_thm_1_77} we have}
+      &=\phi(J_{h_k}^{i - 1} x) - \phi_{h_k}(J_{h_k}^{i - 1} x).
+    \end{split}
+  \end{equation}
+  Now by the definition of $\phi_{h_k}$ we have
+  \begin{equation}
+    \label{eq:ms_thm_1_91}
+    \phi_{h_k}(J_{h_k}^{i - 1} x) = \frac1{2h_k} d(J_{h_k}^{i - 1} x,
+    J_{h_k}^i) + \phi(J_{h_k}^i x),
+  \end{equation}
+  now noting that 
+  \begin{equation}
+    \label{eq:ms_thm_1_92}
+    \frac1{2h_k} d(J_{h_k}^{i - 1} x, J_{h_k}^i) = \frac12 \int_{t_{i
+        - 1}^k}^{t_i^k} v_k^2(s) \, ds.
+  \end{equation}
+  So we obtain
+  \begin{equation}
+    \label{eq:ms_thm_1_93}
+    \frac12 \int_{t_{i - 1}^k}^{t_i^k} v_k^2(s) \, ds + \frac12
+    \int_{t_{i - 1}^k}^{t_i^k} w_k^2(s) \, ds = \phi(J_{h_k}^{i - 1}
+    x) - \phi(J_{h_k}^i x).
+  \end{equation}
+  Now we can sum from $1$ to $2^k$ to obtain
+  \begin{equation}
+    \label{eq:ms_thm_1_94}
+    \frac12 \int_0^t v_k^2(s) \, ds + \frac12
+    \int_0^t w_k^2(s) \, ds = \phi(x) - \phi \left
+      (J_{\frac{t}{2^k}}^{2^k} x \right).
+  \end{equation}
+  By \eqref{eq:ms_thm_1_6} we have
+  \begin{equation}
+    \label{eq:ms_thm_1_95}
+    \begin{split}
+      \liminf_{k \to \infty} \frac12 \int_0^t v_k^2(s) \, ds +
+      \liminf_{k \to \infty} \frac12 \int_0^t w_k^2(s) \, ds &\leq
+      \liminf_{k \to \infty} \left ( \frac12 \int_0^t v_k^2(s) \, ds +
+        \frac12 w_k^2(s) \, ds \right )\\
+      &=\phi(x) - \phi(u(t)).
+    \end{split}
+  \end{equation}
+  Now we will prove that
+  \begin{equation}
+    \label{eq:ms_thm_1_96}
+    \int_0^t |\partial \phi|^2(u(s)) \leq \liminf_{k \to \infty}
+    \int_0^t w_k^2(s) \, ds,
+  \end{equation}
+  and for some subsequence $(j_k)$ that
+  \begin{equation}
+    \label{eq:ms_thm_1_97}
+    \int_0^t |\dot u|^2(s) \, ds \leq \liminf_{k \to \infty} \int_0^t
+    v_{j_k}^2(s) \, ds.
+  \end{equation}
+  Now note that \eqref{eq:ms_thm_1_95}, \eqref{eq:ms_thm_1_96} and
+  \eqref{eq:ms_thm_1_97} imply \eqref{eq:ms_thm_1_7}. We will first
+  prove that for every $s \in [0, T]$
+  \begin{equation}
+    \label{eq:ms_thm_1_98}
+    \lim_{k \to \infty} d(u(s), \overline u_k(s)) = \lim_{k \to
+      \infty} d(u(s), \tilde u_k(s)) = 0.
+  \end{equation}
+  We clearly have that $d(u(0), \overline u(0)) = d(u(0), \tilde u(0))
+  = 0$. Now let $s \in (0, t]$ and $\epsilon > 0$. For every $k \geq
+  k_0$ there is a unique $i \in \{1, \ldots, 2^k\}$ such that $s \in
+  (t_{i - 1}^k, t_i^k]$, $u \in \text{Lip}([0,t]; X)$. So there exists
+  $k_1 \geq k$ such that
+  \begin{equation}
+    \label{eq:ms_thm_1_99}
+    d(u(s), u(t_{i - 1}^k) \leq \frac\epsilon2 \text{ for $k \geq k_1$.}
+  \end{equation}
+  On the other hand by \eqref{eq:ms_thm_1_35} we have $C_1 = C_1(t,
+  k_0)$ such that
+  \begin{equation}
+    \label{eq:ms_thm_1_100}
+    d(u(t_{i - 1}^k, \overline u_k(t_{i - 1}^k)) = d \left (u \left (t_{i - 1}^k,
+    J_{\frac{(i - 1)h_k}{i - 1}^{i - 1}} x \right ) \right ) \leq
+|\partial \phi|(x) C_1 \frac1{\sqrt{i - 1}}.
+  \end{equation}
+  Since $\lim_{k \to \infty}(i - 1)2^{-k} = \lim_{k \to \infty t_{i
+      -1}^k} = s > 0$ we have $\lim_{k \to \infty} i(k) = \infty$ so 
+  \begin{equation}
+    \label{eq:ms_thm_1_101}
+    \begin{split}
+      d(u(s), \overline u_k(s)) &\leq d(u(s), u(t_{i - 1}^k) + d(u(t_{i
+        - 1}^k, \overline u_k(s))\\
+      &\leq \frac\epsilon2 + d(u(t_{i - 1}^k), \overline u_k(t_{i -
+        1}^k)) + d(\overline u_k(t_{i - 1}^k), \overline u_k(s))\\
+      &\leq \epsilon \text{ for $k$ large enough.}
+    \end{split}
+  \end{equation}
+  Now we estimate $d(\overline u_k(s), \tilde u_k(s))$, $s \in (0,
+  t]$. We have $\tilde u_k(s) = J_{\delta_k} J_{h_k}^{i - 1} x$ where
+  $i = i(k)$ is as above and $\delta_k := s - t_{i - 1}^k$. So by
+  using \eqref{eq:ms_prop_3_1} and \eqref{eq:ms_prop_3_2} we get
+  \begin{equation}
+    \label{eq:ms_thm_1_102}
+    \begin{split}
+      d(\overline u_k(s), \tilde u_k(s)) &\leq d(J_{\delta_k}
+      J_{h_k}^{i - 1} x, J_{h_k}^{i - 1} x) + d(J_{h_k} J_{h_k}^{i -
+        1} x, J_{h_k}^{i - 1} x)\\
+      &\leq \delta_k (1 + \alpha \delta_k)^{-1} |\partial
+      \phi|(J_{h_k}^{i - 1} x) + h_k(1 + h_k \alpha)^{-1} |\partial
+      \phi|(J_{h_k}^{i - 1} x).
+    \end{split}
+  \end{equation}
+  By \eqref{eq:ms_prop_3_3} for $x \in D(|\partial \phi|)$, $|\partial
+  \phi|(J_{h_k}^{i - 1} x)$ is bounded. Because $0 < \delta_k \leq h_k
+  \to 0$ we have that $d(\tilde u_k(s), \overline u_k(s)) \to 0$. This
+  implies the second part of \eqref{eq:ms_thm_1_98}. For $s \in (t_{i
+    - 1}^k, t_i^k)$ by \eqref{eq:ms_thm_1_89}, \eqref{eq:ms_prop_1_1}
+  and \eqref{eq:ms_thm_1_87} we have
+  \begin{equation}
+    \label{eq:ms_thm_1_103}
+    w_k(s) = \frac{d(J_{\delta_k} J_{h_k}^{i - 1} x, J_{h_k}^{i - 1} x)}{s - t_{i -
+        1}^k} \geq |\partial \phi|(J_{\delta_k} J_{h_k}^{i - 1} x) =
+    |\partial \phi|(\tilde u_k(s)) = |\partial \phi|(\tilde u_k(s)).
+  \end{equation}
+  Since $|\partial \phi|$ is lsc we get by \eqref{eq:ms_thm_1_98} that 
+  \begin{equation}
+    \label{eq:ms_thm_1_104}
+    \liminf_{k \to \infty} w_k(s) \geq \liminf_{k \to \infty}
+    |\partial \phi|(\tilde u_k(s)) \geq |\partial \phi|(u(s)).
+  \end{equation}
+  So by Fatou's lemma we have
+  \begin{equation}
+    \label{eq:ms_thm_1_105}
+    \int_0^t |\partial \phi|^2(u(s)) \, ds \leq \int_0^1 \liminf_{k
+      \to \infty} w_k^2(s) \, ds \leq \liminf_{k \to \infty} \int_0^t
+    w_k^2(s) \, ds.
+  \end{equation}
+  This proves \eqref{eq:ms_thm_1_96}. Now we establish
+  \eqref{eq:ms_thm_1_97}. By \eqref{eq:ms_thm_1_95} there exists a
+  constant $M = M(t) > 0$ and a subsequence $j_k$ such that
+  \begin{equation}
+    \label{eq:ms_thm_1_106}
+    \int_0^t v_{j_k}^2(s) \, ds \leq M,
+  \end{equation}
+  so a bounded sequence has a weakly convergent subsequence which we
+  will still denote by $v_{j_k}$ and $v_{j_k} \to \overline v \in
+  L^2(0,t)$ weakly with $\overline v \geq 0$ a.e.\, and
+  \begin{equation}
+    \label{eq:ms_thm_1_107}
+    \int_0^t \overline v^2(s) \leq \liminf_{k \to \infty} \int_0^t
+    v_{j_k}^2(s) \, ds.
+  \end{equation}
+  Since $d(\overline u_k(t_{i - 1}^k), \overline u_k(t_i^k) =
+  \int_{t_{i - 1}^k}^{t_i^k} v_k(s) \, ds$ given $0 \leq s_1 < s_2
+  \leq t$ we can find sequences $(s_{1, k})$ and $(s_{2, k})$
+  converging to $s_1$ and $s_2$ respectively such that
+  \begin{equation}
+    \label{eq:ms_thm_1_108}
+    d(\overline u_k(s_1), \overline u_k(s_2)) \leq d(\overline
+    u_k(s_{1, k}), \overline u_k(s_{2, k})) \leq \int_{s_{1,
+        k}}^{s_{2, k}} v_k(s) \, ds,
+  \end{equation}
+  in view of \eqref{eq:ms_thm_1_106} and \eqref{eq:ms_thm_1_98} we
+  have
+  \begin{equation}
+    \label{eq:ms_thm_1_109}
+    \begin{split}
+      d(u(s_1), u(s_2)) &\leq d(u(s_1), \overline u_k(s_1)) +
+      d(u(s_1), \overline u_k(s_2))\\
+      &\leq d(u(s_1), \overline u_k(s_1)) + d(u(s_2), \overline
+      u_k(s_2)) + d(\overline u_k(s_1), \overline u_k(s_2)),
+    \end{split}
+  \end{equation}
+  taking the limit $k \to \infty$ we obtain
+  \begin{equation}
+    \label{eq:ms_thm_1_110}
+    d(u(s_1), u(s_2)) \leq \int_{s_1}^{s_2} \overline v(s) \, ds.
+  \end{equation}
+  So the metric derivative of $u$, $|\dot u|(s)$ satisfies $|\dot
+  u|(s) \leq \overline v(s)$ a.e.\ by Lebesgue differentiation lemma
+  on $(0, t)$. By \eqref{eq:ms_thm_1_107} we have
+  \begin{equation}
+    \label{eq:ms_thm_1_108}
+    \int_0^t |\dot u|^2(s) \, ds \leq \int_0^t \overline v^2(s) \, ds
+    \leq \liminf_{k \to \infty} \int_0^t v_{j_k}^2(s) \, ds,
+  \end{equation}
+  which is exactly \eqref{eq:ms_thm_1_97}. This completes the proof of
+  the present theorem.
+\end{proof}
+
+Now we can formulate and prove the main result of this section
+\begin{theorem}\label{th:ms_thm_2}
+  Let $(X, d)$ be a complete metric space and let $\phi: X \to
+  (-\infty, \infty]$ be proper, lsc. Assume that
+  \ref{hyp:ms_hypothesis_1} with $\alpha \in \R$ and
+  \ref{hyp:ms_hypothesis_2} are satisfied. Then there exists a contractive
+  $C_0$-semigroup $(S(t))_{t \geq 0}$ on $\overline{D(\phi)}$
+  satisfying $[S(t)]_{\text{Lip}} \leq e^{-\alpha t}$, $t \geq 0$ such
+  that for every $x \in \overline{D(\phi)}$ the function $u:[0,
+  \infty) \to X$ defined by $u(t) := S(t)x$, $t \geq 0$ is the unique
+  solution to \eqref{eq:evi} with initial condition $u(0) =
+  x$. Further the following properties of the function $u$ hold:
+  \begin{enumerate}
+  \item \label{item:ms_thm_2_1} $\phi \circ u(t) \leq \phi_{c(t)}(x)$
+    for every $t > 0$ such that $1 + \alpha c(t) > 0$ where
+    \begin{equation}
+      \label{eq:ms_thm_2_1}
+      c(t) := \int_0^t e^{\alpha s} \, ds,
+    \end{equation}
+    \item \label{item:ms_thm_2_2} the map $[0, \infty) \ni t \mapsto
+      \phi \circ u(t)$ is nonincreasing and right-continuous,
+    \item \label{item:ms_thm_2_3} the map $[0, \infty) \ni t \mapsto
+      e^{-2 \alpha^- t} \phi \circ u(t)$ is convex,
+    \item \label{item:ms_thm_2_4} $u(t) \in D(|\partial \phi|)$ for
+      every $t > 0$ and
+      \begin{equation}
+        \label{eq:ms_thm_2_2}
+        \frac{t}2 |\partial \phi|^2(u(t)) \leq e^{2 \alpha^-t}(\phi(x)
+        - \phi_t(x)))
+      \end{equation}
+      for every $t > 0$ such that $1 + \alpha t > 0$,
+    \item \label{item:ms_thm_2_5} the map $(0, \infty) \mapsto
+      e^{\alpha t} |\partial \phi|(u(t))$ is nonincreasing and
+      right-continuous,
+    \item \label{item:ms_thm_2_6}
+      \begin{equation}
+        \label{eq:ms_thm_2_3}
+        \frac{d^+}{dt} \phi \circ u(t) = -|\partial \phi|^2(u(t)) =
+        -|\dot u_+|^2(t)
+      \end{equation}
+      for every $t > 0$ where $|\dot u_+|(t) := \lim_{s \downarrow t}
+      \frac{d(u(t), u(s))}{s - t}$ is the right metric derivative of
+      $u$ at $t$,
+      \item \label{item:ms_thm_2_7}
+        \begin{equation}
+          \label{eq:ms_thm_2_4}
+          \phi \circ u(s) - \phi \circ u(t) = \int_s^t \frac12
+          |\partial \phi|^2(u(r)) + \frac12 |\dot u|^2(r) \, dr
+        \end{equation}
+        for every $0 \leq s < t$,
+      \item \label{item:ms_thm_2_8} for every $0 < a < b$, $u|_{[a,b]}
+        \in \text{Lip}([a, b]; X)$ and
+        \begin{equation}
+          \label{eq:ms_thm_2_5}
+          [u|_{[a,b]}]_{\text{Lip}} \leq |\partial \phi|(u(a))
+          e^{\alpha^- (b - a)},
+        \end{equation}
+      \item \label{item:ms_thm_2_9}
+        \begin{equation}
+          \label{eq:ms_thm_2_6}
+          u(t) = \lim_{n \to \infty} J_\frac{t}{n}^n x \text{
+            for every $t > 0$,}
+        \end{equation}
+      \item \label{item:ms_thm_2_10}
+        \begin{equation}
+          \label{eq:ms_thm_2_7}
+          \phi(u(t)) = \lim_{n \to \infty} \phi(J_\frac{t}{n}^n x) \text{
+            for every $t > 0$,}
+        \end{equation}
+      \item \label{item:ms_thm_2_11} if $\alpha > 0$ then $\phi$ has a
+        unique minimizer $\overline x \in D(\phi)$ and $d(u(t),
+        \overline x) \leq e^{-\alpha t} d(x, \overline x)$ for every
+        $t \geq 0$,
+      \item \label{item:ms_thm_2_12} if $\alpha = 0$, then
+        \begin{equation}
+          \label{eq:ms_thm_2_13}
+          d \left (u(t), J_\frac{t}{n}^n x \right ) \leq \frac{t}{n}
+          \left [\phi(x) - \phi_\frac{t}{n}(x) \right ] \leq
+          \frac{t^2}{2n^2} |\partial \phi|^2(x), \text{ for every $t > 0$.}
+        \end{equation}
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  \textit{Step 1} (Extension of $(S(t))_{t \geq 0}$). Let $x \in
+  \overline{D(\phi)} = \overline{D(|\partial \phi|)}$ and let $t \geq
+  0$. Let $(S(t))_{t \geq 0}$ be the semigroup defined in
+  \fref{th:ms_thm_1}. Because $S(t) : D(|\partial \phi|) \to
+  D(|\partial \phi|)$ is Lipschitz continuous and
+  $\overline{D(|\partial \phi|)}$ is complete, there exists a
+    continuous extension also denoted $S(t)$ to
+    $\overline{D(\phi)}$. Clearly $S(t): \overline{D(\phi)} \to
+    \overline{D(\phi)}$ is also Lipschitz continuous and satisfies
+  $[S(t)]_{\text{Lip}} \leq e^{\alpha t}$ to see this let $u, v \in
+  \overline{D(\phi)}$ and $(u_n)$, $(v_m)$ their approximants, then
+  \begin{equation}
+    \label{eq:ms_thm_2_14}
+    \begin{split}
+      d(S(t)u, S(t)v) &\leq d(S(t)u, S(t)u_n) + d(S(t) u_n, S(t) v_m)
+      + d(S(t) v_m, S(t)v)\\
+      &\leq e^{-\alpha t} d(u, v) \text{ as $n, m \to \infty$.}
+    \end{split}
+  \end{equation}
+  Let $(x_n) \subset D(|\partial \phi|)$ be such that $x_n \to
+  x$. Then for $t, s \geq 0$ we have $S(t + s)x = \lim S(t + s) x_n =
+  \lim S(t)S(s) x_n = S(t)S(s)x$. Because $S(0) = I$, $(S(t))_{t \geq
+    0}$ satisfies the semigroup property. Further, let $t_n \geq 0$ be
+  such that $t_n \to t$ and let $y \in D(|\partial \phi|)$.
+  \begin{equation}
+    \label{eq:ms_thm_2_15}
+    \begin{split}
+      d(S(t)x, S(t_n)x) &\leq d(S(t)x, S(t)y) + d(S(t)y, S(t_n)y) +
+    d(S(t_n)y, S(t_n)x)\\
+    \leq (e^{-\alpha t} + e^{-\alpha t_n}) d(x, y) +d(S(t)y, S(t_n)y),
+  \end{split}
+  \end{equation}
+  hence $d(S(t)x, S(t_n)x) \leq 2e^{\alpha t} d(x, y)$, because
+  $D(|\partial \phi|)$ is dense in $\overline{D(\phi)}$ we have
+  $\limsup d(S(t)x, S(t_n)x) = 0$ by taking limits, so $(S(t))_{t \geq
+    0} : \overline{D(\phi)} \to \overline{D(\phi)}$ is a $C_0$
+  $\alpha$-contractive semigroup on $\overline{D(\phi)}$.
+
+  \textit{Step 2.} ($u(t) := S(t)x$ is an integral solution to
+  \eqref{eq:evi}). Let $(x_n)$ be as in step 1 and let $u_n(t) :=
+  S(t)x_n$, $n \geq 1$, $u(t) := S(t)x$, $t \geq 0$. Because
+  $d(u_n(t), u(t)) \leq e^{\alpha t} d(x, x_n)$, the sequence $(u_n)$
+  converges uniformly to $u$ on intervals $[0, T]$, $T > 0$. Let $0 <
+  a < b$ and $z \in D(\phi)$. $\phi$ lsc hence
+  \begin{equation}
+    \label{eq:ms_thm_2_16}
+    \phi(u(b)) \leq \liminf_{n \to \infty} \phi(u_n(b)),
+  \end{equation}
+  so there exists $C_1 \in \R$ such that $\phi(u_n(b)) \geq \phi(u(b))
+  - C_1 := C$. Because $\phi \circ u_n$ is nonincreasing on $[a,b]$,
+  thus $\phi \circ u_n(t) \geq C$ for $t \in [a,b]$, $n \geq 1$. We
+  have
+  \begin{equation}
+    \label{eq:ms_thm_2_17}
+    \int_a^b \phi(u_n(t)) \, dt \leq \frac12 d(u_n(a), z)^2 - \frac12
+    d(u_n(b), z)^2 - \frac\alpha2 \int_a^b d(u_n(t), z)^2 \, dt + (b - a)\phi(z).
+  \end{equation}
+  We can now apply Fatou's lemma and notice that $\phi \circ u$ is
+  lower semicontinuous hence Borel measure so we obtain
+  \begin{equation}
+    \label{eq:ms_thm_2_18}
+    \int_a^b \phi \circ u(t) + c \, dt \leq \frac12 d(u(a), z)^2 -
+    \frac12 d(u(b), z)^2 - \frac\alpha2 \int_a^b d(u(t), z)^2 \, dt +
+    (b - a)(\phi(z) + c).
+  \end{equation}
+  So, $\phi \circ u \in L^1(a,b)$ and $u$ satisfies integral
+  \ref{eq:evi}.
+
+  \textit{Step 3} ($u(t) := S(t)x$ is a solution to
+  \eqref{eq:evi}). and the proof of \ref{item:ms_thm_2_1},
+  \ref{item:ms_thm_2_2} and \ref{item:ms_thm_2_4}). To prove that $u$
+  is a solution to \eqref{eq:evi} it is suffcient to show that $u \in
+  \text{Lip}([a,b]; X)$ for every $0 < a < b$. Recall (and remember
+  that it is proved under the condition $\alpha \leq 0$)
+  \eqref{eq:ms_thm_1_45} and by the semigroup property we have
+  \begin{equation}
+    \label{eq:ms_thm_2_19}
+    d(u_n(t), u_n(s)) \leq |\partial \phi|(u_n(a)) e^{|\alpha|(b -
+      a)}(t - s),
+  \end{equation}
+  for $0 < a \leq s < t \leq b$, $n \geq 1$ where $u_n$ is defined in
+  step 2. So if we can find $a_0 > 0$ such that for every $a \in (0,
+  a_0)$ $|\partial \phi|(u_n(a))$ is bounded, then $u$ will be a
+  solution to \eqref{eq:evi}. Set
+  \begin{equation}
+    \label{eq:ms_thm_2_20}
+    c(t) := \int_0^t e^{\alpha s} \, ds
+  \end{equation}
+  for $t > 0$ and we choose $a_0 > 0$ such that $1 + \alpha a_0 > 0$
+  and $1 + \alpha c(a_0) > 0$. If $0 < a < a_0$, then $1 + \alpha a >
+  0$ and $1 + \alpha c(a) > 0$ too. Let $a \in (0, a_0)$. We will
+  first establish a bound for $\phi \left (u_n \left (\frac{a}2 \right
+        ) \right )$ and prove \ref{item:ms_thm_2_1}. Because $u_n$
+      satisfies \eqref{eq:evi} we obtain by multiplication of \eqref{eq:evi} by
+      $e^{\alpha s}$ and integrating on $[0,t]$ that
+  \begin{equation}
+     \label{eq:ms_thm_2_21}
+     \int_0^t e^{\alpha t} \frac12 \frac{d}{dt} d(u_n(t), z)^2 \, dt \leq
+     -\int_0^t e^{\alpha t} \phi(u_n(t)) \, dt -
+     \int_0^t \frac\alpha2 e^{\alpha t} d(u_n(t), z)^2 \, dt +
+     \int_0^t e^{\alpha t} \phi(z) \, dt,
+  \end{equation}
+  and noting that
+  \begin{equation}
+    \label{eq:ms_thm_2_22}
+    \int_0^t e^{\alpha t} \frac12 \frac{d}{dt} d(u_n(t), z)^2 \, dt =
+    \int_0^t \frac12 \frac{d}{dt} e^{\alpha t} d(u_n(t), z)^2 \, dt -
+    \int_0^t \frac\alpha2 e^{\alpha t} d(u_n(t), z)^2 \, dt,
+  \end{equation}
+  so
+  \begin{equation}
+    \label{eq:ms_thm_2_23}
+    \frac12 e^{\alpha t} d(u_n(t), z)^2 - \frac12 d(u_n(0), z)^2 +
+    \int_0^t e^{\alpha s} \phi(u_n(s)) \, ds \leq c(t) \phi(z), \quad
+    z \in D(\phi).
+  \end{equation}
+  Now we use the fact that $\phi \circ u_n$ is nonincreasing to get
+  \begin{equation}
+    \label{eq:ms_thm_2_24}
+    \phi \circ u_n(t) \leq \frac{1}{c(t)} \int_0^t e^{\alpha s}
+    \phi(u_n(s)) \, s \leq \phi(z) + \frac{1}{2c(t)} d(u_n(0), z)^2.
+  \end{equation}
+  Now assuming that $1 + \alpha c(t) > 0$ and taking the infimum over
+  $z \in D(\phi)$ we obtain by definition
+  \begin{equation}
+    \label{eq:ms_thm_2_25}
+    (\phi \circ u_n)(t) \leq \phi_{c(t)}(u_n(0)).
+  \end{equation}
+  Now $\phi_{c(t)}$ is continuous and $u_n(0)  x_n \to x$ so there
+  exists $C_1(t) > 0$ indepedent of $n$ such that $(\phi \circ u_n)(t)
+  \leq C_1(t)$, since if $t'$ is close enough to $t$ then $(\phi \circ
+  u_n)(t) \leq \phi_{c(t)}(u_n(0)) + \epsilon$. In particular there
+  holds that
+  \begin{equation}
+    \label{eq:ms_thm_2_26}
+    \phi \left (u_n \left ( \frac{a}{2} \right ) \right ) \leq C_1
+    \left ( \frac{a}{2} \right ), \quad n \geq 1.
+  \end{equation}
+  Note also that since $\phi_{c(t)}$ is continuous and $\phi$ is lower
+  semicontinuous, then for $t > 0$ such that $1 + \alpha c(t) > 0$ we
+  have
+  \begin{equation}
+    \label{eq:ms_thm_2_27}
+    \liminf_{n \to \infty} \phi \circ u_n(t) \geq \phi \circ
+    \liminf_{n \to \infty} u_n(t)
+  \end{equation}
+  Hence $\phi \circ u(t) \leq \liminf \phi \circ u_n(t) \leq
+  \phi_{c(t)}(x)$. This establishes \ref{item:ms_thm_2_1}. Now we will
+  find a bound for $|\partial \phi|(u_n(a))$ and for this we first
+  prove \ref{item:ms_thm_2_4} in the special case $x \in D(|\partial
+  \phi|)$. We denote the $x$ by $y$ in this case and we set $v(t) :=
+  S(t)y$, $t \geq 0$. Let $t > 0$ be such that $1 + \alpha t >
+  0$. From \fref{th:ms_thm_1}, \eqref{eq:ms_thm_1_7}
+  \begin{equation}
+    \label{eq:ms_thm_2_28}
+    \frac12 \int_0^t |\partial \phi|^2(v(s)) \, ds \leq \phi(y) -
+    \left [ \phi(v(t)) + \frac12 \int_0^t |\dot v|^2(s) \, ds \right ],
+  \end{equation}
+  because $v \in \text{Lip}([0, t]; X)$ (hence absolutely continuous) we have
+  \begin{equation}
+    \label{eq:ms_thm_2_29}
+    d(v(0), v(t)) \leq \int_0^t |\dot v|(s) \, ds,
+  \end{equation}
+  and by Jensen's inequality we have
+  \begin{equation}
+    \label{eq:ms_thm_2_30}
+    \begin{split}
+      \frac{1}{t} d(v(0), v(t))^2 &\leq t \left ( \int_0^t |\dot v|(s) \,
+        \frac{ds}{t} \right )^2\\
+      &\leq \int_0^t |\dot v|^2(s) \, ds.
+    \end{split}
+  \end{equation}
+  So there follows tht
+  \begin{equation}
+    \label{eq:ms_thm_2_31}
+    \frac12 \int_0^t |\partial \phi|^2(v(s)) \, ds \leq \phi(y) -
+    \left [ \phi(v(t)) + \frac{1}{2t} d(y, v(t))^2 \right ] \leq
+    \phi(y) - \phi_t(y).
+  \end{equation}
+  Now we use that $[0, \infty) \ni s \mapsto e^{-2 \alpha^- s} |\partial
+  \phi|^2(v(s))$ is nonincreasing. So
+  \begin{equation}
+    \label{eq:ms_thm_2_32}
+    \begin{split}
+      \frac{t}{2} e^{-2 \alpha^- t} |\partial \phi|^2(v(t)) & \leq
+      \frac12 \int_0^t e^{2 \alpha^- s} \, ds \cdot e^{-2 \alpha^- t}
+      |\partial \phi|^2(v(t))\\
+      &\leq \frac12 \int_0^t e^{2 \alpha^- s} e^{-2 \alpha^- s}
+      |\partial \phi|^2(v(s)) \, ds\\
+      &\leq \phi(y) - \phi_t(y).
+    \end{split}
+  \end{equation}
+  This gives \ref{item:ms_thm_2_4} in the case that $y = x \in
+  D(|\partial \phi|)$. Now we can prove a bound $|\partial
+  \phi|(u_n(a))$. To see this choose $y = u_n \left ( \frac{a}2 \right
+  )$, so we have $u_n(a) = S \left (\frac{a}2 \right ) = v \left (
+  \frac{a}2 \right )$, so
+  \begin{equation}
+    \label{eq:ms_thm_2_33}
+    \frac{a}{4} e^{-2 \alpha^- \frac{a}{2}} |\partial \phi|^2(u_n(a))
+    \leq \phi \left ( u_n \left ( \frac{a}2 \right ) \right ) - \phi_{\frac{a}{2}} \left ( u_n \left ( \frac{a}2 \right ) \right ),
+  \end{equation}
+  both terms on the righthand side are bounded, one by $C_1$ and the
+  other one by continuity by $\epsilon + C_1$. So there exists $C_2 >
+  0$ independent of $n \geq 1$ such that $|\partial \phi|(u_n(a)) \leq
+  C_2$, $n \geq 1$. So $u$ is a solution to \eqref{eq:evi}. Now we
+  prove that $u(t) \in D(|\partial \phi|)$ for every $t > 0$. Observe
+  that $u_n(a) = S \left ( \frac{a}{2} \right ) u_n \left (
+    \frac{a}{2} \right )$ we have 
+  \begin{equation}
+    \label{eq:ms_thm_2_34}
+    \frac{a}{4} e^{-2 \alpha^- a} |\partial \phi|^2(u_n(a))
+    \leq \phi \left ( u_n \left ( \frac{a}2 \right ) \right ) -
+    \phi_{\frac{a}{2}} \left ( u_n \left ( \frac{a}2 \right ) \right )
+    \leq \phi_{c \left ( \frac{a}{2} \right )} (x_n) -
+    \phi_{\frac{a}{2}} \left ( u_n \left ( \frac{a}2 \right ) \right
+    ), \quad n \geq 1.
+  \end{equation}
+  Since $|\partial \phi|$ is lower semicontinuous we obtain
+  \begin{equation}
+    \label{eq:ms_thm_2_35}
+    |\partial \phi|^2(u(a)) \leq \frac{4}{a} e^{\alpha^- a} \left [ \phi_{c
+      \left ( \frac{a}{2} \right )} - \phi_{\frac{a}{2}} \left ( u
+      \left ( \frac{a}{2} \right ) \right ) \right ] < \infty.
+  \end{equation}
+  Hence $S(a)x \in D(|\partial \phi|)$ for every $x \in
+  \overline{D(\phi)}$ and $a > 0$ such that $1 + \alpha a > 0$ and $1
+  + \alpha c(a) > 0$. By induction it follows that $S(t)x \in
+  D(|\partial \phi|)$ for every $x \in \overline{D(\phi)}$ and $t >
+  0$. Now we prove \ref{item:ms_thm_2_2}. Let $t > 0$ be such that $1
+  + \alpha c(t) > 0$ and let $x \in \overline{D(\phi)}$.  Then
+  $\phi(S(t) x) \leq \phi_{c(t)}(x) \leq \phi(x)$ for every $x \in
+  \overline{D(\phi)}$ and $t > 0$. So $\phi(S(nt)x) \leq \phi(S((n -
+  1)t))x) \leq \phi(x)$ for every $n \geq 1$ and $x \in \overline{D(\phi)}$. If we now use the semigroup
+  property we obtain $\phi(S(t + h)x) = \phi(S(t)S(h)x) \leq
+  \phi(S(h)x)$, $t > 0$, $h > 0$ so this proves \ref{item:ms_thm_2_2}.
+
+  We now prove \ref{item:ms_thm_2_4}. Let $t > 0$ be such that $1 +
+  \alpha t > 0$. So there exists $h_0 > 0$ such that $1 + \alpha(t +
+  h) > 0$ for $0 < h \leq h_0$. Let $x \in \overline{D(\phi)}$. Since
+  $S(h)x \in D(|\partial \phi|)$ we have by the preceding that
+  \begin{equation}
+    \label{eq:ms_thm_2_36}
+    \frac{t}2 |\partial \phi|^2(S(t)S(h)x) \leq e^{2 \alpha^-t}
+    [\phi(S(hx) - \phi_t(S(h)x)] \leq e^{2 \alpha^- t} [\phi(x) - \phi_t(x)].
+  \end{equation}
+  Choosing a sequence $h_n \downarrow 0$ we have 
+  \begin{equation}
+    \label{eq:ms_thm_2_37}
+    \frac{t}{2} |\partial \phi|^2(S(t)x) \leq \liminf_{n \to \infty}
+    [\phi(x) - \phi_t(S(h_n)x)] = e^{2 \alpha^- t}[\phi(x) -
+    \phi_t(x)].
+  \end{equation}
+
+  \textit{Step 4} (proof of \ref{item:ms_thm_2_5} and
+  \ref{item:ms_thm_2_8}). First we prove \ref{item:ms_thm_2_5}. Let $h
+  > 0$, then $S(h)x \in D(|\partial \phi|)$ by \ref{item:ms_thm_2_4},
+  hence
+  \begin{equation}
+    \label{eq:ms_thm_2_38}
+    [0, \infty) \ni t \mapsto e^{\alpha t} |\partial \phi|(u(t + h)) =
+    e^{\alpha t} |\partial \phi(S(t)S(h)x)
+  \end{equation}
+  is nonincreasing by \fref{th:ms_thm_1} and right-continuous since $t
+  \mapsto e^{\alpha t} |\partial \phi|(u(t + h))$ is lower
+  semicontinuous. This completes the proof of
+  \ref{item:ms_thm_2_5}. Now we prove \ref{item:ms_thm_2_8}. Let $0 <
+  a < b$ and set $v(s) := u(s + a)$, $s \geq 0$. Then $v(0) \in
+  D(|\partial \phi|)$ \fbox{continue}
+\end{proof}
+
+\end{document}
